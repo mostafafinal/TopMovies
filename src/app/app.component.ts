@@ -4,6 +4,8 @@ import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { CommonModule } from '@angular/common';
 import { CardCarouselComponent } from './components/card-carousel/card-carousel.component';
+import { LoginPageComponent } from './components/login-page/login-page.component';
+import { SignupPageComponent } from './components/signup-page/signup-page.component';
 
 @Component({
   selector: 'app-root',
