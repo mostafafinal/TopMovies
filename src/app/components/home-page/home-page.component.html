@@ -1,1 +1,98 @@
-<p>home-page works!</p>
+<div class="container mt-5 text-white">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <a href="#" class="btn btn-danger">مشاهدة المزيد</a>
+    <h3>آخر الأفلام المضافة</h3>
+  </div>
+  <div class="row">
+    <div class="col-md-3 mb-4" *ngFor="let movie of movies; trackBy: trackByMovieId">
+      <div class="card h-100 shadow-lg rounded-lg black-card">
+        <div id="carousel-{{ movie.id }}" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img class="d-block w-100" [src]="movie.image" alt="Movie Image">
+              <div class="carousel-caption opacity-0 text-overlay">
+                <div class="card-body d-flex flex-column justify-content-between">
+                  <div class="d-flex flex-column text-end">
+                    <span class="btn btn-primary">{{ movie.quality }}</span>
+                    <span class="btn btn-success">{{ movie.rating }}</span>
+                    <span class="btn btn-warning ml-auto">{{ movie.genre }}</span>
+                  </div>
+
+                  <h5 class="card-title mt-3">{{ movie.title }}</h5>
+                  <p class="card-text">
+                    {{ isExpanded(movie) ? movie.description : (movie.description | slice:0:50) + '...' }}
+                  </p>
+                  <button class="btn btn-danger btn-sm" (click)="showMore(movie)">
+                    {{ isExpanded(movie) ? 'Show Less' : 'Read More' }}
+                  </button>
+                </div>
+
+                <div class="card-footer text-muted">
+                  <small class="text-white align-self-end">Released: {{ movie.releaseYear }}</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="isLoading" class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+  <div class="spinner-border text-primary" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
+
+
+
+
+
+<!--  -->
+<div class="container mt-5 text-white"></div>
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <a href="#" class="btn btn-danger">مشاهدة المزيد</a>
+  <h3 class="text-white">آخر الحلقات المضافة</h3>
+</div>
+<div class="row">
+  <div class="col-md-3 mb-4" *ngFor="let movie of movies; trackBy: trackByMovieId">
+    <div class="card h-100 shadow-lg rounded-lg black-card">
+      <div id="carousel-{{ movie.id }}" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img class="d-block w-100" [src]="movie.image" alt="Movie Image">
+            <div class="carousel-caption opacity-0 text-overlay">
+              <div class="card-body d-flex flex-column justify-content-between">
+                <div class="d-flex flex-column text-end">
+                  <span class="btn btn-primary">{{ movie.quality }}</span>
+                  <span class="btn btn-success">{{ movie.rating }}</span>
+                  <span class="btn btn-warning ml-auto">{{ movie.genre }}</span>
+                </div>
+
+                <h5 class="card-title mt-3">{{ movie.title }}</h5>
+                <p class="card-text">
+                  {{ isExpanded(movie) ? movie.description : (movie.description | slice:0:50) + '...' }}
+                </p>
+                <button class="btn btn-danger btn-sm" (click)="showMore(movie)">
+                  {{ isExpanded(movie) ? 'Show Less' : 'Read More' }}
+                </button>
+              </div>
+
+              <div class="card-footer text-muted">
+                <small class="text-white align-self-end">Released: {{ movie.releaseYear }}</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div *ngIf="isLoading" class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+  <div class="spinner-border text-primary" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
