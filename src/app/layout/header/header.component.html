@@ -1,8 +1,8 @@
 <nav class="navbar navbar-expand-lg bg-dark sticky-top">
   <div class="container-fluid">
     <a class="navbar-brand">
-      <span class="text-light fw-bold fs-4">Top</span>
-      <span class="text-danger fw-bold">Movies</span>
+      <span class="text-light fw-bold fs-4" [routerLink]="['/home']">Top</span>
+      <span class="text-danger fw-bold" [routerLink]="['/home']">Movies</span>
     </a>
     <button
       class="navbar-toggler"
@@ -59,7 +59,9 @@
           Search
         </button>
       </form>
-      <button class="btn btn-danger fs-5 ms-2">LogIn</button>
+      <button class="btn btn-danger fs-5 ms-2" [routerLink]="['/login']">
+        LogIn
+      </button>
     </div>
   </div>
 </nav>
