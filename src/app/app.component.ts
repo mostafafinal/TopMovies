@@ -1,25 +1,15 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { HeaderComponent } from './layout/header/header.component';
-import { FooterComponent } from './layout/footer/footer.component';
-import { CommonModule } from '@angular/common';
-import { CardCarouselComponent } from './components/card-carousel/card-carousel.component';
-import { LoginPageComponent } from './components/login-page/login-page.component';
-import { SignupPageComponent } from './components/signup-page/signup-page.component';
+import { HeaderComponent } from './componts/header/header.component';
+import { ContentComponent } from "./componts/content/content.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [
-    RouterOutlet,
-    HeaderComponent,
-    FooterComponent,
-    CommonModule,
-    CardCarouselComponent,
-  ],
+  imports: [RouterOutlet, HeaderComponent, ContentComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
+  styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'movies';
+  title = 'userprofile';
 }
