@@ -3,13 +3,21 @@ import { MoviesPageComponent } from './components/movies-page/movies-page.compon
 import { TvShowsPageComponent } from './components/tv-shows-page/tv-shows-page.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { DetailsPageComponent } from './components/details-page/details-page.component';
+import { LoginPageComponent } from './components/login-page/login-page.component';
+import { SignupPageComponent } from './components/signup-page/signup-page.component';
 
 export const routes: Routes = [
   {
     path: '',
     component: HomePageComponent,
   },
+  {
+    path: 'home',
+    component: HomePageComponent,
+  },
   { path: 'movies', component: MoviesPageComponent },
   { path: 'tvshows', component: TvShowsPageComponent },
   { path: 'detailspage', component:DetailsPageComponent },
+  { path: 'login', component: LoginPageComponent },
+  { path: 'signup', component: SignupPageComponent },
 ];
