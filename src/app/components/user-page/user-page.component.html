@@ -7,69 +7,114 @@
   </div>
 </div>
 
-<div class="tvshow">
-  <p class="text-danger fs-2 ms-5">tv show</p>
-  <img
-    class="rounded m-3 img-small border border-danger border border-4"
-    src="avatar2.png"
-    alt=""
-  />
-  <img
-    class="rounded m-3 img-small border border-danger border border-4"
-    src="avatar2.png"
-    alt=""
-  />
-  <img
-    class="rounded m-3 img-small border border-danger border border-4"
-    src="avatar2.png"
-    alt=""
-  />
-  <img
-    class="rounded m-3 img-small border border-danger border border-4"
-    src="avatar2.png"
-    alt=""
-  />
-  <img
-    class="rounded m-3 img-small border border-danger border border-4"
-    src="avatar2.png"
-    alt=""
-  />
-  <img
-    class="rounded m-3 img-small border border-danger border border-4"
-    src="avatar2.png"
-    alt=""
-  />
+<div class="container mt-5 text-white">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h3>Favorites</h3>
+    <a href="#" class="btn btn-danger" [routerLink]="['/movies']">See More</a>
+  </div>
+  <div class="row">
+    <div
+      class="col-md-3 mb-4"
+      *ngFor="let movie of movies; trackBy: trackByMovieId"
+    >
+      <div class="card h-100 shadow-lg rounded-lg black-card">
+        <div
+          id="carousel-{{ movie.id }}"
+          class="carousel slide"
+          data-ride="carousel"
+        >
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img
+                class="d-block w-100"
+                [src]="movie.image"
+                alt="Movie Image"
+              />
+              <div class="carousel-caption opacity-0 text-overlay">
+                <div
+                  class="card-body d-flex flex-column justify-content-between"
+                >
+                  <div class="d-flex flex-column text-end">
+                    <span class="btn btn-primary">{{ movie.quality }}</span>
+                    <span class="btn btn-success">{{ movie.rating }}</span>
+                    <span class="btn btn-warning ml-auto">{{
+                      movie.genre
+                    }}</span>
+                  </div>
+
+                  <h5 class="card-title mt-3">{{ movie.title }}</h5>
+                  <p class="card-text">
+                    {{ movie.description }}
+                  </p>
+                  <button class="btn btn-danger btn-sm">More Details</button>
+                </div>
+
+                <div class="card-footer text-muted">
+                  <small class="text-white align-self-end"
+                    >Released: {{ movie.releaseYear }}</small
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div class="favmovi">
-  <p class="text-danger fs-2 ms-5">
-    Favorite Movies<i
-      class="fa-solid fa-star fa-beat fa-2xs"
-      style="color: #ffd43b"
-    ></i>
-  </p>
-  <video width="400" class="m-5 border border-danger border border-4" controls>
-    <source src="mov_bbb.mp4" type="video/mp4" />
-    <source src="mov_bbb.mp4" type="video/ogg" />
-  </video>
-  <video width="400" class="m-5 border border-danger border border-4" controls>
-    <source src="mov_bbb.mp4" type="video/mp4" />
-    <source src="mov_bbb.mp4" type="video/ogg" />
-  </video>
-  <video width="400" class="m-5 border border-danger border border-4" controls>
-    <source src="mov_bbb.mp4" type="video/mp4" />
-    <source src="mov_bbb.mp4" type="video/ogg" />
-  </video>
-  <video width="400" class="m-5 border border-danger border border-4" controls>
-    <source src="mov_bbb.mp4" type="video/mp4" />
-    <source src="mov_bbb.mp4" type="video/ogg" />
-  </video>
-  <video width="400" class="m-5 border border-danger border border-4" controls>
-    <source src="mov_bbb.mp4" type="video/mp4" />
-    <source src="mov_bbb.mp4" type="video/ogg" />
-  </video>
-  <video width="400" class="m-5 border border-danger border border-4" controls>
-    <source src="mov_bbb.mp4" type="video/mp4" />
-    <source src="mov_bbb.mp4" type="video/ogg" />
-  </video>
+<div class="container mt-5 text-white">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h3>Watch Later</h3>
+    <a href="#" class="btn btn-danger" [routerLink]="['/tvshows']">See More</a>
+  </div>
+  <div class="row">
+    <div
+      class="col-md-3 mb-4"
+      *ngFor="let movie of movies; trackBy: trackByMovieId"
+    >
+      <div class="card h-100 shadow-lg rounded-lg black-card">
+        <div
+          id="carousel-{{ movie.id }}"
+          class="carousel slide"
+          data-ride="carousel"
+        >
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img
+                class="d-block w-100"
+                [src]="movie.image"
+                alt="Movie Image"
+              />
+              <div class="carousel-caption opacity-0 text-overlay">
+                <div
+                  class="card-body d-flex flex-column justify-content-between"
+                >
+                  <div class="d-flex flex-column text-end">
+                    <span class="btn btn-primary">{{ movie.quality }}</span>
+                    <span class="btn btn-success">{{ movie.rating }}</span>
+                    <span class="btn btn-warning ml-auto">{{
+                      movie.genre
+                    }}</span>
+                  </div>
+
+                  <h5 class="card-title mt-3">{{ movie.title }}</h5>
+                  <p class="card-text">
+                    {{ movie.description }}
+                  </p>
+                  <button class="btn btn-danger btn-sm">More Details</button>
+                </div>
+
+                <div class="card-footer text-muted">
+                  <small class="text-white align-self-end"
+                    >Released: {{ movie.releaseYear }}</small
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

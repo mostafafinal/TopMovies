@@ -9,7 +9,8 @@ import { SignupPageComponent } from './components/signup-page/signup-page.compon
 export const routes: Routes = [
   {
     path: '',
-    component: HomePageComponent,
+    redirectTo: '/home',
+    pathMatch: 'full',
   },
   {
     path: 'home',
@@ -17,7 +18,7 @@ export const routes: Routes = [
   },
   { path: 'movies', component: MoviesPageComponent },
   { path: 'tvshows', component: TvShowsPageComponent },
-  { path: 'detailspage', component:DetailsPageComponent },
+  { path: 'detailspage', component: DetailsPageComponent },
   { path: 'login', component: LoginPageComponent },
   { path: 'signup', component: SignupPageComponent },
 ];
