@@ -9,7 +9,7 @@ import { RouterModule } from '@angular/router';
   standalone: true,
   imports: [CommonModule, RouterModule],
 })
-export class HomePageComponent implements OnInit {
+export class HomePageComponent {
   movies = [
     {
       title: 'Kung Fu Games',
@@ -64,27 +64,14 @@ export class HomePageComponent implements OnInit {
     },
   ];
 
-  isLoading = true;
+  // isLoading = true;
 
-  ngOnInit() {
-    // Simulate fetching data asynchronously
-    setTimeout(() => {
-      this.isLoading = false;
-    }, 2000);
-  }
-
-  showMore(movie: any): void {
-    // Toggle movie description expansion
-    this.movies = this.movies.map((m) =>
-      m.id === movie.id
-        ? { ...m, expandedMovieId: m.expandedMovieId ? null : movie.id }
-        : m
-    );
-  }
-
-  isExpanded(movie: any): boolean {
-    return movie.expandedMovieId === movie.id;
-  }
+  // ngOnInit() {
+  //   // Simulate fetching data asynchronously
+  //   setTimeout(() => {
+  //     this.isLoading = false;
+  //   }, 2000);
+  // }
 
   trackByMovieId(index: number, movie: any): number {
     return movie.id;

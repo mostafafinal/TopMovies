@@ -44,18 +44,9 @@
 
                   <h5 class="card-title mt-3">{{ movie.title }}</h5>
                   <p class="card-text">
-                    {{
-                      isExpanded(movie)
-                        ? movie.description
-                        : (movie.description | slice : 0 : 50) + "..."
-                    }}
+                    {{ movie.description }}
                   </p>
-                  <button
-                    class="btn btn-danger btn-sm"
-                    (click)="showMore(movie)"
-                  >
-                    {{ isExpanded(movie) ? "Show Less" : "Read More" }}
-                  </button>
+                  <button class="btn btn-danger btn-sm">More Details</button>
                 </div>
 
                 <div class="card-footer text-muted">
@@ -112,15 +103,9 @@
 
                 <h5 class="card-title mt-3">{{ movie.title }}</h5>
                 <p class="card-text">
-                  {{
-                    isExpanded(movie)
-                      ? movie.description
-                      : (movie.description | slice : 0 : 50) + "..."
-                  }}
+                  {{ movie.description }}
                 </p>
-                <button class="btn btn-danger btn-sm" (click)="showMore(movie)">
-                  {{ isExpanded(movie) ? "Show Less" : "Read More" }}
-                </button>
+                <button class="btn btn-danger btn-sm">More Details</button>
               </div>
 
               <div class="card-footer text-muted">
