@@ -33,7 +33,12 @@
                   <p class="card-text">
                     {{ movie.description }}
                   </p>
-                  <button class="btn btn-danger btn-sm">More Details</button>
+                  <button
+                    class="btn btn-danger btn-sm"
+                    [routerLink]="['/detailspage']"
+                  >
+                    More Details
+                  </button>
                 </div>
 
                 <div class="card-footer text-muted">
