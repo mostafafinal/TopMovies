@@ -1,12 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
 @import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
-html {
-  height: 100%;
-}
 body {
   height: 100%;
   background-color: rgb(33, 37, 41);
+  .bg-image {
+    position: fixed;
+    height: 100%;
+    background-image: url("https://web2.topcinema.cam/wp-content/themes/movies2023/back.jpg");
+    background-position: center;
+    background-size: cover;
+    left: 0;
+    right: 0;
+    top: 0;
+    opacity: 0.5;
+    z-index: -1;
+    &::after {
+      position: absolute;
+      content: "";
+      height: 100%;
+      background: linear-gradient(180deg, #1d1d1d14, #02020f 88%);
+      bottom: 0;
+      right: 0;
+      left: 0;
+    }
+  }
 }
-
-
