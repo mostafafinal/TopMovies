@@ -4,13 +4,14 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MoviesPageComponent } from '../movies-page/movies-page.component';
 import { MoviesService } from '../../services/movies.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.css'],
   standalone: true,
-  imports: [CommonModule, RouterModule, MoviesPageComponent],
+  imports: [CommonModule, RouterModule,FormsModule],
 })
 export class HomePageComponent implements OnInit {
   allMovies: Movies[] = [];
