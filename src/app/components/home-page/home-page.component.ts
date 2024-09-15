@@ -1,6 +1,9 @@
+import { Movies } from './../../models/movies';
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { MoviesPageComponent } from '../movies-page/movies-page.component';
+import { MoviesService } from '../../services/movies.service';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -10,71 +13,33 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   imports: [CommonModule, RouterModule,FormsModule],
 })
-export class HomePageComponent {
-  movies = [
-    {
-      title: 'Kung Fu Games',
-      id: 1,
-      genre: 'أكشن',
-      quality: '1080p',
-      rating: 6.5,
-      image:
-        'https://i.pinimg.com/236x/18/d7/4e/18d74ef46e722828f75cca91b009f4a5.jpg',
-      description: 'حكي هذا الفيلم عن رجل مشغول دائما في عميلم مترجم اون لاين',
-      expandedMovieId: null,
-      releaseYear: 2001,
-    },
-    {
-      title: 'Kung Fu Games',
-      id: 2,
-      genre: 'أكشن',
-      quality: '1080p',
-      rating: 6.5,
-      image:
-        'https://i.pinimg.com/236x/00/3c/63/003c63ff84c1f1954f64273da184f8fe.jpg',
-      description:
-        'حكي هذا الفيلم عن رجل مشغول دائما في عمله. كان مشغولا لدرجة انه لا يوجد لديه وقت ليكال الضغط على هذا الجهاز, ',
-      expandedMovieId: null,
-      releaseYear: 2001,
-    },
-    {
-      title: 'Kung Fu Games',
-      id: 3,
-      genre: 'أكشن',
-      quality: '1080p',
-      rating: 6.5,
-      image:
-        'https://i.pinimg.com/564x/04/da/49/04da4953c9301f9cd8e4556ad1f8a75a.jpg',
-      description:
-        'حكي هذا الفيلم عن رجل مشغول دائما في عمله. كان مشغولا لدرجة انه لا ين للوقتلم مترجم اون لاين',
-      expandedMovieId: null,
-      releaseYear: 2001,
-    },
-    {
-      title: 'Kung Fu Games',
-      id: 4,
-      genre: 'أكشن',
-      quality: '1080p',
-      rating: 6.5,
-      image:
-        'https://i.pinimg.com/564x/8c/e3/5f/8ce35f08a33293522c4d60cbc5e642be.jpg',
-      description:
-        'حكي هذا الفيلم عن رجل مشغول دائما فاينبح وكان غط على هذا الجهاز, ',
-      expandedMovieId: null,
-      releaseYear: 2001,
-    },
-  ];
+export class HomePageComponent implements OnInit {
+  allMovies: Movies[] = [];
+  isLoading = true;
 
-  // isLoading = true;
+  constructor(private movieService: MoviesService) {}
 
-  // ngOnInit() {
-  //   // Simulate fetching data asynchronously
-  //   setTimeout(() => {
-  //     this.isLoading = false;
-  //   }, 2000);
-  // }
+  ngOnInit(): void {
+    this.getMovies();
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 2000);
+  }
 
-  trackByMovieId(index: number, movie: any): number {
+  getMovies() {
+    this.movieService.getMovies().subscribe((data) => {
+      this.allMovies = data.movies.map((movie: any) => {
+        return {
+          ...movie,
+          genres: JSON.parse(movie.genres[0]), // Parse genres string into an array
+        };
+      });
+      this.isLoading = false; // Set loading to false once data is fetched
+      console.log(this.allMovies); // Log after the data is fully updated
+    });
+  }
+
+  trackByMovieId(movie: any): number {
     return movie.id;
   }
 }
