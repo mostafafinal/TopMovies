@@ -1,0 +1,12 @@
+<div class="d-flex justify-content-center align-items-center">
+
+    <ul class="pagination">
+        <li
+      *ngFor="let page of pages"
+      [ngClass]="{ 'page-item': true, active: currentPage === page }"
+      (click)="onPageClick(page)">
+      <span class="page-link">{{ page }}</span>
+    </li>
+  </ul>
+  
+    </div>
