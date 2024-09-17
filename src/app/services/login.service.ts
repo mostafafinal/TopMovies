@@ -21,7 +21,9 @@ export class LoginService {
       return this.http.post<Login>(this.loginUrl, { email, password });
     }
     
-    
+    googleLogin(token: string): Observable<any> {
+      return this.http.post('http://localhost:3000/auth/google', { token });
+    }
 
     // return this.http.post<Login>(this.loginUrl, {username, password});
 }

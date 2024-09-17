@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { Login } from '../../models/login';
 import { LoginService } from '../../services/login.service';
 import { FormsModule } from '@angular/forms';
+declare const google: any;
 
 @Component({
   selector: 'app-login-page',
@@ -18,12 +19,39 @@ export class LoginPageComponent {
   password: string = '';
   errorMessage: string = '';
 
-  constructor(private loginServices: LoginService) {}
+  constructor(private loginServices: LoginService) { }
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-    this.loginUser();
+    // this.loginUser();
+
+    //google authenticaarion
+    google.accounts.id.initialize({
+      client_id: '53585263004-gcanle9q5at36rv6ullfn0nlsl64ehid.apps.googleusercontent.com',
+      callback: this.handleCredentialResponse.bind(this),
+      auto_select: false,
+      prompt_parent_id: 'google-button'
+    });
+
+    google.accounts.id.renderButton(
+      document.getElementById('google-button'),
+      {
+
+        theme: 'outline',
+        size: 'large',
+         type: 'standard',
+         text: 'continue_with',
+         shape: 'circle',   
+          // prompt: 'select_account'
+
+      } // customization
+    );
+
+    // google.accounts.id.prompt();
+    google.accounts.id.cancel();
+    google.accounts.id.disableAutoSelect();
+
   }
 
   loginUser() {
@@ -42,5 +70,18 @@ export class LoginPageComponent {
     } else {
       this.errorMessage = 'Username and password are required';
     }
+  }
+
+  handleCredentialResponse(response: any) {
+    const token = response.credential;
+    this.loginServices.googleLogin(token).subscribe(
+      (data) => {
+        localStorage.setItem('token', data.token);
+        // Further handling, e.g., redirecting the user
+      },
+      (error) => {
+        console.error('Login failed', error);
+      }
+    );
   }
 }
