@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
@@ -9,7 +9,7 @@ import { RouterModule } from '@angular/router';
   templateUrl: './user-page.component.html',
   styleUrl: './user-page.component.css',
 })
-export class UserPageComponent {
+export class UserPageComponent implements OnInit{
   movies = [
     {
       title: 'Kung Fu Games',
@@ -63,7 +63,12 @@ export class UserPageComponent {
       releaseYear: 2001,
     },
   ];
+  ngOnInit(): void {
+    this.userData();
+  }
+  userData(){
 
+  }
   trackByMovieId(index: number, movie: any): number {
     return movie.id;
   }

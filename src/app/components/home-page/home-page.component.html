@@ -308,10 +308,10 @@
         </div>
 
         <div class="row mt-2 justify-content-center">
-          <button class="btn btn-outline-primary col-6 btn-sm">
+          <button class="btn btn-outline-primary col-6 btn-sm" (click)="addToWatahLater(movie._id)">
             Watch Later <i class="bi bi-stopwatch"></i>
           </button>
-          <button class="btn btn-outline-danger col-5 btn-sm">
+          <button class="btn btn-outline-danger col-5 btn-sm" (click)="addToFavList(movie._id)">
             Favourite<i class="bi bi-heart-fill"></i>
           </button>
         </div>
@@ -388,11 +388,11 @@
           </div>
         </div>
 
-        <div class="row mt-2 justify-content-center">
-          <button class="btn btn-outline-primary col-6 btn-sm">
+        <div class="row mt-2 justify-content-center" (click)="addToWatahLater(movie._id)>
+          <button class="btn btn-outline-primary col-6 btn-sm" >
             Watch Later <i class="bi bi-stopwatch"></i>
           </button>
-          <button class="btn btn-outline-danger col-5 btn-sm">
+          <button class="btn btn-outline-danger col-5 btn-sm" (click)="addToFavList(movie._id)">
             Favourite<i class="bi bi-heart-fill"></i>
           </button>
         </div>
