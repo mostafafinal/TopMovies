@@ -22,6 +22,7 @@ export class MoviesPageComponent {
   limit: number = 20;
   trackByMovieId: TrackByFunction<Movies> = (index: number, movie: Movies) => movie.id;
 
+
   constructor(private movieService: MoviesService) {}
 
   ngOnInit(): void {

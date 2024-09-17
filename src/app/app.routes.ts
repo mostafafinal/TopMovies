@@ -18,7 +18,7 @@ export const routes: Routes = [
   },
   { path: 'movies', component: MoviesPageComponent },
   { path: 'tvshows', component: TvShowsPageComponent },
-  { path: 'detailspage', component: DetailsPageComponent },
+  { path: 'detailspage/:id', component: DetailsPageComponent },
   { path: 'login', component: LoginPageComponent },
   { path: 'signup', component: SignupPageComponent },
 ];
