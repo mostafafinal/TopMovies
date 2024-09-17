@@ -30,7 +30,7 @@ export class HomePageComponent implements OnInit {
 
     setTimeout(() => {
       this.spinner.hide();
-    }, 5000);
+    }, 4000);
   }
 
   getMovies() {

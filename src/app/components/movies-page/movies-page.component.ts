@@ -4,11 +4,12 @@ import { RouterModule } from '@angular/router';
 import { Movies } from '../../models/movies';
 import { MoviesService } from '../../services/movies.service';
 import { PaginationComponent } from '../pagination/pagination.component';
+import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-movies-page',
   standalone: true,
-  imports: [CommonModule, RouterModule, PaginationComponent],
+  imports: [CommonModule, RouterModule, PaginationComponent, NgxSpinnerModule],
   templateUrl: './movies-page.component.html',
   styleUrl: './movies-page.component.css',
 })
@@ -22,10 +23,17 @@ export class MoviesPageComponent {
   trackByMovieId: TrackByFunction<Movies> = (index: number, movie: Movies) =>
     movie._id;
 
-  constructor(private movieService: MoviesService) {}
+  constructor(
+    private movieService: MoviesService,
+    private spinner: NgxSpinnerService
+  ) {}
 
   ngOnInit(): void {
+    this.spinner.show();
     this.fetchMovies(this.currentPage);
+    setTimeout(() => {
+      this.spinner.hide();
+    }, 3000);
   }
 
   fetchMovies(page: number): void {
@@ -52,7 +60,6 @@ export class MoviesPageComponent {
   }
 
   filterByGenre(genre: string): void {
-    // console.log("hello")
     this.filteredMovies = this.AllMoives.filter((movie) => {
       let genres = JSON.parse(movie.genres.toString());
       return genres.includes(genre);

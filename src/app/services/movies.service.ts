@@ -7,11 +7,17 @@ import { Movies } from '../models/movies';
   providedIn: 'root',
 })
 export class MoviesService {
-  private apiUrl =
+  private allMoviesApiUrl =
     'https://movie-app-production-bac6.up.railway.app/movie/movies';
+  private movieDetailsApiUrl =
+    'https://movie-app-production-bac6.up.railway.app/movie';
   constructor(private http: HttpClient) {}
 
   getMovies(): Observable<Movies[]> {
-    return this.http.get<Movies[]>(this.apiUrl);
+    return this.http.get<Movies[]>(this.allMoviesApiUrl);
+  }
+
+  getMoviesById(id: string): Observable<Movies> {
+    return this.http.get<Movies>(`${this.movieDetailsApiUrl}/${id}`);
   }
 }
