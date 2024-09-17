@@ -35,7 +35,7 @@ export class HomePageComponent implements OnInit {
 
   getMovies() {
     this.movieService.getMovies().subscribe((data) => {
-      this.allMovies = data.movies.map((movie: any) => {
+      this.allMovies = data.map((movie: Movies) => {
         return {
           ...movie,
           genres: JSON.parse(movie.genres[0]), // Parse genres string into an array
