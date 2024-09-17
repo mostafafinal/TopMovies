@@ -7,15 +7,13 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class LoginService {
-  loginUser(login: Login) {
-    throw new Error('Method not implemented.');
-  }
-
-
   private loginUrl =
     'https://movie-app-production-bac6.up.railway.app/auth/signIn';
-    constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {}
 
+  login(email: string, password: string): Observable<Login> {
+    return this.http.post<Login>(this.loginUrl, { email, password });
+  }
 
     login(email: string, password: string): Observable<Login> {
       return this.http.post<Login>(this.loginUrl, { email, password });
@@ -24,6 +22,15 @@ export class LoginService {
     googleLogin(token: string): Observable<any> {
       return this.http.post('http://localhost:3000/auth/google', { token });
     }
+  saveToken(token: string) {
+    localStorage.setItem('authToken', token);
+  }
 
-    // return this.http.post<Login>(this.loginUrl, {username, password});
+  getToken(): string | null {
+    return localStorage.getItem('authToken');
+  }
+
+  clearToken(): void {
+    localStorage.removeItem('authToken');
+  }
 }
