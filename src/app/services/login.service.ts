@@ -17,7 +17,7 @@ export class LoginService {
 
    
     googleLogin(token: string): Observable<any> {
-      return this.http.post('http://localhost:3000/auth/google', { token });
+      return this.http.post('https://movie-app-production-bac6.up.railway.app/auth/google', { token });
     }
   saveToken(token: string) {
     localStorage.setItem('authToken', token);
