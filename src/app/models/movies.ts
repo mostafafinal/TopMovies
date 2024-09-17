@@ -5,4 +5,9 @@ export interface Movies {
   date: String;
   overview: String;
   rating: Number;
+  genres: String;
+}
+export interface AllMoives{
+  movies: Movies[];
+  message:String
 }

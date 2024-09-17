@@ -1,237 +1,70 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, TrackByFunction } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { Movies } from '../../models/movies';
+import { AllMoives, Movies } from '../../models/movies';
 import { MoviesService } from '../../services/movies.service';
+import { PaginationModule } from '../../models/pagination.module';
+import { PaginationComponent } from '../pagination/pagination.component';
 
 @Component({
   selector: 'app-movies-page',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, PaginationModule, PaginationComponent],
   templateUrl: './movies-page.component.html',
-  styleUrl: './movies-page.component.css',
+  styleUrls: ['./movies-page.component.css'],
 })
 export class MoviesPageComponent {
-  allMovies: Movies[] = [];
-  movies = [
-    {
-      title: 'Kung Fu Games',
-      id: 1,
-      genre: 'أكشن',
-      quality: '1080p',
-      rating: 6.5,
-      image:
-        'https://i.pinimg.com/236x/18/d7/4e/18d74ef46e722828f75cca91b009f4a5.jpg',
-      description: 'حكي هذا الفيلم عن رجل مشغول دائما في عميلم مترجم اون لاين',
-      expandedMovieId: null,
-      releaseYear: 2001,
-    },
-    {
-      title: 'Kung Fu Games',
-      id: 2,
-      genre: 'أكشن',
-      quality: '1080p',
-      rating: 6.5,
-      image:
-        'https://i.pinimg.com/236x/00/3c/63/003c63ff84c1f1954f64273da184f8fe.jpg',
-      description:
-        'حكي هذا الفيلم عن رجل مشغول دائما في عمله. كان مشغولا لدرجة انه لا يوجد لديه وقت ليكال الضغط على هذا الجهاز, ',
-      expandedMovieId: null,
-      releaseYear: 2001,
-    },
-    {
-      title: 'Kung Fu Games',
-      id: 3,
-      genre: 'أكشن',
-      quality: '1080p',
-      rating: 6.5,
-      image:
-        'https://i.pinimg.com/564x/04/da/49/04da4953c9301f9cd8e4556ad1f8a75a.jpg',
-      description:
-        'حكي هذا الفيلم عن رجل مشغول دائما في عمله. كان مشغولا لدرجة انه لا ين للوقتلم مترجم اون لاين',
-      expandedMovieId: null,
-      releaseYear: 2001,
-    },
-    {
-      title: 'Kung Fu Games',
-      id: 4,
-      genre: 'أكشن',
-      quality: '1080p',
-      rating: 6.5,
-      image:
-        'https://i.pinimg.com/564x/8c/e3/5f/8ce35f08a33293522c4d60cbc5e642be.jpg',
-      description:
-        'حكي هذا الفيلم عن رجل مشغول دائما فاينبح وكان غط على هذا الجهاز, ',
-      expandedMovieId: null,
-      releaseYear: 2001,
-    },
-    {
-      title: 'Kung Fu Games',
-      id: 1,
-      genre: 'أكشن',
-      quality: '1080p',
-      rating: 6.5,
-      image:
-        'https://i.pinimg.com/236x/18/d7/4e/18d74ef46e722828f75cca91b009f4a5.jpg',
-      description: 'حكي هذا الفيلم عن رجل مشغول دائما في عميلم مترجم اون لاين',
-      expandedMovieId: null,
-      releaseYear: 2001,
-    },
-    {
-      title: 'Kung Fu Games',
-      id: 2,
-      genre: 'أكشن',
-      quality: '1080p',
-      rating: 6.5,
-      image:
-        'https://i.pinimg.com/236x/00/3c/63/003c63ff84c1f1954f64273da184f8fe.jpg',
-      description:
-        'حكي هذا الفيلم عن رجل مشغول دائما في عمله. كان مشغولا لدرجة انه لا يوجد لديه وقت ليكال الضغط على هذا الجهاز, ',
-      expandedMovieId: null,
-      releaseYear: 2001,
-    },
-    {
-      title: 'Kung Fu Games',
-      id: 3,
-      genre: 'أكشن',
-      quality: '1080p',
-      rating: 6.5,
-      image:
-        'https://i.pinimg.com/564x/04/da/49/04da4953c9301f9cd8e4556ad1f8a75a.jpg',
-      description:
-        'حكي هذا الفيلم عن رجل مشغول دائما في عمله. كان مشغولا لدرجة انه لا ين للوقتلم مترجم اون لاين',
-      expandedMovieId: null,
-      releaseYear: 2001,
-    },
-    {
-      title: 'Kung Fu Games',
-      id: 4,
-      genre: 'أكشن',
-      quality: '1080p',
-      rating: 6.5,
-      image:
-        'https://i.pinimg.com/564x/8c/e3/5f/8ce35f08a33293522c4d60cbc5e642be.jpg',
-      description:
-        'حكي هذا الفيلم عن رجل مشغول دائما فاينبح وكان غط على هذا الجهاز, ',
-      expandedMovieId: null,
-      releaseYear: 2001,
-    },
-    {
-      title: 'Kung Fu Games',
-      id: 1,
-      genre: 'أكشن',
-      quality: '1080p',
-      rating: 6.5,
-      image:
-        'https://i.pinimg.com/236x/18/d7/4e/18d74ef46e722828f75cca91b009f4a5.jpg',
-      description: 'حكي هذا الفيلم عن رجل مشغول دائما في عميلم مترجم اون لاين',
-      expandedMovieId: null,
-      releaseYear: 2001,
-    },
-    {
-      title: 'Kung Fu Games',
-      id: 2,
-      genre: 'أكشن',
-      quality: '1080p',
-      rating: 6.5,
-      image:
-        'https://i.pinimg.com/236x/00/3c/63/003c63ff84c1f1954f64273da184f8fe.jpg',
-      description:
-        'حكي هذا الفيلم عن رجل مشغول دائما في عمله. كان مشغولا لدرجة انه لا يوجد لديه وقت ليكال الضغط على هذا الجهاز, ',
-      expandedMovieId: null,
-      releaseYear: 2001,
-    },
-    {
-      title: 'Kung Fu Games',
-      id: 3,
-      genre: 'أكشن',
-      quality: '1080p',
-      rating: 6.5,
-      image:
-        'https://i.pinimg.com/564x/04/da/49/04da4953c9301f9cd8e4556ad1f8a75a.jpg',
-      description:
-        'حكي هذا الفيلم عن رجل مشغول دائما في عمله. كان مشغولا لدرجة انه لا ين للوقتلم مترجم اون لاين',
-      expandedMovieId: null,
-      releaseYear: 2001,
-    },
-    {
-      title: 'Kung Fu Games',
-      id: 4,
-      genre: 'أكشن',
-      quality: '1080p',
-      rating: 6.5,
-      image:
-        'https://i.pinimg.com/564x/8c/e3/5f/8ce35f08a33293522c4d60cbc5e642be.jpg',
-      description:
-        'حكي هذا الفيلم عن رجل مشغول دائما فاينبح وكان غط على هذا الجهاز, ',
-      expandedMovieId: null,
-      releaseYear: 2001,
-    },
-    {
-      title: 'Kung Fu Games',
-      id: 1,
-      genre: 'أكشن',
-      quality: '1080p',
-      rating: 6.5,
-      image:
-        'https://i.pinimg.com/236x/18/d7/4e/18d74ef46e722828f75cca91b009f4a5.jpg',
-      description: 'حكي هذا الفيلم عن رجل مشغول دائما في عميلم مترجم اون لاين',
-      expandedMovieId: null,
-      releaseYear: 2001,
-    },
-    {
-      title: 'Kung Fu Games',
-      id: 2,
-      genre: 'أكشن',
-      quality: '1080p',
-      rating: 6.5,
-      image:
-        'https://i.pinimg.com/236x/00/3c/63/003c63ff84c1f1954f64273da184f8fe.jpg',
-      description:
-        'حكي هذا الفيلم عن رجل مشغول دائما في عمله. كان مشغولا لدرجة انه لا يوجد لديه وقت ليكال الضغط على هذا الجهاز, ',
-      expandedMovieId: null,
-      releaseYear: 2001,
-    },
-    {
-      title: 'Kung Fu Games',
-      id: 3,
-      genre: 'أكشن',
-      quality: '1080p',
-      rating: 6.5,
-      image:
-        'https://i.pinimg.com/564x/04/da/49/04da4953c9301f9cd8e4556ad1f8a75a.jpg',
-      description:
-        'حكي هذا الفيلم عن رجل مشغول دائما في عمله. كان مشغولا لدرجة انه لا ين للوقتلم مترجم اون لاين',
-      expandedMovieId: null,
-      releaseYear: 2001,
-    },
-    {
-      title: 'Kung Fu Games',
-      id: 4,
-      genre: 'أكشن',
-      quality: '1080p',
-      rating: 6.5,
-      image:
-        'https://i.pinimg.com/564x/8c/e3/5f/8ce35f08a33293522c4d60cbc5e642be.jpg',
-      description:
-        'حكي هذا الفيلم عن رجل مشغول دائما فاينبح وكان غط على هذا الجهاز, ',
-      expandedMovieId: null,
-      releaseYear: 2001,
-    },
-  ];
+  AllMoives: Movies[] = []; 
+  filteredMovies: Movies[] = []; 
+  typeMoives: string[] = [];
+  totalMovies: number = 133;
+  currentPage: number = 1;
+  limit: number = 20;
+  trackByMovieId: TrackByFunction<Movies> = (index: number, movie: Movies) => movie.id;
 
-  trackByMovieId(movie: any): number {
-    return movie.id;
-  }
   constructor(private movieService: MoviesService) {}
 
   ngOnInit(): void {
-    this.getMovies();
+    this.fetchMovies(this.currentPage);
   }
-  getMovies() {
-    this.movieService.getMovies().subscribe((data) => {
-      this.allMovies = data.movies;
-      console.log(this.allMovies);
+
+  fetchMovies(page: number): void {
+    const startIndex = (page - 1) * this.limit;
+    const endIndex = startIndex + this.limit;
+
+    this.movieService.getmoives().subscribe((data) => {
+      // pagination
+      this.totalMovies = data.movies.length;
+      this.AllMoives = data.movies.slice(startIndex, endIndex);
+      this.filteredMovies = [...this.AllMoives]; 
+      
+     
+      this.AllMoives.forEach((movie) => {
+        let genres = JSON.parse(movie.genres.toString());
+        this.typeMoives.push(...genres); 
+         
+      });
+      console.log(this.filteredMovies)
     });
+  }
+
+  changePage(page: number): void {
+    this.currentPage = page;
+    this.fetchMovies(page);  
+    
+  }
+
+  
+  filterByGenre(genre: string): void {
+    // console.log("hello")
+    this.filteredMovies = this.AllMoives.filter(movie => {
+      let genres = JSON.parse(movie.genres.toString());
+      return genres.includes(genre);
+    });
+  }
+
+  GetAll()
+  {
+    this.filteredMovies=this.AllMoives
   }
 }
