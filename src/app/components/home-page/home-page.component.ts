@@ -40,6 +40,20 @@ export class HomePageComponent implements OnInit {
     });
   }
 
+  addToWatahLater(movieId:String){
+    this.movieService.addMovieToWatahLater(movieId).subscribe((data) => {
+      console.log(data);
+      });
+  }
+  addToFavList(movieId:String){
+    console.log(movieId);
+    
+    this.movieService.addMovieToFavList(movieId).subscribe((data) => {
+      console.log(data);
+      });
+  }
+
+
   trackByMovieId(movie: any): number {
     return movie.id;
   }

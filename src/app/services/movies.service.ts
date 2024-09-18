@@ -20,4 +20,11 @@ export class MoviesService {
   getMoviesById(id: string): Observable<Movies> {
     return this.http.get<Movies>(`${this.movieDetailsApiUrl}/${id}`);
   }
+
+  addMovieToWatahLater(movieId: String): Observable<any> {
+    return this.http.put<any>(`http://localhost:3000/user/watctLater/${movieId}`, {})
+  }
+  addMovieToFavList(movieId: String): Observable<any> {
+    return this.http.put<any>(`http://localhost:3000/user/favList/${movieId}`, {})
+  }
 }
