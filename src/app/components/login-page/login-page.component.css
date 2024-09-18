@@ -21,12 +21,18 @@
   .sign{
     color:rgb(141, 140, 140);
   }
-  .btn-danger{
+  .btn-danger ,.btn-light{
     width: 100%;
     border: none;
     border-radius: 50px;
   }
-  
+  /* #google-button{
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    margin-left:50px;
+  }
+   */
   .form-control{
     background-color:rgb(44, 44, 44);
     color: rgb(141, 140, 140);
