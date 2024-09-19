@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { Login } from '../../models/login';
 import { LoginService } from '../../services/login.service';
 // import { FormsModule } from '@angular/forms';
@@ -23,16 +23,16 @@ import { ToastrService } from 'ngx-toastr';
 export class LoginPageComponent {
   email: string = '';
   password: string = '';
-  loggedIn: boolean = false;
   errorMessage: string = '';
 
   constructor(
     private loginServices: LoginService,
     private toaster: ToastrService,
-    private formBuild: FormBuilder
+    private formBuild: FormBuilder,
+    private route: Router
   ) {}
- // Verfication
- loginForm!: FormGroup;
+  // Verfication
+  loginForm!: FormGroup;
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
@@ -41,35 +41,29 @@ export class LoginPageComponent {
 
     //google authenticaarion
     google.accounts.id.initialize({
-      client_id: '53585263004-gcanle9q5at36rv6ullfn0nlsl64ehid.apps.googleusercontent.com',
+      client_id:
+        '53585263004-gcanle9q5at36rv6ullfn0nlsl64ehid.apps.googleusercontent.com',
       callback: this.handleCredentialResponse.bind(this),
       auto_select: false,
-      prompt_parent_id: 'google-button'
+      prompt_parent_id: 'google-button',
     });
 
     google.accounts.id.renderButton(
       document.getElementById('google-button'),
       {
-
         theme: 'outline',
         size: 'large',
-         type: 'standard',
-         text: 'continue_with',
-         shape: 'circle',   
-          // prompt: 'select_account'
-
+        type: 'standard',
+        text: 'continue_with',
+        shape: 'circle',
+        // prompt: 'select_account'
       } // customization
     );
 
     // google.accounts.id.prompt();
     google.accounts.id.cancel();
     google.accounts.id.disableAutoSelect();
-
   }
-
- 
-
- 
 
   createForm() {
     this.loginForm = this.formBuild.group({
@@ -92,7 +86,9 @@ export class LoginPageComponent {
         if (token) {
           this.loginServices.saveToken(token);
           this.toaster.success(response.message, 'Success');
+          this.loginServices.setData(true);
           // router
+          this.route.navigate(['/home']);
         }
       },
       error: (err) => {

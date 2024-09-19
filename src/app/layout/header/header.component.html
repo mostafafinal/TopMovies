@@ -59,9 +59,16 @@
           Search
         </button>
       </form>
+      @if(loggedIn()) {
+      <button class="btn btn-danger fs-5 ms-2" (click)="userLogOut()">
+        LogOut
+      </button>
+      } @else {
+
       <button class="btn btn-danger fs-5 ms-2" [routerLink]="['/login']">
         LogIn
       </button>
+      }
     </div>
   </div>
 </nav>

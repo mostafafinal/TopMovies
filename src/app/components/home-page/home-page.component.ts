@@ -36,7 +36,6 @@ export class HomePageComponent implements OnInit {
         };
       });
       this.isLoading = false;
-      console.log(this.allMovies);
     });
   }
 
