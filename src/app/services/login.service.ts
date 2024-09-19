@@ -37,7 +37,7 @@ export class LoginService {
 
   //login & logout state
   setData(update: boolean) {
-    this.data.update((value) => (value = update));
+    this.data.set(update);
   }
   getData() {
     return this.data;

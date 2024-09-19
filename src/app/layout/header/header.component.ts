@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { LoginService } from '../../services/login.service';
 
@@ -11,14 +11,21 @@ import { LoginService } from '../../services/login.service';
 })
 export class HeaderComponent {
   isMenuCollapsed: boolean = true;
-  loggedIn;
+  loggedInSingal;
+  loggedInLocal = localStorage.getItem('loggedIn');
+  logOut: boolean = false;
 
   constructor(private loginService: LoginService) {
-    this.loggedIn = this.loginService.getData();
+    this.loggedInSingal = this.loginService.getData();
+    if (this.loggedInLocal) {
+      this.logOut = true;
+    }
   }
 
   userLogOut() {
     this.loginService.clearToken();
     this.loginService.setData(false);
+    localStorage.removeItem('loggedIn');
+    this.logOut = false;
   }
 }
