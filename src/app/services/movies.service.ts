@@ -23,11 +23,13 @@ export class MoviesService {
 
   addMovieToWatahLater(movieId: String): Observable<any> {
     let headers = new HttpHeaders()
-    headers = headers.append('Authorization', `Bearer ${localStorage.getItem('token')}`);
-    console.log(headers)
-    return this.http.put<any>(`http://localhost:3000/user/watctLater/${movieId}`,{}, {headers})
+    headers = headers.append('Authorization', `Bearer ${localStorage.getItem('authToken')}`);
+    return this.http.put<any>(`https://movie-app-production-bac6.up.railway.app/user/watctLater/${movieId}`,{}, {headers})
   }
   addMovieToFavList(movieId: String): Observable<any> {
-    return this.http.put<any>(`http://localhost:3000/user/favList/${movieId}`, {})
+    let headers = new HttpHeaders()
+    headers = headers.append('Authorization', `Bearer ${localStorage.getItem('authToken')}`);
+    console.log(headers)
+    return this.http.put<any>(`https://movie-app-production-bac6.up.railway.app/user/favList/${movieId}`, {},{headers})
   }
 }

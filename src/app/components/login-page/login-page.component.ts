@@ -103,11 +103,19 @@ export class LoginPageComponent {
     const token = response.credential;
     this.loginServices.googleLogin(token).subscribe(
       (data) => {
-        localStorage.setItem('token', data.token);
-        // Further handling, e.g., redirecting the user
+        const token = data.token;
+        if (token) {
+          this.loginServices.saveToken(token);
+          this.toaster.success(response.message, 'Success');
+          this.loginServices.setData(true);
+          localStorage.setItem('loggedIn', 'true');
+          // router
+          this.route.navigate(['/home']);
+        }
       },
-      (error) => {
-        console.error('Login failed', error);
+      (err) => {
+        this.errorMessage = err.error.message;
+        this.toaster.error(err.error.message, 'Failed');
       }
     );
   }
