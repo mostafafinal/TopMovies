@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Movies } from '../models/movies';
 
@@ -19,5 +19,17 @@ export class MoviesService {
 
   getMoviesById(id: string): Observable<Movies> {
     return this.http.get<Movies>(`${this.movieDetailsApiUrl}/${id}`);
+  }
+
+  addMovieToWatahLater(movieId: String): Observable<any> {
+    let headers = new HttpHeaders()
+    headers = headers.append('Authorization', `Bearer ${localStorage.getItem('authToken')}`);
+    return this.http.put<any>(`https://movie-app-production-bac6.up.railway.app/user/watctLater/${movieId}`,{}, {headers})
+  }
+  addMovieToFavList(movieId: String): Observable<any> {
+    let headers = new HttpHeaders()
+    headers = headers.append('Authorization', `Bearer ${localStorage.getItem('authToken')}`);
+    console.log(headers)
+    return this.http.put<any>(`https://movie-app-production-bac6.up.railway.app/user/favList/${movieId}`, {},{headers})
   }
 }
