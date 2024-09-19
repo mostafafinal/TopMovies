@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, TrackByFunction } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { AllMoives, Movies } from '../../models/movies';
+import { Movies } from '../../models/movies';
 import { MoviesService } from '../../services/movies.service';
 import { PaginationModule } from '../../models/pagination.module';
 import { PaginationComponent } from '../pagination/pagination.component';
@@ -17,9 +17,9 @@ export class MoviesPageComponent {
   AllMoives: Movies[] = []; 
   filteredMovies: Movies[] = []; 
   typeMoives: string[] = [];
-  totalMovies: number = 133;
+  totalMovies: number = 138;
   currentPage: number = 1;
-  limit: number = 20;
+  limit: number = 18;
   trackByMovieId: TrackByFunction<Movies> = (index: number, movie: Movies) => movie.id;
 
 
