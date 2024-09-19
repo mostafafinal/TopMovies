@@ -50,7 +50,6 @@ export class MoviesPageComponent {
         let genres = JSON.parse(movie.genres.toString());
         this.typeMoives.push(...genres);
       });
-      console.log(this.filteredMovies);
     });
   }
 

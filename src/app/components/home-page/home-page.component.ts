@@ -2,9 +2,8 @@ import { Movies } from './../../models/movies';
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { MoviesPageComponent } from '../movies-page/movies-page.component';
 import { MoviesService } from '../../services/movies.service';
-import { NgxSpinnerService, NgxSpinnerModule } from 'ngx-spinner';
+import { NgxSpinnerModule } from 'ngx-spinner';
 import { CarouselComponent } from '../carousel/carousel.component';
 import { UserService } from './../../services/user.service';
 @Component({
@@ -63,7 +62,6 @@ export class HomePageComponent implements OnInit {
         };
       });
       this.isLoading = false;
-      console.log(this.allMovies);
     });
   }
 

@@ -34,7 +34,6 @@ export class CarouselComponent {
         };
       });
       this.isLoading = false; // Set loading to false once data is fetched
-      console.log(this.allMovies); // Log after the data is fully updated
     });
   }
 
@@ -47,7 +46,7 @@ export class CarouselComponent {
     touchDrag: true,
     pullDrag: true,
     autoplay: true,
-    autoplayTimeout: 1000,
+    autoplayTimeout: 3000,
     autoplayHoverPause: true,
     dots: false,
     navSpeed: 700,
