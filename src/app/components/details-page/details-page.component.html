@@ -7,7 +7,7 @@
   ><p style="color: rgb(205, 69, 69)">Loading...</p></ngx-spinner
 >
 <!-- big-contianer -->
-<div class="bg-dark rounded mt-3">
+<div class=" rounded mt-3 bg-dark pt-3">
   <!-- container1 -->
   <div class="row m-0 col-12 rounded">
     <!-- margin-start -->
@@ -21,13 +21,14 @@
         box-shadow: 1px 1px 5px rgb(26, 26, 26);
       "
     >
-      <div class="text-white h1 mt-2">{{ movie.title }}</div>
+  <div> <h5><span class="badge text-bg-danger mt-2 float-end"> ⭐ {{movie.rating}} IMDb</span></h5></div>
+      <div class="text-white h1 mt-2">{{ movie.title }} <span>({{movie.date|date:'y'}})</span></div>
       <small class="text-white"
-        >Original Title: Trap • Original Language: EN • 1h 45m</small
+        >Original Title: {{movie.title}} • Original Language: {{movie.original_language}} • 1h 45m</small
       >
       <i class="fa-regular fa-heart"></i>
       <div class="h4 mt-3" style="color: #adacbb">
-        30,000 fans. 300 cops. 1 serial killer. No escape.
+       {{movie.tagline}}
       </div>
 
       <h4><span class="badge text-bg-danger mt-3">Overview</span></h4>
@@ -35,11 +36,11 @@
         {{ movie.overview }}
       </div>
 
-      <h6><span class="badge text-bg-danger mt-3">Directed by</span></h6>
-      <div class="text-white">{{ movie.production_companies }}</div>
+      <h6><span class="badge text-bg-danger mt-3">Country of orgin</span></h6>
+      <div class="text-white">{{ movie.production_countries }}</div>
 
-      <h6><span class="badge text-bg-danger mt-3">Country</span></h6>
-      <div class="text-white mb-2">{{ movie.production_countries }}</div>
+      <h6><span class="badge text-bg-danger mt-3">Language</span></h6>
+      <div class="text-white mb-2">{{ movie.spoken_languages }}</div>
       @for(genre of movie.genres; track genre) {
       <div class="badge rounded-pill bg-danger mt-2 mb-2 me-1 p-2">
         {{ genre }}
@@ -153,24 +154,24 @@
           <div class="carousel-inner">
             <div class="carousel-item active">
               <img
-                src="https://image.tmdb.org/t/p/original/7Sl2B1q1gmqFUxi5nmuc2wfO6Zx.jpg"
-                class="d-block w-100 rounded-3"
+              [src]="movie.image"
+              class="d-block mx-auto rounded-3"
                 alt="..."
                 style="border-radius: 15px"
               />
             </div>
             <div class="carousel-item">
               <img
-                src="https://image.tmdb.org/t/p/original/iAlsYg6dlv1fvOBypM7SldIS1Wl.jpg"
-                class="d-block w-100 rounded-3"
+                [src]="movie.image"
+                class="d-block mx-auto rounded-3"
                 alt="..."
                 style="border-radius: 15px"
               />
             </div>
             <div class="carousel-item">
               <img
-                src="https://image.tmdb.org/t/p/original/dCgrFY6uTqhEpyhe8MzP1oExyLt.jpg"
-                class="d-block w-100 rounded-3"
+              [src]="movie.image"
+              class="d-block mx-auto rounded-3"
                 alt="..."
                 style="border-radius: 15px"
               />
@@ -237,144 +238,24 @@
         <div class="text-white mt-3"><h3>Recommended</h3></div>
         <div class="row">
           <!-- ------------------- -->
-          <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-            <div
-              class="hover hover-1 text-white rounded-3"
-              style="overflow: hidden"
-            >
-              <img
-                src="https://image.tmdb.org/t/p/w500/865DntZzOdX6rLMd405R0nFkLmL.jpg"
-                class="img-fluid rounded-3"
-                alt=""
-              />
+           @for( movie of recommendedMovies ; track $index){
+             <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+            <a href="/detailspage/{{movie._id}}">
+            <div class="hover hover-1 text-white rounded-3 w-100" style="overflow: hidden"  >
+              <img [src]="movie.image" class="img-fluid rounded-3 w-100" alt=""  />          
               <div class="hover-overlay"></div>
-              <div class="hover-1-content px-3 py-2 text-center">
-                <h5
-                  class="hover-1-title text-uppercase font-weight-bold mb-0"
-                  style="font-size: 1.2rem"
-                >
-                  Borderlands
-                </h5>
-                <div
-                  class="text-center mt-1 hover-1-year"
-                  style="font-size: 1rem"
-                >
-                  (2024)
-                </div>
-                <div
-                  class="text-center hover-1-description"
-                  style="font-size: 0.9rem"
-                >
-                  Action, Science Fiction, Comedy
-                </div>
+              <div class="hover-1-content px-3 py-2 text-center ">
+               <h5 class="hover-1-title text-uppercase font-weight-bold mb-0" style="font-size: 1.2rem; "  > {{movie.title}}</h5> 
+                <div class="text-center mt-1 hover-1-year"  style="font-size: 1rem" >({{movie.date|date:"y"}})</div>
+                @for(genre of movie.genres; track $index) {
+                <div  class="text-center hover-1-description"  style="font-size: 0.9rem"> {{genre}}</div>}
               </div>
             </div>
+          </a>
           </div>
+        }
           <!-- ------------------ -->
-          <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-            <div
-              class="hover hover-1 text-white rounded-3"
-              style="overflow: hidden"
-            >
-              <img
-                src="https://image.tmdb.org/t/p/w500/b33nnKl1GSFbao4l3fZDDqsMx0F.jpg"
-                class="img-fluid rounded-3"
-                alt=""
-              />
-              <div class="hover-overlay"></div>
-              <div class="hover-1-content px-3 py-2 text-center">
-                <h5
-                  class="hover-1-title text-uppercase font-weight-bold mb-0"
-                  style="font-size: 1.2rem"
-                >
-                  Alien: Romulus
-                </h5>
-                <div
-                  class="text-center mt-1 hover-1-year"
-                  style="font-size: 1rem"
-                >
-                  (2024)
-                </div>
-                <div
-                  class="text-center hover-1-description"
-                  style="font-size: 0.9rem"
-                >
-                  Action, Science Fiction, Horror
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- ------------------- -->
-          <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-            <div
-              class="hover hover-1 text-white rounded-3"
-              style="overflow: hidden"
-            >
-              <img
-                src="https://image.tmdb.org/t/p/w500/lZGOK0I2DJSRlEPNOAFTSNxSjDD.jpg"
-                class="img-fluid rounded-3"
-                alt=""
-              />
-              <div class="hover-overlay"></div>
-              <div class="hover-1-content px-3 py-3 text-center">
-                <h5
-                  class="hover-1-title text-uppercase font-weight-bold mb-0"
-                  style="font-size: 1.2rem"
-                >
-                  Blink Twice
-                </h5>
-                <div
-                  class="text-center mt-1 hover-1-year"
-                  style="font-size: 1rem"
-                >
-                  (2024)
-                </div>
-                <div
-                  class="text-center hover-1-description"
-                  style="font-size: 0.9rem"
-                >
-                  Action, Science Fiction, Comedy
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-            <div
-              class="hover hover-1 text-white rounded-3"
-              style="overflow: hidden"
-            >
-              <img
-                src="https://image.tmdb.org/t/p/w500/865DntZzOdX6rLMd405R0nFkLmL.jpg"
-                class="img-fluid rounded-3"
-                alt=""
-              />
-              <div class="hover-overlay"></div>
-              <div class="hover-1-content px-3 py-2 text-center">
-                <h5
-                  class="hover-1-title text-uppercase font-weight-bold mb-0"
-                  style="font-size: 1.2rem"
-                >
-                  Borderlands
-                </h5>
-                <div
-                  class="text-center mt-1 hover-1-year"
-                  style="font-size: 1rem"
-                >
-                  (2024)
-                </div>
-                <div
-                  class="text-center hover-1-description"
-                  style="font-size: 0.9rem"
-                >
-                  Action, Science Fiction, Comedy
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+        
 
       <!-- margin-end -->
       <div class="col-lg-1 d-none d-lg-block">1</div>
