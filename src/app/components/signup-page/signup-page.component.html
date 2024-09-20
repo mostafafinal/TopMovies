@@ -1,32 +1,35 @@
 <div class="container">
-  <form class="mx-auto">
+  <form class="mx-auto" [formGroup]="signUpform" (ngSubmit)="onSubmit()">
     <h3 class="text-center">Register</h3>
-    <div class="form-group mb-3 mt-5">
-      <label for="exampleInputEmail1">Email<span class="red">*</span> </label>
-      <input
-        type="email"
-        class="form-control"
-        id="exampleInputEmail1"
-        aria-describedby="emailHelp"
-      />
+    <div class="mb-3">
+      <label for="firstName" class="form-label">Frist Name<span class="red">*</span></label>
+      <input id="firstName" formControlName="firstName" [(ngModel)]="firstName" class="form-control" required />
+    </div>
+    <div class="mb-3">
+      <label for="lastName" class="form-label">Last Name<span class="red">*</span></label>
+      <input id="lastName" formControlName="lastName" [(ngModel)]="lastName" class="form-control" required />
     </div>
     <div class="form-group mb-3">
-      <label for="exampleInputPassword1"
-        >Password<span class="red">*</span>
-      </label>
-      <input type="password" class="form-control" id="exampleInputPassword1" />
+      <label for="email">Email<span class="red">*</span> </label>
+      <input type="email" class="form-control" id="email" [(ngModel)]="email" formControlName="email"
+        aria-describedby="emailHelp" required />
     </div>
     <div class="form-group mb-3">
-      <label for="exampleInputPassword2"
-        >Confirm Password<span class="red">*</span>
+      <label for="password">Password<span class="red">*</span>
       </label>
-      <input type="password" class="form-control" id="exampleInputPassword2" />
+      <input type="password" class="form-control" id="password" [(ngModel)]="password" formControlName="password"
+        required />
     </div>
-    <button
-      type="submit"
-      class="btn btn-danger mt-3 p-3"
-      [routerLink]="['/home']"
-    >
+    <div class="form-group mb-3">
+      <label for="confirmPassword">Confirm Password<span class="red">*</span>
+      </label>
+      <input type="password" class="form-control" id="confirmPassword" formControlName="confirmPassword" [(ngModel)]="confirmPassword" required />
+      @if (signUpform.errors?.['mismatch']) {
+        <div class="text-danger">Passwords do not match.</div>
+      }
+       
+    </div>
+    <button type="submit" class="btn btn-danger mt-3 p-3" [disabled]="!signUpform.valid" (click)="registerUser()" [routerLink]="['/home']">
       Sign Up
     </button>
 

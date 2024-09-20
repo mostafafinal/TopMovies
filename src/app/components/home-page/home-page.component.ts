@@ -3,48 +3,81 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MoviesService } from '../../services/movies.service';
-import { NgxSpinnerService, NgxSpinnerModule } from 'ngx-spinner';
-
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { CarouselComponent } from '../carousel/carousel.component';
+import { UserService } from './../../services/user.service';
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.css'],
   standalone: true,
-  imports: [CommonModule, RouterModule, NgxSpinnerModule],
+  imports: [CommonModule, RouterModule, NgxSpinnerModule, CarouselComponent],
 })
+
 export class HomePageComponent implements OnInit {
   allMovies: Movies[] = [];
   isLoading = true;
 
   constructor(
     private movieService: MoviesService,
-    private spinner: NgxSpinnerService
-  ) {}
+    private userService: UserService
+  ) { }
 
   ngOnInit(): void {
-    this.spinner.show();
     this.getMovies();
+    /*=============only for test=========*/
+    this.getUserData();
+    this.getWatchLaterList();
+    this.getFavList();
+    /*===================================*/
     setTimeout(() => {
       this.isLoading = false;
     }, 2000);
-
-    setTimeout(() => {
-      this.spinner.hide();
-    }, 5000);
   }
+  /*=============only for test=========*/
 
+  getUserData() {
+    this.userService.getUserData().subscribe((data) => {
+      console.log(data);
+    })
+  }
+  //user data....
+  getFavList() {
+    this.userService.getUserFavList().subscribe((data) => {
+      console.log(data);
+    })
+  }
+  getWatchLaterList() {
+    this.userService.getUserWatchLaterList().subscribe((data) => {
+      console.log(data);
+    })
+  }
+  /*===================================*/
   getMovies() {
     this.movieService.getMovies().subscribe((data) => {
-      this.allMovies = data.movies.map((movie: any) => {
+      this.allMovies = data.map((movie: any) => {
         return {
           ...movie,
-          genres: JSON.parse(movie.genres[0]), // Parse genres string into an array
+          genres: JSON.parse(movie.genres[0]),
         };
       });
-      this.isLoading = false; // Set loading to false once data is fetched
-      console.log(this.allMovies); // Log after the data is fully updated
+      this.isLoading = false;
     });
   }
+
+  addToWatahLater(movieId: String) {
+    this.movieService.addMovieToWatahLater(movieId).subscribe((data) => {
+      console.log(data);
+    });
+  }
+  addToFavList(movieId: String) {
+    console.log(movieId);
+
+    this.movieService.addMovieToFavList(movieId).subscribe((data) => {
+      console.log(data);
+    });
+  }
+
 
   trackByMovieId(movie: any): number {
     return movie.id;

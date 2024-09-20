@@ -1,37 +1,95 @@
-<div class="container mt-5 text-white">
-  <div class="row">
-    <div class="col-md-3 mb-4">
-      @for (movie of allMovies ; track movie ){
-      <div class="card ">
-        <div>
-          <div>
-            <div>
-              <img class="d-block w-100" [src]="movie.image" alt="Movie Image" />
-              <div class="carousel-caption opacity-0 ">
-                <div class="card-body d-flex flex-column justify-content-between">
-                  <div class="d-flex text-end">
-                    <div class="btn btn-primary">{{ movie.isAdult }}</div>
-                    <div class="btn btn-success">{{ movie.rating }} <i class="bi bi-star-fill"></i></div>
-                    <div class="btn btn-warning ">{{ movie.genres.join(', ') }}</div>
-                  </div>
-
-                  <h5 class="card-title mt-3">{{ movie.title }}</h5>
-                  <p class="card-text">
-                    {{ movie.overview }}
-                  </p>
-                  <button class="btn btn-danger btn-sm" [routerLink]="['/detailspage']">
-                    More Details
-                  </button>
+<ngx-spinner
+  bdColor="rgb(0,0,0)"
+  size="large"
+  color="#fe5c5c"
+  type="ball-scale-multiple"
+  [fullScreen]="true"
+  ><p style="color: rgb(205, 69, 69)">Loading...</p></ngx-spinner
+>
+<!-- filtter -->
+<div class="filtter d-flex flex-wrap">
+  <button class="mb-2" (click)="GetAll()">All</button>
+  <button class="mb-2" (click)="filterByGenre('History')">History</button>
+  <button class="mb-2" (click)="filterByGenre('Comedy')">Comedy</button>
+  <button class="mb-2" (click)="filterByGenre('Science Fiction')">
+    Science Fiction
+  </button>
+  <button class="mb-2" (click)="filterByGenre('Drama')">Drama</button>
+  <button class="mb-2" (click)="filterByGenre('War')">War</button>
+  <button class="mb-2" (click)="filterByGenre('Action')">Action</button>
+  <button class="mb-2" (click)="filterByGenre('Romance')">Romance</button>
+</div>
+<!-- body -->
+<div class="row d-flex justify-content-center">
+  <div
+    *ngFor="let show of filteredMovies; trackBy: trackByMovieId"
+    class="card"
+  >
+    <div id="card-body" class="col-sm-12 col-md-3 p-2 w-100">
+      <section
+        class="movies text-white"
+        style="background-image: url('{{ show.image }}');"
+      >
+        <div id="card-body" class="opacity-0 p-2">
+          <div class="d-block">
+            <div class="row justify-content-center">
+              <ng-container *ngFor="let language of show.spoken_languages">
+                <div
+                  class="btn custom-btn rounded-5 btn-warning col-4 mx-2 btn-sm"
+                >
+                  <strong>{{ language }}</strong>
                 </div>
+              </ng-container>
+            </div>
+          </div>
 
+          <div class="containers w-100 text-center">
+            <div class="row">
+              <div class="d-flex justify-content-center">
+                <div
+                  class="btn custom-btn col-4 mt-2 rounded-5 btn-sm btn-success m-2 d-flex align-items-center justify-content-center"
+                >
+                  {{ show.vote_average }}
+                  <i class="bi bi-star-fill ms-1"></i>
+                </div>
+              </div>
+
+              <div class="movie-card my-2">
+                <h2>{{ show.title }}</h2>
+                <h6>{{ show.overview | slice : 0 : 75 }} ...</h6>
+                <button
+                  class="btn btn-danger btn-sm my-3"
+                  [routerLink]="['/detailspage', show._id]"
+                >
+                  More Details
+                </button>
                 <div class="card-footer text-muted">
-                  <small class="text-white align-self-end">Released: {{ movie.date }}</small>
+                  <small class="text-white align-self-end my-2"
+                    >Released: {{ show.date }}</small
+                  >
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>}
+        <br />
+      </section>
+      <div class="row mt-2 justify-content-center">
+        <button class="btn btn-outline-primary col-5 btn-sm mx-1">
+          Watch Later <i class="bi bi-stopwatch"></i>
+        </button>
+        <button class="btn btn-outline-danger col-5 btn-sm mx-1">
+          Favourite <i class="bi bi-heart-fill"></i>
+        </button>
+      </div>
     </div>
   </div>
+  <!-- pagiantion -->
+  <app-pagination
+    [currentPage]="currentPage"
+    [limit]="limit"
+    [total]="totalMovies"
+    (changePage)="changePage($event)"
+  >
+  </app-pagination>
 </div>

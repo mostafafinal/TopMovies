@@ -1,0 +1,22 @@
+<section class="partners">
+  <div class="containers">
+    <owl-carousel-o [options]="customOptions">
+      <ng-container *ngFor="let movie of allMovies; trackBy: trackByMovieId">
+        <ng-template carouselSlide>
+          <div class="movie-slide px-1">
+            <div class="image-container">
+              <a routerLink="deta"></a><img [src]="movie.image" [alt]="movie.title">
+            </div>
+            <div id="card-body" class="overlay opacity-0">
+              <h4 class="text-center text-white">{{ movie.title }}</h4>
+              <p class="text-center text-white">{{ movie.tagline }}</p>
+              <a class="btn btn-danger btn-sm" [routerLink]="['/detailspage', movie._id]">
+                Go to Details
+              </a>
+            </div>
+          </div>
+        </ng-template>
+      </ng-container>
+    </owl-carousel-o>
+  </div>
+</section>
