@@ -1,11 +1,12 @@
-import { Component, signal } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Component } from '@angular/core';
+import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
+import { RouterModule, RouterLink } from '@angular/router';
 import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterModule],
+  imports: [NgbCollapseModule, RouterModule, RouterLink],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
 })
