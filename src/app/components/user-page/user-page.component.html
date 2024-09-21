@@ -1,9 +1,8 @@
 <div class="header">
-  <div><img src="avatar2.png" alt="mee" /></div>
-  <div>
-    <h1>user name</h1>
-    <h3>email</h3>
-    <button type="button" class="btn btn-danger mt-5 ms-6">log out</button>
+  <div></div>
+  <div class="mt-5">
+    <h1>{{ user.firstName }}</h1>
+    <h3>{{ user.email }}</h3>
   </div>
 </div>
 
@@ -12,53 +11,16 @@
     <h3>Favorites</h3>
     <a href="#" class="btn btn-danger" [routerLink]="['/movies']">See More</a>
   </div>
-  <div class="row">
-    <div
-      class="col-md-3 mb-4"
-      *ngFor="let movie of movies; trackBy: trackByMovieId"
-    >
-      <div class="card h-100 shadow-lg rounded-lg black-card">
-        <div
-          id="carousel-{{ movie.id }}"
-          class="carousel slide"
-          data-ride="carousel"
-        >
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img
-                class="d-block w-100"
-                [src]="movie.image"
-                alt="Movie Image"
-              />
-              <div class="carousel-caption opacity-0 text-overlay">
-                <div
-                  class="card-body d-flex flex-column justify-content-between"
-                >
-                  <div class="d-flex flex-column text-end">
-                    <span class="btn btn-primary">{{ movie.quality }}</span>
-                    <span class="btn btn-success">{{ movie.rating }}</span>
-                    <span class="btn btn-warning ml-auto">{{
-                      movie.genre
-                    }}</span>
-                  </div>
-
-                  <h5 class="card-title mt-3">{{ movie.title }}</h5>
-                  <p class="card-text">
-                    {{ movie.description }}
-                  </p>
-                  <button class="btn btn-danger btn-sm">More Details</button>
-                </div>
-
-                <div class="card-footer text-muted">
-                  <small class="text-white align-self-end"
-                    >Released: {{ movie.releaseYear }}</small
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+  <div class="tvshow-container">
+    <div class="tvshow" *ngFor="let movieItem of favMovies">
+      <img [src]="movieItem.image" alt="Movie Image" />
+      <h5 class="card-title">{{ movieItem.title }}</h5>
+      <button
+        class="btn btn-danger btn-sm my-3"
+        [routerLink]="['/detailspage', movieItem._id]"
+      >
+        More Details
+      </button>
     </div>
   </div>
 </div>
@@ -68,53 +30,20 @@
     <h3>Watch Later</h3>
     <a href="#" class="btn btn-danger" [routerLink]="['/tvshows']">See More</a>
   </div>
-  <div class="row">
-    <div
-      class="col-md-3 mb-4"
-      *ngFor="let movie of movies; trackBy: trackByMovieId"
-    >
-      <div class="card h-100 shadow-lg rounded-lg black-card">
-        <div
-          id="carousel-{{ movie.id }}"
-          class="carousel slide"
-          data-ride="carousel"
-        >
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img
-                class="d-block w-100"
-                [src]="movie.image"
-                alt="Movie Image"
-              />
-              <div class="carousel-caption opacity-0 text-overlay">
-                <div
-                  class="card-body d-flex flex-column justify-content-between"
-                >
-                  <div class="d-flex flex-column text-end">
-                    <span class="btn btn-primary">{{ movie.quality }}</span>
-                    <span class="btn btn-success">{{ movie.rating }}</span>
-                    <span class="btn btn-warning ml-auto">{{
-                      movie.genre
-                    }}</span>
-                  </div>
-
-                  <h5 class="card-title mt-3">{{ movie.title }}</h5>
-                  <p class="card-text">
-                    {{ movie.description }}
-                  </p>
-                  <button class="btn btn-danger btn-sm">More Details</button>
-                </div>
-
-                <div class="card-footer text-muted">
-                  <small class="text-white align-self-end"
-                    >Released: {{ movie.releaseYear }}</small
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+  <div class="tvshow-container">
+    <div class="tvshow" *ngFor="let watchItem of watch">
+      <img
+        class="rounded border border-danger border-4"
+        [src]="watchItem.image"
+        alt="Movie Image"
+      />
+      <h5 class="card-title">{{ watchItem.title }}</h5>
+      <button
+        class="btn btn-danger btn-sm my-3"
+        [routerLink]="['/detailspage', watchItem._id]"
+      >
+        More Details
+      </button>
     </div>
   </div>
 </div>
