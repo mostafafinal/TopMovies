@@ -1,0 +1,39 @@
+.header {
+  display: flex;
+  text-align: right;
+  color: rgb(223, 20, 20);
+  padding: 100px;
+  background-color: hsl(24, 100%, 1%);
+  img {
+    float: left;
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    margin-left: 10rem;
+  }
+}
+
+.tvshow {
+  background-color: black;
+}
+.favmovi {
+  background-color: black;
+}
+.img-small {
+  width: 450px;
+}
+.tvshow-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.tvshow {
+  flex: 0 1 30%;
+  margin-bottom: 20px;
+}
+
+.tvshow img {
+  width: 100%;
+  height: auto;
+}

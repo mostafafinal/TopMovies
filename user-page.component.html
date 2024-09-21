@@ -1,0 +1,46 @@
+
+<div class="header">
+  <div><img class="m-3" [src]="user.image" alt="mee" /></div>
+  <div class="mt-5">
+    <h1>{{ user.firstName }}</h1>
+    <h3>{{ user.email }}</h3>
+  </div>
+</div>
+
+<div class="container mt-5 text-white">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h3>Favorites</h3>
+    <a href="#" class="btn btn-danger" [routerLink]="['/movies']">See More</a>
+  </div>
+  <div class="tvshow-container">
+    <div class="tvshow" *ngFor="let movieItem of favMovies">
+      <img [src]="movieItem.image" alt="Movie Image">
+      <h5 class="card-title">{{ movieItem.title }}</h5>
+      <button
+        class="btn btn-danger btn-sm my-3"
+        [routerLink]="['/detailspage', movieItem._id]"
+      >
+        More Details
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-5 text-white">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h3>Watch Later</h3>
+    <a href="#" class="btn btn-danger" [routerLink]="['/tvshows']">See More</a>
+  </div>
+  <div class="tvshow-container">
+    <div class="tvshow" *ngFor="let watchItem of watch">
+      <img class="rounded border border-danger border-4" [src]="watchItem.image" alt="Movie Image">
+      <h5 class="card-title">{{ watchItem.title }}</h5>
+      <button
+        class="btn btn-danger btn-sm my-3"
+        [routerLink]="['/detailspage', watchItem._id]"
+      >
+        More Details
+      </button>
+    </div>
+  </div>
+</div>
