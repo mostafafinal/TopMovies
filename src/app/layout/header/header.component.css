@@ -47,3 +47,11 @@ input:focus {
 span {
   cursor: pointer;
 }
+.menu{
+  /* padding: 10px; */
+  
+  margin-left: -50px;
+}
+.menu *{
+  /* padding: 10px; */
+}

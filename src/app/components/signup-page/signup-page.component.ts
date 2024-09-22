@@ -45,13 +45,16 @@ export class SignupPageComponent {
     this.registersService
       .register(this.firstName, this.lastName, this.email, this.password)
       .subscribe(
-        (response) => {
-          this.toaster.success(response.message, 'Success');
-          this.router.navigate(['/login']);
-        },
-        (error) => {
-          this.toaster.error(error.error.message, 'Failed');
-          this.router.navigate(['/login']);
+        {
+          next: (response) => {
+            this.toaster.success(response.message, 'Success');
+            this.router.navigate(['/login']);
+
+          },
+          error: (error) => {
+            this.toaster.error(error.error.message, 'Failed');
+            this.router.navigate(['/login']);
+          }
         }
       );
   }

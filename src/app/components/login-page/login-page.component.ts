@@ -12,6 +12,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { auto } from '@popperjs/core';
 
 @Component({
   selector: 'app-login-page',
@@ -51,11 +52,12 @@ export class LoginPageComponent {
     google.accounts.id.renderButton(
       document.getElementById('google-button'),
       {
-        theme: 'outline',
+        theme: 'light',
         size: 'large',
         type: 'standard',
         text: 'continue_with',
         shape: 'circle',
+        width:'100%'
         // prompt: 'select_account'
       } // customization
     );
