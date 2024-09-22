@@ -1,8 +1,7 @@
-
-<div class="header">
-  <div><img class="m-3" [src]="user.image" alt="mee" /></div>
-  <div class="mt-5">
-    <h1>{{ user.firstName }}</h1>
+<div class="header fs-1">
+  <div><img class="m-3 border border-danger border-3 " [src]="user.image" alt="mee" /></div>
+  <div class="mb-5 text-center">
+    <h1>{{ user.firstName }} {{user.lastName}}</h1>
     <h3>{{ user.email }}</h3>
   </div>
 </div>
@@ -12,35 +11,38 @@
     <h3>Favorites</h3>
     <a href="#" class="btn btn-danger" [routerLink]="['/movies']">See More</a>
   </div>
+  </div>
   <div class="tvshow-container">
-    <div class="tvshow" *ngFor="let movieItem of favMovies">
-      <img [src]="movieItem.image" alt="Movie Image">
-      <h5 class="card-title">{{ movieItem.title }}</h5>
-      <button
-        class="btn btn-danger btn-sm my-3"
-        [routerLink]="['/detailspage', movieItem._id]"
-      >
-        More Details
-      </button>
+    <div class="tvshow card" *ngFor="let movieItem of favMovies" style="width: 18%;">
+      <img class="card-img-top" [src]="movieItem.image" alt="Movie Image">
+      <div class="card-body">
+        <h5 class="card-title text-light">{{ movieItem.title }}</h5>
+        <button
+          class="btn btn-danger btn-sm mt-auto" 
+          [routerLink]="['/detailspage', movieItem._id]">
+          More Details
+        </button>
+      </div>
     </div>
   </div>
-</div>
-
+  
 <div class="container mt-5 text-white">
   <div class="d-flex justify-content-between align-items-center mb-4">
     <h3>Watch Later</h3>
     <a href="#" class="btn btn-danger" [routerLink]="['/tvshows']">See More</a>
   </div>
+  
   <div class="tvshow-container">
-    <div class="tvshow" *ngFor="let watchItem of watch">
-      <img class="rounded border border-danger border-4" [src]="watchItem.image" alt="Movie Image">
-      <h5 class="card-title">{{ watchItem.title }}</h5>
-      <button
-        class="btn btn-danger btn-sm my-3"
-        [routerLink]="['/detailspage', watchItem._id]"
-      >
-        More Details
-      </button>
+    <div class="tvshow card" *ngFor="let watchItem of watch">
+      <img class="card-img-top " [src]="watchItem.image" alt="Movie Image">
+      <div class="card-body">
+        <h5 class="card-title text-light">{{ watchItem.title }}</h5>
+        <button
+          class="btn btn-danger btn-sm"
+          [routerLink]="['/detailspage', watchItem._id]">
+          More Details
+        </button>
+      </div>
     </div>
   </div>
-</div>
+

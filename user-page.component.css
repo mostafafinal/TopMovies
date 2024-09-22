@@ -1,39 +1,97 @@
+
 .header {
+  text-align: center;
+  color: rgb(181, 14, 14);
+  padding: 50px;
+  background-color: #505c69;
   display: flex;
-  text-align: right;
-  color: rgb(223, 20, 20);
-  padding: 100px;
-  background-color: hsl(24, 100%, 1%);
-  img {
-    float: left;
-    border-radius: 50%;
-    width: 200px;
-    height: 200px;
-    margin-left: 10rem;
-  }
+  flex-direction: column;
+  align-items: center;
 }
 
-.tvshow {
-  background-color: black;
+.header img {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  margin-bottom: 1rem;
 }
-.favmovi {
-  background-color: black;
+
+.container {
+  padding: 1rem;
 }
-.img-small {
-  width: 450px;
-}
+
 .tvshow-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  gap: 1rem;
 }
 
 .tvshow {
-  flex: 0 1 30%;
-  margin-bottom: 20px;
+  flex: 1 1 30%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: black;
 }
 
 .tvshow img {
   width: 100%;
   height: auto;
+  margin: 0;
+  padding: 0;
+  border-radius: 5px;
+  
 }
+
+.tvshow .card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+  padding: 0.5rem;
+}
+
+.btn {
+  margin: 0;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+  display: block;
+}
+
+.card-title {
+  text-align: center;
+  font-size: 1rem;
+  margin: 0.5rem 0;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .header img {
+    width: 120px;
+    height: 120px;
+  }
+
+  .tvshow {
+    flex: 1 1 45%;
+  }
+}
+
+@media (max-width: 480px) {
+  .header{
+    font-size: x-small;
+  }
+  .header img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .tvshow {
+    flex: 1 1 100%;
+  }
+
+  .btn {
+    font-size: 0.75rem;
+  }
+}
+
