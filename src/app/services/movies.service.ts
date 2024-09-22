@@ -22,14 +22,20 @@ export class MoviesService {
   }
 
   addMovieToWatahLater(movieId: String): Observable<any> {
-    let headers = new HttpHeaders()
-    headers = headers.append('Authorization', `Bearer ${localStorage.getItem('authToken')}`);
-    return this.http.put<any>(`https://movie-app-production-bac6.up.railway.app/user/watctLater/${movieId}`,{}, {headers})
+    // let headers = new HttpHeaders()
+    // headers = headers.append('Authorization', `Bearer ${localStorage.getItem('authToken')}`);
+    return this.http.put<any>(
+      `https://movie-app-production-bac6.up.railway.app/user/watctLater/${movieId}`,
+      {}
+    );
   }
   addMovieToFavList(movieId: String): Observable<any> {
-    let headers = new HttpHeaders()
-    headers = headers.append('Authorization', `Bearer ${localStorage.getItem('authToken')}`);
-    console.log(headers)
-    return this.http.put<any>(`https://movie-app-production-bac6.up.railway.app/user/favList/${movieId}`, {},{headers})
+    // let headers = new HttpHeaders()
+    // headers = headers.append('Authorization', `Bearer ${localStorage.getItem('authToken')}`);
+    // console.log(headers)
+    return this.http.put<any>(
+      `https://movie-app-production-bac6.up.railway.app/user/favList/${movieId}`,
+      {}
+    );
   }
 }

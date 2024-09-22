@@ -31,10 +31,9 @@ export class RegisterService {
       const password = control.get('password')?.value;
       const confirmPassword = control.get('confirmPassword')?.value;
 
-      return password && confirmPassword && password !== confirmPassword 
-        ? { 'mismatch': true } 
+      return password && confirmPassword && password !== confirmPassword
+        ? { mismatch: true }
         : null;
     };
   }
 }
-
