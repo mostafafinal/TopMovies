@@ -87,7 +87,7 @@ export class LoginPageComponent {
           this.loginServices.saveToken(token);
           this.toaster.success(response.message, 'Success');
           this.loginServices.setData(true);
-          localStorage.setItem('loggedIn', 'true');
+          sessionStorage.setItem('loggedIn', 'true');
           // router
           this.route.navigate(['/home']);
         }
@@ -108,7 +108,7 @@ export class LoginPageComponent {
           this.loginServices.saveToken(token);
           this.toaster.success(response.message, 'Success');
           this.loginServices.setData(true);
-          localStorage.setItem('loggedIn', 'true');
+          sessionStorage.setItem('loggedIn', 'true');
           // router
           this.route.navigate(['/home']);
         }
