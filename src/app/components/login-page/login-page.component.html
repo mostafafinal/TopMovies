@@ -33,16 +33,16 @@
         <span class="text-danger">Invalid password</span>
         }
       </div>
-      <div class="btns-container text-center">
+      <div class="btns-container text-center d-flex flex-column justify-content-center align-items-center ">
         <button
           type="submit"
-          class="btn btn-danger d-block w-75 m-auto mt-3 p-2 ps-5 pe-5 rounded-pill"
+          class="btn btn-danger d-block w-50 p-2 rounded-pill"
           [disabled]="loginForm.invalid"
           (click)="userLogin()"
         >
           Log In
         </button>
-        <button id="google-button" class="btn mt-2">Login with Google</button>
+        <button id="google-button" class="btn mt-2 w-auto" >Login with Google</button>
       </div>
       <div id="emailHelp" class="sign form-text text-center mt-3">
         Don't have an account yet?

@@ -6,7 +6,6 @@ import { LoginService } from '../services/login.service';
 export const TokenInterceptor: HttpInterceptorFn = (req, next) => {
   const authService = inject(LoginService); // You can inject services like this
   const token = authService.getToken();
-  console.log(token);
 
   if (token) {
     const reqClone = req.clone({

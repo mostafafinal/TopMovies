@@ -61,7 +61,10 @@ export class UserPageComponent implements OnInit {
 
   loadUser(): void {
     this.userService.getUserData().subscribe((data) => {
-      this.user = data;
+      this.user = {
+        ...data,
+        image:data.image||'https://th.bing.com/th/id/OIP.UY0H6jNLhhjKymJWT6HsPwHaHa?rs=1&pid=ImgDetMain'
+      };
       console.log(this.user);
     });
   }
