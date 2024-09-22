@@ -4,15 +4,43 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { MoviesService } from '../../services/movies.service';
 import { Movies } from '../../models/movies';
+import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
   selector: 'app-user-page',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, CarouselModule],
   templateUrl: './user-page.component.html',
   styleUrls: ['./user-page.component.css'],
 })
 export class UserPageComponent implements OnInit {
+  customOptions: OwlOptions = {
+    loop: true,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    autoplay: true,
+    autoplayTimeout: 4000,
+    dots: false,
+    autoplaySpeed: 1000,
+    navText: ['', ''],
+    responsive: {
+      0: {
+        items: 1,
+      },
+      400: {
+        items: 2,
+      },
+      740: {
+        items: 3,
+      },
+      940: {
+        items: 4,
+      },
+    },
+    nav: false,
+  };
+
   user: any = {};
   movies: Movies[] = [];
   watch: Movies[] = [];
