@@ -1,51 +1,37 @@
-*{
-    padding: 0px;
-    margin: 0px;
-    box-sizing: border-box;
-  }
-  
-  .container{
-    padding-top: 90px;
-  }
-  form{
-    width: 40%;
-    background-color: rgb(44, 44, 44);
-    padding: 30px;
-    border-radius: 20px;
-    color: rgb(141, 140, 140);
-    
-  }
-  h3{
-    color: white;
-  }
-  .sign{
-    color:rgb(141, 140, 140);
-  }
-  .btn-danger ,.btn-light{
-    width: 100%;
-    border: none;
-    border-radius: 50px;
-  }
-  /* #google-button{
-    width: 100%;
-    padding: 10px;
-    text-align: center;
-    margin-left:50px;
-  }
-   */
-  .form-control{
-    background-color:rgb(44, 44, 44);
-    color: rgb(141, 140, 140);
-    box-shadow: none !important;
-    border: none;
-    border-bottom: 1px solid ;
-    border-radius: 4px 4px 0 0;
-  }
-  
-  .red{
-    color: red;
-  }
-  
-  .a{
-    color: white;
-  }
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+.container {
+  padding-top: 90px;
+}
+form {
+  background-color: rgb(44, 44, 44);
+  padding: 30px;
+  border-radius: 20px;
+  color: rgb(141, 140, 140);
+}
+h3 {
+  color: white;
+}
+.sign {
+  color: rgb(141, 140, 140);
+}
+.form-control {
+  background-color: rgb(44, 44, 44);
+  color: rgb(141, 140, 140);
+  box-shadow: none !important;
+  border: none;
+  border-bottom: 1px solid;
+  border-radius: 4px 4px 0 0;
+}
+
+.red {
+  color: red;
+}
+
+.a {
+  color: white;
+}

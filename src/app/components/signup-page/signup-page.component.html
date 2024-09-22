@@ -1,81 +1,83 @@
-<div class="container">
-  <form class="mx-auto" [formGroup]="signUpform" (ngSubmit)="onSubmit()">
-    <h3 class="text-center">Register</h3>
-    <div class="mb-3">
-      <label for="firstName" class="form-label"
-        >Frist Name<span class="red">*</span></label
+<div class="main-container">
+  <div class="container m-auto col-12 col-md-8 col-lg-6">
+    <form class="mx-auto" [formGroup]="signUpform" (ngSubmit)="onSubmit()">
+      <h3 class="text-center">Register</h3>
+      <div class="mb-3">
+        <label for="firstName" class="form-label"
+          >Frist Name<span class="red">*</span></label
+        >
+        <input
+          id="firstName"
+          formControlName="firstName"
+          [(ngModel)]="firstName"
+          class="form-control"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="lastName" class="form-label"
+          >Last Name<span class="red">*</span></label
+        >
+        <input
+          id="lastName"
+          formControlName="lastName"
+          [(ngModel)]="lastName"
+          class="form-control"
+          required
+        />
+      </div>
+      <div class="form-group mb-3">
+        <label for="email">Email<span class="red">*</span> </label>
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          [(ngModel)]="email"
+          formControlName="email"
+          aria-describedby="emailHelp"
+          required
+        />
+      </div>
+      <div class="form-group mb-3">
+        <label for="password">Password<span class="red">*</span> </label>
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          [(ngModel)]="password"
+          formControlName="password"
+          required
+        />
+      </div>
+      <div class="form-group mb-3">
+        <label for="confirmPassword"
+          >Confirm Password<span class="red">*</span>
+        </label>
+        <input
+          type="password"
+          class="form-control"
+          id="confirmPassword"
+          formControlName="confirmPassword"
+          [(ngModel)]="confirmPassword"
+          required
+        />
+        @if (signUpform.errors?.['mismatch']) {
+        <div class="text-danger">Passwords do not match.</div>
+        }
+      </div>
+      <button
+        type="submit"
+        class="btn btn-danger d-block w-75 m-auto mt-3 p-2 ps-5 pe-5 rounded-pill"
+        [disabled]="!signUpform.valid"
+        (click)="registerUser()"
       >
-      <input
-        id="firstName"
-        formControlName="firstName"
-        [(ngModel)]="firstName"
-        class="form-control"
-        required
-      />
-    </div>
-    <div class="mb-3">
-      <label for="lastName" class="form-label"
-        >Last Name<span class="red">*</span></label
-      >
-      <input
-        id="lastName"
-        formControlName="lastName"
-        [(ngModel)]="lastName"
-        class="form-control"
-        required
-      />
-    </div>
-    <div class="form-group mb-3">
-      <label for="email">Email<span class="red">*</span> </label>
-      <input
-        type="email"
-        class="form-control"
-        id="email"
-        [(ngModel)]="email"
-        formControlName="email"
-        aria-describedby="emailHelp"
-        required
-      />
-    </div>
-    <div class="form-group mb-3">
-      <label for="password">Password<span class="red">*</span> </label>
-      <input
-        type="password"
-        class="form-control"
-        id="password"
-        [(ngModel)]="password"
-        formControlName="password"
-        required
-      />
-    </div>
-    <div class="form-group mb-3">
-      <label for="confirmPassword"
-        >Confirm Password<span class="red">*</span>
-      </label>
-      <input
-        type="password"
-        class="form-control"
-        id="confirmPassword"
-        formControlName="confirmPassword"
-        [(ngModel)]="confirmPassword"
-        required
-      />
-      @if (signUpform.errors?.['mismatch']) {
-      <div class="text-danger">Passwords do not match.</div>
-      }
-    </div>
-    <button
-      type="submit"
-      class="btn btn-danger mt-3 p-3"
-      [disabled]="!signUpform.valid"
-      (click)="registerUser()"
-    >
-      Sign Up
-    </button>
+        Sign Up
+      </button>
 
-    <div id="emailHelp" class="sign form-text text-center mt-3">
-      Already have an account?
-      <a class="a" [routerLink]="['/login']">Log in</a>
-    </div>
-  </form>
+      <div id="emailHelp" class="sign form-text text-center mt-3">
+        Already have an account?
+        <a class="a" [routerLink]="['/login']">Log in</a>
+      </div>
+    </form>
+  </div>
 </div>
