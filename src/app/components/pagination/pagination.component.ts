@@ -10,8 +10,8 @@ import { Component, Input, Output, EventEmitter, OnInit } from "@angular/core";
 })
 export class PaginationComponent implements OnInit {
   @Input() currentPage: number = 1;
-  @Input() total: number = 0; // Total number of items
-  @Input() limit: number = 20; // Items per page
+  @Input() total: number = 0; 
+  @Input() limit: number = 20;
   @Output() changePage = new EventEmitter<number>();
 
   totalPages: number = 0;
@@ -22,10 +22,10 @@ export class PaginationComponent implements OnInit {
     this.updateDisplayedPages();
   }
 
-  // Update displayed pages (4 at a time)
+
   updateDisplayedPages(): void {
     const startPage = Math.max(1, this.currentPage - 2);
-    const endPage = Math.min(this.totalPages, startPage + 3); // Show only 4 pages
+    const endPage = Math.min(this.totalPages, startPage + 3); 
 
     this.displayedPages = [];
     for (let i = startPage; i <= endPage; i++) {
@@ -33,7 +33,7 @@ export class PaginationComponent implements OnInit {
     }
   }
 
-  // Handle page click
+ 
   onPageClick(page: number): void {
     if (this.currentPage !== page) {
       this.currentPage = page;
@@ -42,7 +42,7 @@ export class PaginationComponent implements OnInit {
     }
   }
 
-  // Go to the next page
+ 
   nextPage(): void {
     if (this.currentPage < this.totalPages) {
       this.currentPage++;
@@ -51,7 +51,7 @@ export class PaginationComponent implements OnInit {
     }
   }
 
-  // Go to the previous page
+ 
   previousPage(): void {
     if (this.currentPage > 1) {
       this.currentPage--;

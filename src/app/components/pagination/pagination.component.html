@@ -1,16 +1,16 @@
 <div class="d-flex justify-content-center align-items-center">
   <ul class="pagination">
-    <!-- Previous Button -->
+   
     <li class="page-item" [ngClass]="{ disabled: currentPage === 1 }" (click)="previousPage()">
       <span class="page-link">&laquo;</span>
     </li>
 
-    <!-- Display 4 pages -->
+   
     <li *ngFor="let page of displayedPages" [ngClass]="{ 'page-item': true, active: currentPage === page }" (click)="onPageClick(page)">
       <span class="page-link">{{ page }}</span>
     </li>
 
-    <!-- Next Button -->
+  
     <li class="page-item" [ngClass]="{ disabled: currentPage === totalPages }" (click)="nextPage()">
       <span class="page-link">&raquo;</span>
     </li>

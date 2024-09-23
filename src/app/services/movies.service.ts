@@ -42,4 +42,11 @@ export class MoviesService {
       {}
     );
   }
+  deleteMovieFromFavList(movieId: String): Observable<any> {
+    return this.http.put(`https://movie-app-production-bac6.up.railway.app/user/favList/${movieId}`,{});
+  }
+
+  deleteMovieFromWatchLater(movieId: String): Observable<any> {
+    return this.http.put(`https://movie-app-production-bac6.up.railway.app/user/watctLater/${movieId}`,{});
+  }
 }
