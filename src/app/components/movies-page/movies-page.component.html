@@ -26,7 +26,7 @@
     *ngFor="let show of filteredMovies; trackBy: trackByMovieId"
     class="card"
   >
-    <div id="card-body" class="col-sm-12 col-md-3 p-2 w-100">
+    <div id="card-body" class="col-sm-12 col-md-3 p-2 w-100 ">
       <section
         class="movies text-white"
         style="background-image: url('{{ show.image }}');"
@@ -92,7 +92,7 @@
       [first]="(currentPage - 1) * limit"
       [rows]="limit" 
       [totalRecords]="totalMovies"
-      [pageLinkSize]="7" 
+      [pageLinkSize]="5" 
       (onPageChange)="changePage($event)"
     ></p-paginator>
     
