@@ -49,9 +49,13 @@ span {
 }
 .menu{
   /* padding: 10px; */
-  
+
   margin-left: -50px;
 }
 .menu *{
   /* padding: 10px; */
+}
+
+.fs{
+  font-size:small;
 }

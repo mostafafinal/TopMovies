@@ -26,11 +26,7 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit(): void {
     this.getMovies();
-    /*=============only for test=========*/
-    this.getUserData();
-    this.getWatchLaterList();
-    this.getFavList();
-    /*===================================*/
+
     setTimeout(() => {
       this.isLoading = false;
     }, 2000);
@@ -60,12 +56,7 @@ export class HomePageComponent implements OnInit {
   /*===================================*/
   getMovies() {
     this.movieService.getMovies().subscribe((data) => {
-      this.allMovies = data.map((movie: any) => {
-        return {
-          ...movie,
-          genres: JSON.parse(movie.genres[0]),
-        };
-      });
+      this.allMovies = data;
       this.isLoading = false;
     });
   }

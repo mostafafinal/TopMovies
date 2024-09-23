@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
       if (event.url) {
         // Add the paths where the header should not be displayed
         const hideHeaderPaths = ['/login', '/signup'];
-        console.log(event.url);
+       
         this.showHeader = !hideHeaderPaths.includes(event.url);
       }
     });

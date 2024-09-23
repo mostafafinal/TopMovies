@@ -4,13 +4,17 @@ import { RouterModule, ActivatedRoute, Params } from '@angular/router';
 import { Movies } from '../../models/movies';
 import { MoviesService } from '../../services/movies.service';
 import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
-import { PaginatorModule } from 'primeng/paginator';
+// import { PaginatorModule } from 'primeng/paginator';
 import { Router } from '@angular/router';
+import { PaginationComponent } from '../pagination/pagination.component';
+
 
 @Component({
   selector: 'app-movies-page',
   standalone: true,
-  imports: [CommonModule, RouterModule, NgxSpinnerModule, PaginatorModule],
+  imports: [CommonModule, RouterModule, PaginationComponent, NgxSpinnerModule],
+
+  // imports: [CommonModule, RouterModule, NgxSpinnerModule, PaginatorModule],
   templateUrl: './movies-page.component.html',
   styleUrl: './movies-page.component.css',
 })
@@ -36,8 +40,8 @@ export class MoviesPageComponent implements OnInit {
     this.spinner.show();
 
     this.route.queryParams.subscribe((params: Params) => {
-      this.limit = +params['limit'] || 20; 
-      this.currentPage = +params['page'] || 1; 
+      this.limit = +params['limit'] || 20;
+      this.currentPage = +params['page'] || 1;
       this.fetchMovies(this.limit, this.currentPage);
     });
 
@@ -47,7 +51,7 @@ export class MoviesPageComponent implements OnInit {
   }
 
   fetchMovies(limit: number, page: number): void {
-   
+
     const startIndex = (page - 1) * limit;
     const endIndex = startIndex + limit;
 
@@ -58,25 +62,30 @@ export class MoviesPageComponent implements OnInit {
 
       this.typeMoives = [];
       this.AllMoives.forEach((movie) => {
-        let genres = JSON.parse(movie.genres.toString());
-        this.typeMoives.push(...genres);
+        this.typeMoives.push(...movie.genres);
       });
     });
   }
 
   changePage(event: any): void {
-    this.currentPage = event.page + 1; 
+    this.currentPage = event.page + 1;
     this.router.navigate([], {
       queryParams: { limit: this.limit, page: this.currentPage },
-      queryParamsHandling: 'merge', 
+      queryParamsHandling: 'merge',
     });
-    this.fetchMovies(this.limit, this.currentPage); 
+    this.fetchMovies(this.limit, this.currentPage);
   }
 
   filterByGenre(genre: string): void {
-    this.filteredMovies = this.AllMoives.filter((movie) => {
-      let genres = JSON.parse(movie.genres.toString());
-      return genres.includes(genre);
+    this.movieService.getMoviesCategory(genre).subscribe({
+      next: (response) => {
+        this.filteredMovies = response.movies;
+        console.log('done');
+
+      },
+      error: (err) => {
+        console.log(err);
+      },
     });
   }
 

@@ -34,22 +34,14 @@ export class DetailsPageComponent {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.movieService.getMoviesById(id).subscribe((movie) => {
-        this.movie = {
-          ...movie,
-          genres: JSON.parse(movie.genres[0]),
-        };
-        console.log(this.movie);
+        this.movie = movie;
+        // console.log(this.movie)
       });
     }
     this.movieService.getMovies().subscribe((data) => {
-      this.allMovies = data.map((movie: Movies) => {
-        return {
-          ...movie,
-          genres: JSON.parse(movie.genres[0]),
-        };
-      });
+      this.allMovies = data;
 
-      console.log(this.allMovies);
+
 
       this.filterRecommendedMovies();
     });
@@ -61,12 +53,11 @@ export class DetailsPageComponent {
 
   filterRecommendedMovies(): void {
     this.recommendedMovies = this.allMovies
-      .filter((m) => {
-        return m.genres.some((genre: string) =>
-          this.movie.genres.includes(genre)
-        );
+      .filter(m => {
+        return m.genres.some((genre: string) => this.movie.genres.includes(genre));
       })
       .slice(0, 12);
+
 
     console.log(this.recommendedMovies);
   }
@@ -101,16 +92,19 @@ export class DetailsPageComponent {
   }
 
 
+
+
   deleteFromFavList(movieId: String) {
     console.log(movieId);
     this.movieService.deleteMovieFromFavList(movieId).subscribe((data) => {
       console.log('Deleted from favorites:', data);
     });
   }
- 
+
   deleteFromWatchLater(movieId: String): void {
     this.movieService.deleteMovieFromWatchLater(movieId).subscribe((data) => {
       console.log('Deleted from watch later:', data);
     });
   }
+
 }

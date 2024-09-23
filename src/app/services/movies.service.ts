@@ -17,6 +17,10 @@ export class MoviesService {
     return this.http.get<Movies[]>(this.allMoviesApiUrl);
   }
 
+  getMoviesCategory(category:string): Observable<any> {
+    return this.http.get<any>(`https://movie-app-production-bac6.up.railway.app/movie/category/${category}`);
+  }
+
   getMoviesById(id: string): Observable<Movies> {
     return this.http.get<Movies>(`${this.movieDetailsApiUrl}/${id}`);
   }

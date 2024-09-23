@@ -38,7 +38,7 @@ export class HeaderComponent implements OnInit {
         ...data,
         image:data.image||'https://th.bing.com/th/id/OIP.UY0H6jNLhhjKymJWT6HsPwHaHa?rs=1&pid=ImgDetMain'
       };
-      console.log('user=>',this.user);
+     
     });
   }
 

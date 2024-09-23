@@ -4,13 +4,23 @@
       <span class="text-light fw-bold fs-4" [routerLink]="['/home']">Top</span>
       <span class="text-danger fw-bold" [routerLink]="['/home']">Movies</span>
     </a>
-    <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">
+    <div class="d-flex justify-content-center align-items-center gap-2 d-lg-none w-25">
+      @if(loggedInSingal() || logOut){
+    <div  class=" d-flex  justify-content-center align-items-center" type="button" data-bs-toggle="dropdown" aria-expanded="false" >
+      <img [src]="user.image" class="rounded-circle me-2" width="40" height="40">
+      <p class="text-light fs mt-3 " style='color:wight;'>{{user.firstName}} {{user.lastName}}</p>
+    </div>
+  }
+    <button class="navbar-toggler h-75" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">
       <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#ff434c" class="bi bi-list"
         viewBox="0 0 16 16">
         <path fill-rule="evenodd"
           d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
       </svg>
     </button>
+
+  </div>
+
     <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse justify-content-between">
       <ul class="navbar-nav">
         <li class="nav-item">
@@ -21,27 +31,32 @@
           <a class="nav-link position-relative text-light fw-bold" [routerLink]="['/tvshows']" routerLinkActive="active"
             (click)="isMenuCollapsed = true">TV Shows</a>
         </li>
+        @if(loggedInSingal() || logOut){
+        <li class="dropdown-item bg-danger rounded text-light p-2 text-center btn d-lg-none"  (click)="userLogOut()">
+          Log out
+       </li>}
+
       </ul>
       @if(loggedInSingal() || logOut) {
-        <div class="dropdown-center btn-group ">
+        <div class="dropdown-center btn-group d-lg-flex d-none ">
           <div  class=" dropdown-center  d-flex justify-content-center align-items-center flex-column mx-auto " type="button" data-bs-toggle="dropdown" aria-expanded="false" >
             <img [src]="user.image" class="rounded-circle" width="40" height="40">
             <p class="text-light" style='color:wight;'>{{user.firstName}} {{user.lastName}}</p>
           </div>
-         
+
           <ul class="dropdown-menu bg-dark menu ">
             <li class="dropdown-item text-secondary rounded text-center" (click)=" userPage()" >
               <p class="">Your profile</p>
             </li>
-            
+
             <li class="dropdown-item bg-danger rounded text-light p-2 text-center btn " (click)="userLogOut()">
               Log out
            </li>
           </ul>
         </div>
-      
-        
-      
+
+
+
       } @else {
       <button class="btn btn-danger fs-5 ms-lg-2 mt-2 mt-lg-0" [routerLink]="['/login']">
         Login
