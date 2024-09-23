@@ -26,9 +26,9 @@ export class HomePageComponent implements OnInit {
   ngOnInit(): void {
     this.getMovies();
     /*=============only for test=========*/
-    this.getUserData();
-    this.getWatchLaterList();
-    this.getFavList();
+    // this.getUserData();
+    // this.getWatchLaterList();
+    // this.getFavList();
     /*===================================*/
     setTimeout(() => {
       this.isLoading = false;
@@ -36,31 +36,26 @@ export class HomePageComponent implements OnInit {
   }
   /*=============only for test=========*/
 
-  getUserData() {
-    this.userService.getUserData().subscribe((data) => {
-      console.log(data);
-    })
-  }
-  //user data....
-  getFavList() {
-    this.userService.getUserFavList().subscribe((data) => {
-      console.log(data);
-    })
-  }
-  getWatchLaterList() {
-    this.userService.getUserWatchLaterList().subscribe((data) => {
-      console.log(data);
-    })
-  }
+  // getUserData() {
+  //   this.userService.getUserData().subscribe((data) => {
+  //     console.log(data);
+  //   })
+  // }
+  // //user data....
+  // getFavList() {
+  //   this.userService.getUserFavList().subscribe((data) => {
+  //     console.log(data);
+  //   })
+  // }
+  // getWatchLaterList() {
+  //   this.userService.getUserWatchLaterList().subscribe((data) => {
+  //     console.log(data);
+  //   })
+  // }
   /*===================================*/
   getMovies() {
     this.movieService.getMovies().subscribe((data) => {
-      this.allMovies = data.map((movie: any) => {
-        return {
-          ...movie,
-          genres: JSON.parse(movie.genres[0]),
-        };
-      });
+      this.allMovies = data;
       this.isLoading = false;
     });
   }

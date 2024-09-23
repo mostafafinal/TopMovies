@@ -6,10 +6,12 @@ import { MoviesService } from '../../services/movies.service';
 import { PaginationComponent } from '../pagination/pagination.component';
 import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 
+
 @Component({
   selector: 'app-movies-page',
   standalone: true,
   imports: [CommonModule, RouterModule, PaginationComponent, NgxSpinnerModule],
+ 
   templateUrl: './movies-page.component.html',
   styleUrl: './movies-page.component.css',
 })
@@ -26,7 +28,7 @@ export class MoviesPageComponent {
   constructor(
     private movieService: MoviesService,
     private spinner: NgxSpinnerService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.spinner.show();
@@ -59,9 +61,15 @@ export class MoviesPageComponent {
   }
 
   filterByGenre(genre: string): void {
-    this.filteredMovies = this.AllMoives.filter((movie) => {
-      let genres = JSON.parse(movie.genres.toString());
-      return genres.includes(genre);
+    this.movieService.getMoviesCategory(genre).subscribe({
+      next: (response) => {
+        this.filteredMovies = response.movies;
+        console.log('done');
+        
+      },
+      error: (err) => {
+        console.log(err);
+      },
     });
   }
 

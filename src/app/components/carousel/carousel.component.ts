@@ -27,12 +27,7 @@ export class CarouselComponent {
 
   getMovies() {
     this.movieService.getMovies().subscribe((data) => {
-      this.allMovies = data.map((movie: Movies) => {
-        return {
-          ...movie,
-          genres: JSON.parse(movie.genres[0]), // Parse genres string into an array
-        };
-      });
+      this.allMovies = data;
       this.isLoading = false; // Set loading to false once data is fetched
     });
   }
