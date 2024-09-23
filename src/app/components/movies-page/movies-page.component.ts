@@ -49,8 +49,7 @@ export class MoviesPageComponent {
       this.filteredMovies = [...this.AllMoives];
 
       this.AllMoives.forEach((movie) => {
-        let genres = JSON.parse(movie.genres.toString());
-        this.typeMoives.push(...genres);
+        this.typeMoives.push(...movie.genres);
       });
     });
   }
