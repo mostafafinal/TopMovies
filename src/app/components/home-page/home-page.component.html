@@ -79,10 +79,31 @@
           <br />
         </section>
         <div class="row mt-2 justify-content-center">
-          <button class="btn btn-outline-primary col-5 btn-sm mx-1"  (click)="addToWatahLater(movie._id)" >
+          <button
+            [ngClass]="{
+              btn: true,
+              'btn-outline-primary': !watchLater.includes(movie._id),
+              'btn-primary': watchLater.includes(movie._id),
+              'col-5': true,
+              'btn-sm': true,
+              'mx-1': true
+            }"
+            (click)="addToWatahLater(movie._id)"
+          >
             Watch Later <i class="bi bi-stopwatch"></i>
           </button>
-          <button class="btn btn-outline-danger col-5 btn-sm mx-1" (click)="addToFavList(movie._id)">
+
+          <button
+            [ngClass]="{
+              btn: true,
+              'btn-outline-danger': !favList.includes(movie._id),
+              'btn-danger': favList.includes(movie._id),
+              'col-5': true,
+              'btn-sm': true,
+              'mx-1': true
+            }"
+            (click)="addToFavList(movie._id)"
+          >
             Favourite <i class="bi bi-heart-fill"></i>
           </button>
         </div>
@@ -160,10 +181,31 @@
           <br />
         </section>
         <div class="row mt-2 justify-content-center">
-          <button class="btn btn-outline-primary col-5 btn-sm mx-1"  (click)="addToWatahLater(movie._id)">
+          <button
+            [ngClass]="{
+              btn: true,
+              'btn-outline-primary': !watchLater.includes(movie._id),
+              'btn-primary': watchLater.includes(movie._id),
+              'col-5': true,
+              'btn-sm': true,
+              'mx-1': true
+            }"
+            (click)="addToWatahLater(movie._id)"
+          >
             Watch Later <i class="bi bi-stopwatch"></i>
           </button>
-          <button class="btn btn-outline-danger col-5 btn-sm mx-1" (click)="addToFavList(movie._id)" >
+
+          <button
+            [ngClass]="{
+              btn: true,
+              'btn-outline-danger': !favList.includes(movie._id),
+              'btn-danger': favList.includes(movie._id),
+              'col-5': true,
+              'btn-sm': true,
+              'mx-1': true
+            }"
+            (click)="addToFavList(movie._id)"
+          >
             Favourite <i class="bi bi-heart-fill"></i>
           </button>
         </div>

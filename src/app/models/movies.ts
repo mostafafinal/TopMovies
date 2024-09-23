@@ -1,5 +1,5 @@
 export interface Movies {
-  _id: String;
+  _id: string;
   title: String;
   image: String;
   date: string;
