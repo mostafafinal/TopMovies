@@ -7,6 +7,7 @@
   ><p style="color: rgb(205, 69, 69)">Loading...</p></ngx-spinner
 >
 <!-- filtter -->
+
 <div class="filtter d-flex flex-wrap">
   <button class="mb-2" (click)="GetAll()">All</button>
   <button class="mb-2" (click)="filterByGenre('History')">History</button>
@@ -85,11 +86,18 @@
     </div>
   </div>
   <!-- pagiantion -->
-  <app-pagination
-    [currentPage]="currentPage"
-    [limit]="limit"
-    [total]="totalMovies"
-    (changePage)="changePage($event)"
-  >
-  </app-pagination>
+  <div class="pag">
+    <div>
+      <p-paginator
+      [first]="(currentPage - 1) * limit"
+      [rows]="limit" 
+      [totalRecords]="totalMovies"
+      [pageLinkSize]="7" 
+      (onPageChange)="changePage($event)"
+    ></p-paginator>
+    
+    
+    
+    </div>
+  </div>
 </div>
