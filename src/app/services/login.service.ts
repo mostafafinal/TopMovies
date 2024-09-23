@@ -24,15 +24,15 @@ export class LoginService {
   }
 
   saveToken(token: string) {
-    localStorage.setItem('authToken', token);
+    sessionStorage.setItem('authToken', token);
   }
 
   getToken(): string | null {
-    return localStorage.getItem('authToken');
+    return sessionStorage.getItem('authToken');
   }
 
   clearToken(): void {
-    localStorage.removeItem('authToken');
+    sessionStorage.removeItem('authToken');
   }
 
   //login & logout state

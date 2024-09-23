@@ -1,23 +1,42 @@
 .navbar {
   background-color: rgba(33, 37, 41, 0.7);
-  .nav-link {
-    &::after {
-      transition: ease-out 0.3s;
-      position: absolute;
-      content: "";
-      width: 0;
-      height: 0.125rem;
-      bottom: 0;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background-color: #ff434c;
-    }
-    &.active {
+  @media (min-width: 992px) {
+    .nav-link {
       &::after {
-        width: 80%;
+        transition: ease-out 0.3s;
+        position: absolute;
+        content: "";
+        width: 0;
+        height: 0.125rem;
+        bottom: 0;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #ff434c;
+      }
+      &.active {
+        &::after {
+          width: 80%;
+        }
       }
     }
   }
+  @media (max-width: 991px) {
+    .nav-link {
+      &.active {
+        color: #ff434c !important;
+      }
+    }
+  }
+}
+
+.navbar-toggler {
+  border: 0.1rem solid #ff434c;
+  &:focus {
+    box-shadow: 0px 0px 5px #ff434c !important;
+  }
+}
+
+.navbar-collapse {
 }
 
 input:focus {
@@ -27,4 +46,12 @@ input:focus {
 
 span {
   cursor: pointer;
+}
+.menu{
+  /* padding: 10px; */
+  
+  margin-left: -50px;
+}
+.menu *{
+  /* padding: 10px; */
 }

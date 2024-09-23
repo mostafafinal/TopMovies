@@ -1,51 +1,53 @@
-<div class="container">
-  <form class="mx-auto" [formGroup]="loginForm">
-    <h3 class="text-center">Log In</h3>
-    <div class="form-group mb-3 mt-5">
-      <label for="email">Email<span class="red">*</span> </label>
-      <input
-        type="email"
-        class="form-control"
-        name="email"
-        formControlName="email"
-        id="email"
-        aria-describedby="emailHelp"
-        [(ngModel)]="email"
-      />
-      @if(loginForm.get('email')?.invalid && loginForm.get('email')?.touched) {
-      <span class="text-danger">Invalid email</span>
-      }
-    </div>
-    <div class="form-group mb-3">
-      <label for="password">Password<span class="red">*</span> </label>
-      <input
-        type="password"
-        class="form-control"
-        id="password"
-        name="password"
-        formControlName="password"
-        [(ngModel)]="password"
-      />
-      @if(loginForm.get('password')?.invalid &&
-      loginForm.get('password')?.touched) {
-      <span class="text-danger">Invalid password</span>
-      }
-    </div>
-    <button
-      type="submit"
-      class="btn btn-danger mt-3 p-3"
-      [disabled]="loginForm.invalid"
-      (click)="userLogin()"
-    >
-      Log In
-    </button>
-    <button id="google-button" class="btn btn-light mt-3 p-1">Sign in with Google</button>
-    <!-- <button class="btn btn-google mt-3 p-3" id="googleSignInBtn">
-      <i class="fab fa-google"></i> Sign in with Google
-  </button> -->
-    <div id="emailHelp" class="sign form-text text-center mt-3">
-      Don't have an account yet?
-      <a class="a" [routerLink]="['/signup']">Sign Up</a>
-    </div>
-  </form>
+<div class="main-container">
+  <div class="container m-auto col-12 col-md-8 col-lg-6">
+    <form class="mx-auto" [formGroup]="loginForm">
+      <h3 class="text-center">Log In</h3>
+      <div class="form-group mb-3 mt-5">
+        <label for="email">Email<span class="red">*</span> </label>
+        <input
+          type="email"
+          class="form-control"
+          name="email"
+          formControlName="email"
+          id="email"
+          aria-describedby="emailHelp"
+          [(ngModel)]="email"
+        />
+        @if(loginForm.get('email')?.invalid && loginForm.get('email')?.touched)
+        {
+        <span class="text-danger">Invalid email</span>
+        }
+      </div>
+      <div class="form-group mb-3">
+        <label for="password">Password<span class="red">*</span> </label>
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          name="password"
+          formControlName="password"
+          [(ngModel)]="password"
+        />
+        @if(loginForm.get('password')?.invalid &&
+        loginForm.get('password')?.touched) {
+        <span class="text-danger">Invalid password</span>
+        }
+      </div>
+      <div class="btns-container text-center d-flex flex-column justify-content-center align-items-center ">
+        <button
+          type="submit"
+          class="btn btn-danger d-block w-50 p-2 rounded-pill"
+          [disabled]="loginForm.invalid"
+          (click)="userLogin()"
+        >
+          Log In
+        </button>
+        <button id="google-button" class="btn mt-2 w-auto" >Login with Google</button>
+      </div>
+      <div id="emailHelp" class="sign form-text text-center mt-3">
+        Don't have an account yet?
+        <a class="a" [routerLink]="['/signup']">Sign Up</a>
+      </div>
+    </form>
+  </div>
 </div>

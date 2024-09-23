@@ -1,71 +1,50 @@
 <nav class="navbar navbar-expand-lg sticky-top">
-  <div class="container-fluid">
+  <div class="container-fluid d-flex justify-content-between">
     <a class="navbar-brand">
       <span class="text-light fw-bold fs-4" [routerLink]="['/home']">Top</span>
       <span class="text-danger fw-bold" [routerLink]="['/home']">Movies</span>
     </a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="30"
-        height="30"
-        fill="white"
-        class="bi bi-list"
-        viewBox="0 0 16 16"
-      >
-        <path
-          fill-rule="evenodd"
-          d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"
-        />
+    <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">
+      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#ff434c" class="bi bi-list"
+        viewBox="0 0 16 16">
+        <path fill-rule="evenodd"
+          d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
       </svg>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+    <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse justify-content-between">
+      <ul class="navbar-nav">
         <li class="nav-item">
-          <a
-            class="nav-link text-light fs-5 position-relative"
-            aria-current="page"
-            [routerLink]="['/movies']"
-            routerLinkActive="active"
-            >Movies</a
-          >
+          <a class="nav-link position-relative text-light fw-bold" [routerLink]="['/movies']" routerLinkActive="active"
+            (click)="isMenuCollapsed = true">Movies</a>
         </li>
         <li class="nav-item">
-          <a
-            class="nav-link text-light fs-5 position-relative"
-            aria-current="page"
-            [routerLink]="['/tvshows']"
-            routerLinkActive="active"
-            >TV Shows</a
-          >
+          <a class="nav-link position-relative text-light fw-bold" [routerLink]="['/tvshows']" routerLinkActive="active"
+            (click)="isMenuCollapsed = true">TV Shows</a>
         </li>
       </ul>
-      <form class="d-flex" role="search">
-        <input
-          class="form-control me-2"
-          type="search"
-          placeholder="Search"
-          aria-label="Search"
-        />
-        <button class="btn btn-outline-danger fs-5" type="submit">
-          Search
-        </button>
-      </form>
       @if(loggedInSingal() || logOut) {
-      <button class="btn btn-danger fs-5 ms-2" (click)="userLogOut()">
-        LogOut
-      </button>
+        <div class="dropdown-center btn-group ">
+          <div  class=" dropdown-center  d-flex justify-content-center align-items-center flex-column mx-auto " type="button" data-bs-toggle="dropdown" aria-expanded="false" >
+            <img [src]="user.image" class="rounded-circle" width="40" height="40">
+            <p class="text-light" style='color:wight;'>{{user.firstName}} {{user.lastName}}</p>
+          </div>
+         
+          <ul class="dropdown-menu bg-dark menu ">
+            <li class="dropdown-item text-secondary rounded text-center" (click)=" userPage()" >
+              <p class="">Your profile</p>
+            </li>
+            
+            <li class="dropdown-item bg-danger rounded text-light p-2 text-center btn " (click)="userLogOut()">
+              Log out
+           </li>
+          </ul>
+        </div>
+      
+        
+      
       } @else {
-      <button class="btn btn-danger fs-5 ms-2" [routerLink]="['/login']">
-        LogIn
+      <button class="btn btn-danger fs-5 ms-lg-2 mt-2 mt-lg-0" [routerLink]="['/login']">
+        Login
       </button>
       }
     </div>

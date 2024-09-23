@@ -1,70 +1,91 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { UserService } from '../../services/user.service';
+import { MoviesService } from '../../services/movies.service';
+import { Movies } from '../../models/movies';
+import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 
 @Component({
   selector: 'app-user-page',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, CarouselModule],
   templateUrl: './user-page.component.html',
-  styleUrl: './user-page.component.css',
+  styleUrls: ['./user-page.component.css'],
 })
-export class UserPageComponent {
-  movies = [
-    {
-      title: 'Kung Fu Games',
-      id: 1,
-      genre: 'أكشن',
-      quality: '1080p',
-      rating: 6.5,
-      image:
-        'https://i.pinimg.com/236x/18/d7/4e/18d74ef46e722828f75cca91b009f4a5.jpg',
-      description: 'حكي هذا الفيلم عن رجل مشغول دائما في عميلم مترجم اون لاين',
-      expandedMovieId: null,
-      releaseYear: 2001,
+export class UserPageComponent implements OnInit {
+  customOptions: OwlOptions = {
+    loop: true,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    autoplay: true,
+    autoplayTimeout: 4000,
+    dots: false,
+    autoplaySpeed: 1000,
+    navText: ['', ''],
+    responsive: {
+      0: {
+        items: 1,
+      },
+      400: {
+        items: 2,
+      },
+      740: {
+        items: 3,
+      },
+      940: {
+        items: 4,
+      },
     },
-    {
-      title: 'Kung Fu Games',
-      id: 2,
-      genre: 'أكشن',
-      quality: '1080p',
-      rating: 6.5,
-      image:
-        'https://i.pinimg.com/236x/00/3c/63/003c63ff84c1f1954f64273da184f8fe.jpg',
-      description:
-        'حكي هذا الفيلم عن رجل مشغول دائما في عمله. كان مشغولا لدرجة انه لا يوجد لديه وقت ليكال الضغط على هذا الجهاز, ',
-      expandedMovieId: null,
-      releaseYear: 2001,
-    },
-    {
-      title: 'Kung Fu Games',
-      id: 3,
-      genre: 'أكشن',
-      quality: '1080p',
-      rating: 6.5,
-      image:
-        'https://i.pinimg.com/564x/04/da/49/04da4953c9301f9cd8e4556ad1f8a75a.jpg',
-      description:
-        'حكي هذا الفيلم عن رجل مشغول دائما في عمله. كان مشغولا لدرجة انه لا ين للوقتلم مترجم اون لاين',
-      expandedMovieId: null,
-      releaseYear: 2001,
-    },
-    {
-      title: 'Kung Fu Games',
-      id: 4,
-      genre: 'أكشن',
-      quality: '1080p',
-      rating: 6.5,
-      image:
-        'https://i.pinimg.com/564x/8c/e3/5f/8ce35f08a33293522c4d60cbc5e642be.jpg',
-      description:
-        'حكي هذا الفيلم عن رجل مشغول دائما فاينبح وكان غط على هذا الجهاز, ',
-      expandedMovieId: null,
-      releaseYear: 2001,
-    },
-  ];
+    nav: false,
+  };
 
-  trackByMovieId(index: number, movie: any): number {
-    return movie.id;
+  user: any = {};
+  movies: Movies[] = [];
+  watch: Movies[] = [];
+  favMovies: Movies[] = [];
+
+  constructor(
+    private userService: UserService,
+    private movieService: MoviesService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
+
+  ngOnInit(): void {
+    this.loadUser();
+    this.getFavList();
+    this.getWatchLaterList();
+  }
+
+  loadUser(): void {
+    this.userService.getUserData().subscribe((data) => {
+      this.user = {
+        ...data,
+        image:data.image||'https://th.bing.com/th/id/OIP.UY0H6jNLhhjKymJWT6HsPwHaHa?rs=1&pid=ImgDetMain'
+      };
+      console.log(this.user);
+    });
+  }
+
+  getFavList(): void {
+    this.userService.getUserFavList().subscribe((data: Movies[]) => {
+      this.favMovies = data;
+      console.log(this.favMovies);
+    });
+  }
+
+  getWatchLaterList(): void {
+    this.userService.getUserWatchLaterList().subscribe((data: Movies[]) => {
+      this.watch = data;
+      console.log(this.watch);
+    });
+  }
+
+  getMovies(): void {
+    this.movieService.getMovies().subscribe((data: Movies[]) => {
+      this.movies = data;
+    });
   }
 }

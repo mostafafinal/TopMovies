@@ -12,6 +12,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { auto } from '@popperjs/core';
 
 @Component({
   selector: 'app-login-page',
@@ -51,11 +52,12 @@ export class LoginPageComponent {
     google.accounts.id.renderButton(
       document.getElementById('google-button'),
       {
-        theme: 'outline',
+        theme: 'light',
         size: 'large',
         type: 'standard',
         text: 'continue_with',
         shape: 'circle',
+        width:'100%'
         // prompt: 'select_account'
       } // customization
     );
@@ -87,7 +89,7 @@ export class LoginPageComponent {
           this.loginServices.saveToken(token);
           this.toaster.success(response.message, 'Success');
           this.loginServices.setData(true);
-          localStorage.setItem('loggedIn', 'true');
+          sessionStorage.setItem('loggedIn', 'true');
           // router
           this.route.navigate(['/home']);
         }
@@ -103,11 +105,19 @@ export class LoginPageComponent {
     const token = response.credential;
     this.loginServices.googleLogin(token).subscribe(
       (data) => {
-        localStorage.setItem('token', data.token);
-        // Further handling, e.g., redirecting the user
+        const token = data.token;
+        if (token) {
+          this.loginServices.saveToken(token);
+          this.toaster.success(response.message, 'Success');
+          this.loginServices.setData(true);
+          sessionStorage.setItem('loggedIn', 'true');
+          // router
+          this.route.navigate(['/home']);
+        }
       },
-      (error) => {
-        console.error('Login failed', error);
+      (err) => {
+        this.errorMessage = err.error.message;
+        this.toaster.error(err.error.message, 'Failed');
       }
     );
   }
