@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule, RouterLink, Router } from '@angular/router';
 import { LoginService } from '../../services/login.service';
-import { ObjectUnsubscribedError } from 'rxjs';
 
 import { UserService } from './../../services/user.service';
 @Component({
@@ -17,7 +16,7 @@ export class HeaderComponent implements OnInit {
   loggedInSingal;
   loggedInLocal = sessionStorage.getItem('loggedIn');
   logOut: boolean = false;
-  user:any={}
+  user: any = {};
 
   constructor(
     private loginService: LoginService,
@@ -36,9 +35,10 @@ export class HeaderComponent implements OnInit {
     this.UserService.getUserData().subscribe((data) => {
       this.user = {
         ...data,
-        image:data.image||'https://th.bing.com/th/id/OIP.UY0H6jNLhhjKymJWT6HsPwHaHa?rs=1&pid=ImgDetMain'
+        image:
+          data.image ||
+          'https://th.bing.com/th/id/OIP.UY0H6jNLhhjKymJWT6HsPwHaHa?rs=1&pid=ImgDetMain',
       };
-     
     });
   }
 
@@ -47,8 +47,9 @@ export class HeaderComponent implements OnInit {
     this.loginService.setData(false);
     sessionStorage.removeItem('loggedIn');
     this.logOut = false;
+    window.location.reload();
   }
-  userPage(){
+  userPage() {
     this.router.navigate(['/userpage']);
   }
 }
