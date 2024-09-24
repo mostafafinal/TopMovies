@@ -1,9 +1,12 @@
 <div class="main-container">
   <div class="container m-auto col-12 col-md-8 col-lg-6">
-    <form class="mx-auto" [formGroup]="loginForm">
-      <h3 class="text-center">Log In</h3>
+    <form
+      class="mx-auto d-flex flex-column justify-content-center"
+      [formGroup]="loginForm"
+    >
+      <h3 class="text-center fs-2">Log In</h3>
       <div class="form-group mb-3 mt-5">
-        <label for="email">Email<span class="red">*</span> </label>
+        <label for="email">Email</label>
         <input
           type="email"
           class="form-control"
@@ -19,7 +22,7 @@
         }
       </div>
       <div class="form-group mb-3">
-        <label for="password">Password<span class="red">*</span> </label>
+        <label for="password">Password</label>
         <input
           type="password"
           class="form-control"
@@ -33,7 +36,9 @@
         <span class="text-danger">Invalid password</span>
         }
       </div>
-      <div class="btns-container text-center d-flex flex-column justify-content-center align-items-center ">
+      <div
+        class="btns-container mt-4 text-center d-flex flex-column justify-content-center align-items-center"
+      >
         <button
           type="submit"
           class="btn btn-danger d-block w-50 p-2 rounded-pill"
@@ -42,7 +47,9 @@
         >
           Log In
         </button>
-        <button id="google-button" class="btn mt-2 w-auto" >Login with Google</button>
+        <button id="google-button" class="btn mt-2 w-auto">
+          Login with Google
+        </button>
       </div>
       <div id="emailHelp" class="sign form-text text-center mt-3">
         Don't have an account yet?

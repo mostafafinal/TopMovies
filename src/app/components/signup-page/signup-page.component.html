@@ -1,11 +1,12 @@
 <div class="main-container">
   <div class="container m-auto col-12 col-md-8 col-lg-6">
-    <form class="mx-auto" [formGroup]="signUpform">
-      <h3 class="text-center">Register</h3>
+    <form
+      class="mx-auto d-flex flex-column justify-content-center"
+      [formGroup]="signUpform"
+    >
+      <h3 class="text-center fs-2 mb-2">Register</h3>
       <div class="mb-3">
-        <label for="firstName" class="form-label"
-          >Frist Name<span class="red">*</span></label
-        >
+        <label for="firstName" class="form-label">Frist Name</label>
         <input
           id="firstName"
           formControlName="firstName"
@@ -15,9 +16,7 @@
         />
       </div>
       <div class="mb-3">
-        <label for="lastName" class="form-label"
-          >Last Name<span class="red">*</span></label
-        >
+        <label for="lastName" class="form-label">Last Name</label>
         <input
           id="lastName"
           formControlName="lastName"
@@ -27,7 +26,7 @@
         />
       </div>
       <div class="form-group mb-3">
-        <label for="email">Email<span class="red">*</span> </label>
+        <label for="email">Email </label>
         <input
           type="email"
           class="form-control"
@@ -39,7 +38,7 @@
         />
       </div>
       <div class="form-group mb-3">
-        <label for="password">Password<span class="red">*</span> </label>
+        <label for="password">Password </label>
         <input
           type="password"
           class="form-control"
@@ -50,9 +49,7 @@
         />
       </div>
       <div class="form-group mb-3">
-        <label for="confirmPassword"
-          >Confirm Password<span class="red">*</span>
-        </label>
+        <label for="confirmPassword">Confirm Password </label>
         <input
           type="password"
           class="form-control"
@@ -67,7 +64,7 @@
       </div>
       <button
         type="submit"
-        class="btn btn-danger d-block w-75 m-auto mt-3 p-2 ps-5 pe-5 rounded-pill"
+        class="btn btn-danger d-block w-75 m-auto p-2 ps-5 pe-5 rounded-pill"
         [disabled]="!signUpform.valid"
         (click)="registerUser()"
       >
