@@ -4,17 +4,20 @@ import { RouterModule, ActivatedRoute, Params } from '@angular/router';
 import { Movies } from '../../models/movies';
 import { MoviesService } from '../../services/movies.service';
 import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
-// import { PaginatorModule } from 'primeng/paginator';
+import { PaginatorModule } from 'primeng/paginator';
 import { Router } from '@angular/router';
 import { PaginationComponent } from '../pagination/pagination.component';
-
 
 @Component({
   selector: 'app-movies-page',
   standalone: true,
-  imports: [CommonModule, RouterModule, PaginationComponent, NgxSpinnerModule],
-
-  // imports: [CommonModule, RouterModule, NgxSpinnerModule, PaginatorModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+    PaginationComponent,
+    NgxSpinnerModule,
+    PaginatorModule,
+  ],
   templateUrl: './movies-page.component.html',
   styleUrl: './movies-page.component.css',
 })
@@ -51,7 +54,6 @@ export class MoviesPageComponent implements OnInit {
   }
 
   fetchMovies(limit: number, page: number): void {
-
     const startIndex = (page - 1) * limit;
     const endIndex = startIndex + limit;
 
@@ -80,8 +82,6 @@ export class MoviesPageComponent implements OnInit {
     this.movieService.getMoviesCategory(genre).subscribe({
       next: (response) => {
         this.filteredMovies = response.movies;
-        console.log('done');
-
       },
       error: (err) => {
         console.log(err);

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { MoviesService } from '../../services/movies.service';
 import { Movies } from '../../models/movies';
@@ -48,9 +48,7 @@ export class UserPageComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private movieService: MoviesService,
-    private router: Router,
-    private route: ActivatedRoute
+    private movieService: MoviesService
   ) {}
 
   ngOnInit(): void {
@@ -63,23 +61,22 @@ export class UserPageComponent implements OnInit {
     this.userService.getUserData().subscribe((data) => {
       this.user = {
         ...data,
-        image:data.image||'https://th.bing.com/th/id/OIP.UY0H6jNLhhjKymJWT6HsPwHaHa?rs=1&pid=ImgDetMain'
+        image:
+          data.image ||
+          'https://th.bing.com/th/id/OIP.UY0H6jNLhhjKymJWT6HsPwHaHa?rs=1&pid=ImgDetMain',
       };
-      console.log(this.user);
     });
   }
 
   getFavList(): void {
     this.userService.getUserFavList().subscribe((data: Movies[]) => {
       this.favMovies = data;
-      console.log(this.favMovies);
     });
   }
 
   getWatchLaterList(): void {
     this.userService.getUserWatchLaterList().subscribe((data: Movies[]) => {
       this.watch = data;
-      console.log(this.watch);
     });
   }
 
