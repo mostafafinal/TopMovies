@@ -1,4 +1,10 @@
-<ngx-spinner bdColor="rgb(0,0,0)" size="large" color="#fe5c5c" type="ball-scale-multiple" [fullScreen]="true">
+<ngx-spinner
+  bdColor="rgb(0,0,0)"
+  size="large"
+  color="#fe5c5c"
+  type="ball-scale-multiple"
+  [fullScreen]="true"
+>
   <p style="color: rgb(205, 69, 69)">Loading...</p>
 </ngx-spinner>
 <!-- big-contianer -->
@@ -9,39 +15,74 @@
     <div class="col-lg-1 d-lg-block d-none"></div>
 
     <!-- movie/shows-details -->
-    <div class="col-lg-7 col-md-8 col-12 rounded mb-2" style="
+    <div
+      class="col-lg-7 col-md-8 col-12 rounded mb-2"
+      style="
         background-color: rgb(30, 33, 35);
         box-shadow: 1px 1px 5px rgb(26, 26, 26);
-      ">
-      <div>
-        <h5>
-          @if(isFavorite(movie)){
-          <span class="btn badge text-bg-danger mt-2 float-end me-2" (click)="deleteFromFavList(movie._id)">
-            <i class="bi bi-heart-fill"></i>
+      "
+    >
+      <div
+        class="text-white h1 mt-2 d-flex align-items-center justify-content-between"
+      >
+        <div>
+          {{ movie.title }} <span>({{ movie.date | date : "y" }})</span>
+        </div>
+
+        @if(loggedIn) {
+        <div class="d-flex">
+          <span
+            class="badge mt-2 me-2 fs-2"
+            placement="top"
+            ngbTooltip="Add To Favorites"
+            (click)="addToFavList(movie._id)"
+          >
+            <i
+              [ngClass]="{
+                bi: true,
+                'bi bi-bookmark-heart-fill': favMovies.includes(movie._id),
+                'bi bi-bookmark-heart': !favMovies.includes(movie._id)
+              }"
+            ></i>
           </span>
-          }
-          @else {
-          <span class="btn badge text-bg-danger mt-2 float-end me-2" (click)="addToFavList(movie._id)">
-            <i class="bi bi-heart"></i>
+          <span
+            class="badge mt-2 me-2 fs-2"
+            placement="top"
+            ngbTooltip="Watch Later"
+            (click)="addToWatahLater(movie._id)"
+          >
+            <i
+              [ngClass]="{
+                bi: true,
+                'bi-stopwatch-fill': watchLaterMovies.includes(movie._id),
+                'bi-stopwatch': !watchLaterMovies.includes(movie._id)
+              }"
+            ></i>
           </span>
-          }
-          @if(isWatchLater(movie)) {
-          <span class="btn badge text-bg-danger mt-2 float-end me-2" (click)="deleteFromWatchLater(movie._id)">
-            <i class="bi bi-stopwatch-fill"></i>
+        </div>
+        } @else {
+        <div class="d-flex">
+          <span
+            class="badge mt-2 me-2 fs-2"
+            placement="top"
+            ngbTooltip="You've to login!"
+          >
+            <i class="bi bi bi-bookmark-heart"></i>
           </span>
-          }
-          @else{
-          <span class="btn badge text-bg-danger mt-2 float-end me-2" (click)="addToWatahLater(movie._id)">
+          <span
+            class="badge mt-2 me-2 fs-2"
+            placement="top"
+            ngbTooltip="You've to login!"
+          >
             <i class="bi bi-stopwatch"></i>
           </span>
-          }
-        </h5>
+        </div>
+        }
       </div>
-      <div class="text-white h1 mt-2">
-        {{ movie.title }} <span>({{ movie.date | date : "y" }})</span>
-      </div>
-      <small class="text-white">Original Title: {{ movie.title }} • Original Language:
-        {{ movie.original_language }} • 1h 45m</small>
+      <small class="text-white"
+        >Original Title: {{ movie.title }} • Original Language:
+        {{ movie.original_language }} • 1h 45m</small
+      >
       <i class="fa-regular fa-heart"></i>
       <div class="h4 mt-3" style="color: #adacbb">
         {{ movie.tagline }}
@@ -65,8 +106,15 @@
     </div>
 
     <!-- movie/shows-img -->
-    <div class="col-lg-3 col-md-4 col-12 d-flex justify-content-center align-items-center">
-      <img [src]="movie.image" alt="" class="img-fluid rounded w-100" style="box-shadow: 1px 1px 5px rgb(26, 26, 26)" />
+    <div
+      class="col-lg-3 col-md-4 col-12 d-flex justify-content-center align-items-center"
+    >
+      <img
+        [src]="movie.image"
+        alt=""
+        class="img-fluid rounded w-100"
+        style="box-shadow: 1px 1px 5px rgb(26, 26, 26)"
+      />
     </div>
 
     <!-- margin-end -->
@@ -252,18 +300,34 @@
           @for( movie of recommendedMovies ; track $index){
           <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
             <a href="/detailspage/{{ movie._id }}">
-              <div class="hover hover-1 text-white rounded-3 w-100" style="overflow: hidden">
-                <img [src]="movie.image" class="img-fluid rounded-3 w-100" alt="" />
+              <div
+                class="hover hover-1 text-white rounded-3 w-100"
+                style="overflow: hidden"
+              >
+                <img
+                  [src]="movie.image"
+                  class="img-fluid rounded-3 w-100"
+                  alt=""
+                />
                 <div class="hover-overlay"></div>
                 <div class="hover-1-content px-3 py-2 text-center">
-                  <h5 class="hover-1-title text-uppercase font-weight-bold mb-0" style="font-size: 1.2rem">
+                  <h5
+                    class="hover-1-title text-uppercase font-weight-bold mb-0"
+                    style="font-size: 1.2rem"
+                  >
                     {{ movie.title }}
                   </h5>
-                  <div class="text-center mt-1 hover-1-year" style="font-size: 1rem">
+                  <div
+                    class="text-center mt-1 hover-1-year"
+                    style="font-size: 1rem"
+                  >
                     ({{ movie.date | date : "y" }})
                   </div>
                   @for(genre of movie.genres; track $index) {
-                  <div class="text-center hover-1-description" style="font-size: 0.9rem">
+                  <div
+                    class="text-center hover-1-description"
+                    style="font-size: 0.9rem"
+                  >
                     {{ genre }}
                   </div>
                   }
