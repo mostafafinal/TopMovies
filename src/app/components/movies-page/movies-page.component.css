@@ -80,9 +80,13 @@
 .custom-btn {
   cursor: default !important;
 }
-.pag
-{
+
+.pag {
   display: flex;
   justify-content: center;
   margin-top: 20px;
+}
+
+.opacity-0 {
+  transition: 0.3s;
 }

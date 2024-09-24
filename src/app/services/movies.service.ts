@@ -17,8 +17,10 @@ export class MoviesService {
     return this.http.get<Movies[]>(this.allMoviesApiUrl);
   }
 
-  getMoviesCategory(category:string): Observable<any> {
-    return this.http.get<any>(`https://movie-app-production-bac6.up.railway.app/movie/category/${category}`);
+  getMoviesCategory(category: string): Observable<any> {
+    return this.http.get<any>(
+      `https://movie-app-production-bac6.up.railway.app/movie/category/${category}`
+    );
   }
 
   getMoviesById(id: string): Observable<Movies> {
@@ -26,27 +28,28 @@ export class MoviesService {
   }
 
   addMovieToWatahLater(movieId: String): Observable<any> {
-    // let headers = new HttpHeaders()
-    // headers = headers.append('Authorization', `Bearer ${localStorage.getItem('authToken')}`);
     return this.http.put<any>(
       `https://movie-app-production-bac6.up.railway.app/user/watctLater/${movieId}`,
       {}
     );
   }
   addMovieToFavList(movieId: String): Observable<any> {
-    // let headers = new HttpHeaders()
-    // headers = headers.append('Authorization', `Bearer ${localStorage.getItem('authToken')}`);
-    // console.log(headers)
     return this.http.put<any>(
       `https://movie-app-production-bac6.up.railway.app/user/favList/${movieId}`,
       {}
     );
   }
   deleteMovieFromFavList(movieId: String): Observable<any> {
-    return this.http.put(`https://movie-app-production-bac6.up.railway.app/user/favList/${movieId}`,{});
+    return this.http.put(
+      `https://movie-app-production-bac6.up.railway.app/user/favList/${movieId}`,
+      {}
+    );
   }
 
   deleteMovieFromWatchLater(movieId: String): Observable<any> {
-    return this.http.put(`https://movie-app-production-bac6.up.railway.app/user/watctLater/${movieId}`,{});
+    return this.http.put(
+      `https://movie-app-production-bac6.up.railway.app/user/watctLater/${movieId}`,
+      {}
+    );
   }
 }

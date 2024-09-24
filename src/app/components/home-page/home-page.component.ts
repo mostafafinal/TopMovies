@@ -6,18 +6,26 @@ import { MoviesService } from '../../services/movies.service';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { CarouselComponent } from '../carousel/carousel.component';
 import { UserService } from './../../services/user.service';
+import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.css'],
   standalone: true,
-  imports: [CommonModule, RouterModule, NgxSpinnerModule, CarouselComponent],
+  imports: [
+    CommonModule,
+    RouterModule,
+    NgxSpinnerModule,
+    CarouselComponent,
+    NgbTooltipModule,
+  ],
 })
 export class HomePageComponent implements OnInit {
   allMovies: Movies[] = [];
   watchLater: string[] = [];
   favList: string[] = [];
   isLoading = true;
+  loggedIn = sessionStorage.getItem('loggedIn');
 
   constructor(
     private movieService: MoviesService,
@@ -70,9 +78,5 @@ export class HomePageComponent implements OnInit {
       this.movieService.addMovieToFavList(movieId).subscribe((data) => {});
       this.favList = this.favList.filter((id) => id !== movieId);
     }
-  }
-
-  trackByMovieId(movie: any): number {
-    return movie.id;
   }
 }
