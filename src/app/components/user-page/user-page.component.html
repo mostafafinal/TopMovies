@@ -32,26 +32,26 @@
     <a href="#" class="btn btn-danger">See More</a>
   </div>
   <owl-carousel-o [options]="customOptions">
-    <ng-container *ngFor="let movieItem of favMovies">
-      <ng-template carouselSlide [_id]="movieItem._id">
-        <div class="movie-slide px-1">
-          <div class="image-container">
-            <a routerLink="deta"></a
-            ><img [src]="movieItem.image" [alt]="movieItem.title" />
-          </div>
-          <div id="card-body" class="overlay opacity-0">
-            <h4 class="text-center text-white">{{ movieItem.title }}</h4>
-            <p class="text-center text-white">{{ movieItem.tagline }}</p>
-            <a
-              class="btn btn-danger btn-sm"
-              [routerLink]="['/detailspage', movieItem._id]"
-            >
-              Go to Details
-            </a>
-          </div>
+    @for (movieItem of favMovies; track movieItem._id) {
+    <ng-template carouselSlide [_id]="movieItem._id">
+      <div class="movie-slide px-1">
+        <div class="image-container">
+          <a routerLink="deta"></a
+          ><img [src]="movieItem.image" [alt]="movieItem.title" />
         </div>
-      </ng-template>
-    </ng-container>
+        <div id="card-body" class="overlay opacity-0">
+          <h4 class="text-center text-white">{{ movieItem.title }}</h4>
+          <p class="text-center text-white">{{ movieItem.tagline }}</p>
+          <a
+            class="btn btn-danger btn-sm"
+            [routerLink]="['/detailspage', movieItem._id]"
+          >
+            Go to Details
+          </a>
+        </div>
+      </div>
+    </ng-template>
+    }
   </owl-carousel-o>
 </div>
 } @if (watch.length == 0) {
@@ -74,26 +74,26 @@
     <a href="#" class="btn btn-danger">See More</a>
   </div>
   <owl-carousel-o [options]="customOptions">
-    <ng-container *ngFor="let movieItem of watch">
-      <ng-template carouselSlide [_id]="movieItem._id">
-        <div class="movie-slide px-1">
-          <div class="image-container">
-            <a routerLink="deta"></a
-            ><img [src]="movieItem.image" [alt]="movieItem.title" />
-          </div>
-          <div id="card-body" class="overlay opacity-0">
-            <h4 class="text-center text-white">{{ movieItem.title }}</h4>
-            <p class="text-center text-white">{{ movieItem.tagline }}</p>
-            <a
-              class="btn btn-danger btn-sm"
-              [routerLink]="['/detailspage', movieItem._id]"
-            >
-              Go to Details
-            </a>
-          </div>
+    @for (movieItem of watch; track movieItem._id) {
+    <ng-template carouselSlide [_id]="movieItem._id">
+      <div class="movie-slide px-1">
+        <div class="image-container">
+          <a routerLink="deta"></a
+          ><img [src]="movieItem.image" [alt]="movieItem.title" />
         </div>
-      </ng-template>
-    </ng-container>
+        <div id="card-body" class="overlay opacity-0">
+          <h4 class="text-center text-white">{{ movieItem.title }}</h4>
+          <p class="text-center text-white">{{ movieItem.tagline }}</p>
+          <a
+            class="btn btn-danger btn-sm"
+            [routerLink]="['/detailspage', movieItem._id]"
+          >
+            Go to Details
+          </a>
+        </div>
+      </div>
+    </ng-template>
+    }
   </owl-carousel-o>
 </div>
 

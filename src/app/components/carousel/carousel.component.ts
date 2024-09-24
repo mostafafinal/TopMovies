@@ -32,9 +32,6 @@ export class CarouselComponent {
     });
   }
 
-  trackByMovieId(movie: any): number {
-    return movie.id;
-  }
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: true,
