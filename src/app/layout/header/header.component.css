@@ -36,9 +36,6 @@
   }
 }
 
-.navbar-collapse {
-}
-
 input:focus {
   border-color: #ff434c;
   box-shadow: none;
@@ -47,15 +44,20 @@ input:focus {
 span {
   cursor: pointer;
 }
-.menu{
-  /* padding: 10px; */
 
+.menu {
   margin-left: -50px;
-}
-.menu *{
-  /* padding: 10px; */
+  .dropdown-item.mb-2 {
+    cursor: pointer;
+    &:hover {
+      color: black !important;
+    }
+    &:active {
+      background-color: #f8f9fa;
+    }
+  }
 }
 
-.fs{
-  font-size:small;
+.fs {
+  font-size: small;
 }
