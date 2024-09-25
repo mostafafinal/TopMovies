@@ -49,15 +49,24 @@ export class DetailsPageComponent {
     }, 3000);
   }
 
+
+  shuffleArray(array: any[]): any[] {
+    return array.sort(() => Math.random() - 0.5);
+  }
+
   filterRecommendedMovies(): void {
-    this.recommendedMovies = this.allMovies
-      .filter((m) => {
-        return m.genres.some((genre: string) =>
+    let randomMovies = this.shuffleArray(this.allMovies);
+
+    this.recommendedMovies = randomMovies
+      .filter((movies) => {
+        return movies._id !== this.movie._id && movies.genres.some((genre: string) =>
           this.movie.genres.includes(genre)
         );
       })
-      .slice(0, 12);
+      .slice(0, 16);
+      
   }
+  
 
   getFavList() {
     this.userService.getUserFavList().subscribe((data) => {
