@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { Login } from '../../models/login';
 import { LoginService } from '../../services/login.service';
-// import { FormsModule } from '@angular/forms';
 declare const google: any;
 import {
   FormBuilder,
@@ -25,6 +24,7 @@ export class LoginPageComponent {
   email: string = '';
   password: string = '';
   errorMessage: string = '';
+  loginForm!: FormGroup;
 
   constructor(
     private loginServices: LoginService,
@@ -32,12 +32,7 @@ export class LoginPageComponent {
     private formBuild: FormBuilder,
     private route: Router
   ) {}
-  // Verfication
-  loginForm!: FormGroup;
   ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
-    // this.loginUser();
     this.createForm();
 
     //google authenticaarion
@@ -49,20 +44,14 @@ export class LoginPageComponent {
       prompt_parent_id: 'google-button',
     });
 
-    google.accounts.id.renderButton(
-      document.getElementById('google-button'),
-      {
-        theme: 'light',
-        size: 'large',
-        type: 'standard',
-        text: 'continue_with',
-        shape: 'circle',
-        width:'100%'
-        // prompt: 'select_account'
-      } // customization
-    );
-
-    // google.accounts.id.prompt();
+    google.accounts.id.renderButton(document.getElementById('google-button'), {
+      theme: 'light',
+      size: 'large',
+      type: 'standard',
+      text: 'continue_with',
+      shape: 'circle',
+      width: '100%',
+    });
     google.accounts.id.cancel();
     google.accounts.id.disableAutoSelect();
   }
@@ -90,7 +79,6 @@ export class LoginPageComponent {
           this.toaster.success(response.message, 'Success');
           this.loginServices.setData(true);
           sessionStorage.setItem('loggedIn', 'true');
-          // router
           this.route.navigate(['/home']);
         }
       },
@@ -111,7 +99,6 @@ export class LoginPageComponent {
           this.toaster.success(response.message, 'Success');
           this.loginServices.setData(true);
           sessionStorage.setItem('loggedIn', 'true');
-          // router
           this.route.navigate(['/home']);
         }
       },

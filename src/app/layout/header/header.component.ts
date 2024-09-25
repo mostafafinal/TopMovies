@@ -4,6 +4,7 @@ import { RouterModule, RouterLink, Router } from '@angular/router';
 import { LoginService } from '../../services/login.service';
 
 import { UserService } from './../../services/user.service';
+import { User } from '../../models/user';
 @Component({
   selector: 'app-header',
   standalone: true,
@@ -16,7 +17,7 @@ export class HeaderComponent implements OnInit {
   loggedInSingal;
   loggedInLocal = sessionStorage.getItem('loggedIn');
   logOut: boolean = false;
-  user: any = {};
+  user: User = {} as User;
 
   constructor(
     private loginService: LoginService,
@@ -32,7 +33,7 @@ export class HeaderComponent implements OnInit {
     this.loadUser();
   }
   loadUser(): void {
-    this.UserService.getUserData().subscribe((data) => {
+    this.UserService.getUserData().subscribe((data: User) => {
       this.user = {
         ...data,
         image:
@@ -47,7 +48,7 @@ export class HeaderComponent implements OnInit {
     this.loginService.setData(false);
     sessionStorage.removeItem('loggedIn');
     this.logOut = false;
-    this.router.navigate(['/login']);
+    window.location.reload();
   }
   userPage() {
     this.router.navigate(['/userpage']);

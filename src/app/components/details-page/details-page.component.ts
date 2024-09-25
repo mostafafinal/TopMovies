@@ -5,7 +5,6 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
 import { NgxSpinnerService, NgxSpinnerModule } from 'ngx-spinner';
 import { CommonModule } from '@angular/common';
 import { UserService } from '../../services/user.service';
-import { HomePageComponent } from '../home-page/home-page.component';
 import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -62,13 +61,15 @@ export class DetailsPageComponent {
 
   getFavList() {
     this.userService.getUserFavList().subscribe((data) => {
-      this.favMovies = Array.from(new Set(data.map((movie: any) => movie._id)));
+      this.favMovies = Array.from(
+        new Set(data.map((movie: Movies) => movie._id))
+      );
     });
   }
   getWatchLaterList() {
     this.userService.getUserWatchLaterList().subscribe((data) => {
       this.watchLaterMovies = Array.from(
-        new Set(data.map((movie: any) => movie._id))
+        new Set(data.map((movie: Movies) => movie._id))
       );
     });
   }
@@ -76,9 +77,9 @@ export class DetailsPageComponent {
   addToWatahLater(movieId: string) {
     if (!this.watchLaterMovies.includes(movieId)) {
       this.watchLaterMovies.push(movieId);
-      this.movieService.addMovieToWatahLater(movieId).subscribe((data) => {});
+      this.movieService.addMovieToWatahLater(movieId).subscribe();
     } else {
-      this.movieService.addMovieToWatahLater(movieId).subscribe((data) => {});
+      this.movieService.addMovieToWatahLater(movieId).subscribe();
       this.watchLaterMovies = this.watchLaterMovies.filter(
         (id) => id !== movieId
       );
@@ -87,41 +88,10 @@ export class DetailsPageComponent {
   addToFavList(movieId: string) {
     if (!this.favMovies.includes(movieId)) {
       this.favMovies.push(movieId);
-      this.movieService.addMovieToFavList(movieId).subscribe((data) => {});
+      this.movieService.addMovieToFavList(movieId).subscribe();
     } else {
-      this.movieService.addMovieToFavList(movieId).subscribe((data) => {});
+      this.movieService.addMovieToFavList(movieId).subscribe();
       this.favMovies = this.favMovies.filter((id) => id !== movieId);
     }
   }
-
-  // isFavorite(movie: Movies): boolean {
-  //   this.userService.getUserFavList().subscribe((data: Movies[]) => {
-  //     this.favMovies = data;
-  //   });
-
-  //   return this.favMovies.some((m) => m._id === movie._id);
-  // }
-
-  // addToWatahLater(movieId: String) {
-  //   this.movieService.addMovieToWatahLater(movieId).subscribe();
-  // }
-
-  // addToFavList(movieId: String) {
-  //   this.movieService.addMovieToFavList(movieId).subscribe();
-  // }
-
-  // isWatchLater(movie: Movies): boolean {
-  //   this.userService.getUserWatchLaterList().subscribe((data: Movies[]) => {
-  //     this.watchLaterMovies = data;
-  //   });
-  //   return this.watchLaterMovies.some((m) => m._id === movie._id);
-  // }
-
-  // deleteFromFavList(movieId: String) {
-  //   this.movieService.deleteMovieFromFavList(movieId).subscribe();
-  // }
-
-  // deleteFromWatchLater(movieId: String): void {
-  //   this.movieService.deleteMovieFromWatchLater(movieId).subscribe();
-  // }
 }
