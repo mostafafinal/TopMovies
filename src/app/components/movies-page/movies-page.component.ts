@@ -1,11 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { RouterModule, ActivatedRoute, Params } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { Movies } from '../../models/movies';
 import { MoviesService } from '../../services/movies.service';
 import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 import { PaginatorModule } from 'primeng/paginator';
-import { Router } from '@angular/router';
 import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
 import { UserService } from '../../services/user.service';
 
@@ -25,29 +24,23 @@ import { UserService } from '../../services/user.service';
 export class MoviesPageComponent implements OnInit {
   AllMoives: Movies[] = [];
   filteredMovies: Movies[] = [];
-  typeMoives: string[] = [];
   watchLater: string[] = [];
   favList: string[] = [];
-  totalMovies: number = 133;
+  totalMovies: number = 0;
   currentPage: number = 1;
   limit: number = 20;
-  pages: number = 7;
+  pages: number = 4;
   loggedIn = sessionStorage.getItem('loggedIn');
   constructor(
     private movieService: MoviesService,
     private userService: UserService,
-    private spinner: NgxSpinnerService,
-    private route: ActivatedRoute,
-    private router: Router
+    private spinner: NgxSpinnerService
   ) {}
 
   ngOnInit(): void {
     this.spinner.show();
-    this.route.queryParams.subscribe((params: Params) => {
-      this.limit = +params['limit'] || 20;
-      this.currentPage = +params['page'] || 1;
-      this.fetchMovies(this.limit, this.currentPage);
-    });
+    this.GetAllMovies();
+    this.fetchMovies(this.limit, this.currentPage);
     this.getWatchLaterList();
     this.getFavList();
     setTimeout(() => {
@@ -55,29 +48,15 @@ export class MoviesPageComponent implements OnInit {
     }, 3000);
   }
 
-  fetchMovies(limit: number, page: number): void {
-    const startIndex = (page - 1) * limit;
-    const endIndex = startIndex + limit;
-
-    this.movieService.getMovies().subscribe((data) => {
-      this.totalMovies = data.length;
-      this.AllMoives = data.slice(startIndex, endIndex);
+  fetchMovies(limit: number, page: number) {
+    this.movieService.getPaginatedMovies(limit, page).subscribe((movies) => {
+      this.AllMoives = movies;
       this.filteredMovies = [...this.AllMoives];
-
-      this.typeMoives = [];
-      this.AllMoives.forEach((movie) => {
-        this.typeMoives.push(...movie.genres);
-      });
     });
   }
 
   changePage(event: any): void {
-    this.currentPage = event.page + 1;
-    this.router.navigate([], {
-      queryParams: { limit: this.limit, page: this.currentPage },
-      queryParamsHandling: 'merge',
-    });
-    this.fetchMovies(this.limit, this.currentPage);
+    this.fetchMovies(event.rows, event.page + 1);
   }
 
   filterByGenre(genre: string): void {
@@ -94,16 +73,23 @@ export class MoviesPageComponent implements OnInit {
   GetAll(): void {
     this.filteredMovies = this.AllMoives;
   }
+  GetAllMovies(): void {
+    this.movieService
+      .getMovies()
+      .subscribe((data) => (this.totalMovies = data.length));
+  }
 
   getFavList() {
     this.userService.getUserFavList().subscribe((data) => {
-      this.favList = Array.from(new Set(data.map((movie: any) => movie._id)));
+      this.favList = Array.from(
+        new Set(data.map((movie: Movies) => movie._id))
+      );
     });
   }
   getWatchLaterList() {
     this.userService.getUserWatchLaterList().subscribe((data) => {
       this.watchLater = Array.from(
-        new Set(data.map((movie: any) => movie._id))
+        new Set(data.map((movie: Movies) => movie._id))
       );
     });
   }

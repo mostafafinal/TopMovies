@@ -1,55 +1,40 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Movies } from '../models/movies';
+import { Category } from '../models/category';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MoviesService {
-  private allMoviesApiUrl =
-    'https://movie-app-production-bac6.up.railway.app/movie/movies';
-  private movieDetailsApiUrl =
-    'https://movie-app-production-bac6.up.railway.app/movie';
+  private apiUrl = 'https://movie-app-production-bac6.up.railway.app';
   constructor(private http: HttpClient) {}
 
   getMovies(): Observable<Movies[]> {
-    return this.http.get<Movies[]>(this.allMoviesApiUrl);
+    return this.http.get<Movies[]>(`${this.apiUrl}/movie/movies`);
   }
 
-  getMoviesCategory(category: string): Observable<any> {
-    return this.http.get<any>(
-      `https://movie-app-production-bac6.up.railway.app/movie/category/${category}`
-    );
+  getPaginatedMovies(limit: number, page: number): Observable<Movies[]> {
+    const params = new HttpParams().set('limit', limit).set('page', page);
+    return this.http.get<Movies[]>(`${this.apiUrl}/movie/movies`, { params });
+  }
+
+  getMoviesCategory(category: string): Observable<Category> {
+    return this.http.get<Category>(`${this.apiUrl}/movie/category/${category}`);
   }
 
   getMoviesById(id: string): Observable<Movies> {
-    return this.http.get<Movies>(`${this.movieDetailsApiUrl}/${id}`);
+    return this.http.get<Movies>(`${this.apiUrl}/movie/${id}`);
   }
 
-  addMovieToWatahLater(movieId: String): Observable<any> {
-    return this.http.put<any>(
-      `https://movie-app-production-bac6.up.railway.app/user/watctLater/${movieId}`,
+  addMovieToWatahLater(movieId: String): Observable<Movies> {
+    return this.http.put<Movies>(
+      `${this.apiUrl}/user/watctLater/${movieId}`,
       {}
     );
   }
-  addMovieToFavList(movieId: String): Observable<any> {
-    return this.http.put<any>(
-      `https://movie-app-production-bac6.up.railway.app/user/favList/${movieId}`,
-      {}
-    );
-  }
-  deleteMovieFromFavList(movieId: String): Observable<any> {
-    return this.http.put(
-      `https://movie-app-production-bac6.up.railway.app/user/favList/${movieId}`,
-      {}
-    );
-  }
-
-  deleteMovieFromWatchLater(movieId: String): Observable<any> {
-    return this.http.put(
-      `https://movie-app-production-bac6.up.railway.app/user/watctLater/${movieId}`,
-      {}
-    );
+  addMovieToFavList(movieId: String): Observable<Movies> {
+    return this.http.put<Movies>(`${this.apiUrl}/user/favList/${movieId}`, {});
   }
 }

@@ -14,21 +14,16 @@ import { CommonModule } from '@angular/common';
 })
 export class CarouselComponent {
   allMovies: Movies[] = [];
-  isLoading = true;
 
   constructor(private movieService: MoviesService) {}
 
   ngOnInit(): void {
     this.getMovies();
-    setTimeout(() => {
-      this.isLoading = false;
-    }, 2000);
   }
 
   getMovies() {
     this.movieService.getMovies().subscribe((data) => {
       this.allMovies = data;
-      this.isLoading = false; // Set loading to false once data is fetched
     });
   }
 
