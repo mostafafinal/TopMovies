@@ -4,9 +4,7 @@ import { LoginService } from '../services/login.service';
 
 export const authGuard: CanActivateFn = (route, state) => {
   if(inject(LoginService).getToken()!==null){
-
-    console.log('');
-
+    console.log('welcome to user page');
     return true;
   }
   else{
