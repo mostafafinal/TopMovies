@@ -133,14 +133,11 @@
   }
   <!-- pagiantion -->
   <div class="pag">
-    <div>
-      <p-paginator
-        [first]="(currentPage - 1) * limit"
-        [rows]="limit"
-        [totalRecords]="totalMovies"
-        [pageLinkSize]="4"
-        (onPageChange)="changePage($event)"
-      ></p-paginator>
-    </div>
+    <p-paginator
+      [rows]="limit"
+      [totalRecords]="totalMovies"
+      [pageLinkSize]="pages"
+      (onPageChange)="changePage($event)"
+    ></p-paginator>
   </div>
 </div>
