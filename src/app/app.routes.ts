@@ -6,6 +6,8 @@ import { DetailsPageComponent } from './components/details-page/details-page.com
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { SignupPageComponent } from './components/signup-page/signup-page.component';
 import { UserPageComponent } from './components/user-page/user-page.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -22,5 +24,6 @@ export const routes: Routes = [
   { path: 'detailspage/:id', component: DetailsPageComponent },
   { path: 'login', component: LoginPageComponent },
   { path: 'signup', component: SignupPageComponent },
-  { path: 'userpage', component: UserPageComponent },
+  { path: 'userpage', component: UserPageComponent ,canActivate:[authGuard]},
+  { path: 'notfound', component: NotFoundComponent },
 ];
