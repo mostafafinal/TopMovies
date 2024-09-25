@@ -8,8 +8,7 @@ import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
   providedIn: 'root',
 })
 export class RegisterService {
-  private registerUrl =
-    'https://movie-app-production-bac6.up.railway.app/auth/signUp';
+  private apiUrl = 'https://movie-app-production-bac6.up.railway.app';
 
   constructor(private http: HttpClient) {}
 
@@ -19,7 +18,7 @@ export class RegisterService {
     email: string,
     password: string
   ): Observable<Register> {
-    return this.http.post<Register>(this.registerUrl, {
+    return this.http.post<Register>(`${this.apiUrl}/auth/signUp`, {
       firstName,
       lastName,
       email,

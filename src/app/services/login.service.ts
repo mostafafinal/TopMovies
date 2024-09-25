@@ -7,20 +7,19 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class LoginService {
-  private loginUrl =
-    'https://movie-app-production-bac6.up.railway.app/auth/signIn';
+  private apiUrl = 'https://movie-app-production-bac6.up.railway.app';
   private data = signal(false);
   constructor(private http: HttpClient) {}
 
   login(email: string, password: string): Observable<Login> {
-    return this.http.post<Login>(this.loginUrl, { email, password });
+    return this.http.post<Login>(`${this.apiUrl}/auth/signIn`, {
+      email,
+      password,
+    });
   }
 
-  googleLogin(token: string): Observable<any> {
-    return this.http.post(
-      'https://movie-app-production-bac6.up.railway.app/auth/google',
-      { token }
-    );
+  googleLogin(token: string): Observable<Login> {
+    return this.http.post<Login>(`${this.apiUrl}/auth/google`, { token });
   }
 
   saveToken(token: string) {
