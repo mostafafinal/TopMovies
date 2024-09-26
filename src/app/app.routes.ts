@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { MoviesPageComponent } from './components/movies-page/movies-page.component';
-import { TvShowsPageComponent } from './components/tv-shows-page/tv-shows-page.component';
+import { FavoritesPageComponent } from './components/favorites-page/favoritespage.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { DetailsPageComponent } from './components/details-page/details-page.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
@@ -20,10 +20,14 @@ export const routes: Routes = [
     component: HomePageComponent,
   },
   { path: 'movies', component: MoviesPageComponent },
-  { path: 'tvshows', component: TvShowsPageComponent },
+  {
+    path: 'tvshows',
+    component: FavoritesPageComponent,
+    canActivate: [authGuard],
+  },
   { path: 'detailspage/:id', component: DetailsPageComponent },
   { path: 'login', component: LoginPageComponent },
   { path: 'signup', component: SignupPageComponent },
-  { path: 'userpage', component: UserPageComponent ,canActivate:[authGuard]},
+  { path: 'userpage', component: UserPageComponent, canActivate: [authGuard] },
   { path: 'notfound', component: NotFoundComponent },
 ];

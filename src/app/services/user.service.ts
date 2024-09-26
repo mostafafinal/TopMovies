@@ -21,4 +21,7 @@ export class UserService {
   getUserWatchLaterList(): Observable<Movies[]> {
     return this.http.get<Movies[]>(`${this.apiUrl}/user/watctLater`);
   }
+  removeFavorites(movieId: string): Observable<void> {
+    return this.http.put<void>(`${this.apiUrl}/user/favList/${movieId}`, {});
+  }
 }
