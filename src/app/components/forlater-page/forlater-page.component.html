@@ -1,0 +1,54 @@
+<ngx-spinner
+  bdColor="rgb(0,0,0)"
+  size="large"
+  color="#fe5c5c"
+  type="ball-scale-multiple"
+  [fullScreen]="true"
+  ><p style="color: rgb(205, 69, 69)">Loading...</p></ngx-spinner
+>
+<!-- body -->
+<div class="row d-flex justify-content-center">
+  @if(forLaters.length <= 0) {
+  <div
+    class="empty d-flex justify-content-center align-items-center rounded text-light"
+  >
+    <div class="content-text">
+      <i class="bi bi-stopwatch"></i> You Don't Have Any Scheduled Items
+    </div>
+  </div>
+  } @else { @for (show of forLaters; track show._id) {
+  <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+    <a>
+      <div class="hover hover-1 text-white rounded-3 w-100 overflow-hidden">
+        <img
+          [src]="show.image"
+          class="img-fluid rounded-3 w-100"
+          alt="Show Image"
+        />
+        <div class="hover-overlay"></div>
+        <div class="hover-1-content position-absolute top-50">
+          <h5 class="hover-1-title text-uppercase font-weight-bold mb-0 fs-4">
+            {{ show.title }}
+            <div class="btns d-flex">
+              <button
+                class="btn btn-primary btn-sm mx-1 mt-2 w-100"
+                placement="top"
+                ngbTooltip="Remove For Later"
+                (click)="removeForLater(show._id)"
+              >
+                For Later <i class="bi bi-watch-fill"></i>
+              </button>
+              <button
+                class="btn btn-primary btn-sm mx-1 mt-2 w-100"
+                [routerLink]="['/detailspage', show._id]"
+              >
+                Movie Details
+              </button>
+            </div>
+          </h5>
+        </div>
+      </div>
+    </a>
+  </div>
+  } }
+</div>

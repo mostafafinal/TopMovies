@@ -8,6 +8,7 @@ import { SignupPageComponent } from './components/signup-page/signup-page.compon
 import { UserPageComponent } from './components/user-page/user-page.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { authGuard } from './guards/auth.guard';
+import { ForLaterPageComponent } from './components/forlater-page/forlater.component';
 
 export const routes: Routes = [
   {
@@ -21,8 +22,13 @@ export const routes: Routes = [
   },
   { path: 'movies', component: MoviesPageComponent },
   {
-    path: 'tvshows',
+    path: 'favorites',
     component: FavoritesPageComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'forlater',
+    component: ForLaterPageComponent,
     canActivate: [authGuard],
   },
   { path: 'detailspage/:id', component: DetailsPageComponent },
@@ -30,4 +36,5 @@ export const routes: Routes = [
   { path: 'signup', component: SignupPageComponent },
   { path: 'userpage', component: UserPageComponent, canActivate: [authGuard] },
   { path: 'notfound', component: NotFoundComponent },
+  { path: '**', redirectTo: '/notfound', pathMatch: 'full' },
 ];
