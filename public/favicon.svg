@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1366 768">
+  <defs>
+    <style>
+      .cls-1 {
+        letter-spacing: 0em;
+      }
+
+      .cls-1, .cls-2 {
+        fill: #dc3545;
+        font-family: Roboto-Regular, Roboto;
+      }
+
+      .cls-3, .cls-4 {
+        fill: #212529;
+        font-family: Roboto-Black, Roboto;
+        font-weight: 800;
+      }
+
+      .cls-5 {
+        font-size: 280px;
+      }
+
+      .cls-4 {
+        letter-spacing: -.1em;
+      }
+    </style>
+  </defs>
+  <text class="cls-5" transform="translate(2.49 469)"><tspan class="cls-4" x="0" y="0">T</tspan><tspan class="cls-3" x="148.07" y="0">op</tspan><tspan class="cls-2" x="462.93" y="0">M</tspan><tspan class="cls-1" x="707.38" y="0">o</tspan><tspan class="cls-2" x="865.02" y="0">vies</tspan></text>
+</svg>
