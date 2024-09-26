@@ -1,5 +1,5 @@
 .not-found {
-  height: calc(100vh - 140px);
+  height: calc(100vh - 8.75rem);
   .error {
     font-size: clamp(1rem, 10vw, 10rem);
     font-weight: bold;

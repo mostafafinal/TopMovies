@@ -2,14 +2,11 @@ import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 import { LoginService } from '../services/login.service';
 
-export const authGuard: CanActivateFn = (route, state) => {
-  if(inject(LoginService).getToken()!==null){
-    console.log('welcome to user page');
+export const authGuard: CanActivateFn = () => {
+  if (inject(LoginService).getToken() !== null) {
     return true;
-  }
-  else{
-    console.log("you can not access this page");
-    inject(Router).navigate(["/notfound"]);
+  } else {
+    inject(Router).navigate(['/notfound']);
     return false;
   }
 };

@@ -19,7 +19,7 @@
     @for (movie of allMovies | slice : 0 : 4; track movie._id) {
     <div id="card-body" class="col-md-3 p-2">
       <section
-        class="movies text-white"
+        class="movies p-1 m-1 text-white rounded"
         style="background-image: url('{{ movie.image }}');"
       >
         <div id="card-body" class="opacity-0 p-2">
@@ -135,7 +135,7 @@
     @for (movie of allMovies | slice : 4 : 8; track movie._id) {
     <div id="card-body" class="col-md-3 p-2">
       <section
-        class="movies text-white"
+        class="movies p-1 m-1 text-white rounded"
         style="background-image: url('{{ movie.image }}');"
       >
         <div id="card-body" class="opacity-0 p-2">

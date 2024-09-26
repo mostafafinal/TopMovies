@@ -1,35 +1,35 @@
 <div class="main-container">
-  <div class="container m-auto col-12 col-md-8 col-lg-6">
+  <div class="container sign-forms m-auto col-12 col-md-8 col-lg-6">
     <form
-      class="mx-auto d-flex flex-column justify-content-center"
+      class="mx-auto d-flex flex-column justify-content-center bg-dark text-secondary p-5"
       [formGroup]="signUpform"
     >
-      <h3 class="text-center fs-2 mb-2">Register</h3>
+      <h3 class="text-center fs-2 text-light mt-1">Register</h3>
       <div class="mb-3">
-        <label for="firstName" class="form-label">Frist Name</label>
+        <label for="firstName" class="form-label m-0">Frist Name</label>
         <input
           id="firstName"
           formControlName="firstName"
           [(ngModel)]="firstName"
-          class="form-control"
+          class="form-control bg-dark text-secondary"
           required
         />
       </div>
       <div class="mb-3">
-        <label for="lastName" class="form-label">Last Name</label>
+        <label for="lastName" class="form-label m-0">Last Name</label>
         <input
           id="lastName"
           formControlName="lastName"
           [(ngModel)]="lastName"
-          class="form-control"
+          class="form-control bg-dark text-secondary"
           required
         />
       </div>
       <div class="form-group mb-3">
-        <label for="email">Email </label>
+        <label for="email" class="form-label m-0">Email </label>
         <input
           type="email"
-          class="form-control"
+          class="form-control bg-dark text-secondary"
           id="email"
           [(ngModel)]="email"
           formControlName="email"
@@ -38,10 +38,10 @@
         />
       </div>
       <div class="form-group mb-3">
-        <label for="password">Password </label>
+        <label for="password" class="form-label m-0">Password </label>
         <input
           type="password"
-          class="form-control"
+          class="form-control bg-dark text-secondary"
           id="password"
           [(ngModel)]="password"
           formControlName="password"
@@ -49,10 +49,12 @@
         />
       </div>
       <div class="form-group mb-3">
-        <label for="confirmPassword">Confirm Password </label>
+        <label for="confirmPassword" class="form-label m-0"
+          >Confirm Password
+        </label>
         <input
           type="password"
-          class="form-control"
+          class="form-control bg-dark text-secondary"
           id="confirmPassword"
           formControlName="confirmPassword"
           [(ngModel)]="confirmPassword"
@@ -64,16 +66,16 @@
       </div>
       <button
         type="submit"
-        class="btn btn-danger d-block w-75 m-auto p-2 ps-5 pe-5 rounded-pill"
+        class="btn btn-danger d-block w-75 m-auto mt-3 p-2 ps-5 pe-5 rounded-pill"
         [disabled]="!signUpform.valid"
         (click)="registerUser()"
       >
         Sign Up
       </button>
 
-      <div id="emailHelp" class="sign form-text text-center mt-3">
+      <div id="emailHelp" class="form-text text-center text-secondary mt-3">
         Already have an account?
-        <a class="a" [routerLink]="['/login']">Log in</a>
+        <a class="text-light" [routerLink]="['/login']">Log in</a>
       </div>
     </form>
   </div>

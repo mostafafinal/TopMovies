@@ -8,25 +8,63 @@
 >
 <!-- filtter -->
 
-<div class="filtter d-flex flex-wrap">
-  <button class="mb-2" (click)="GetAll()">All</button>
-  <button class="mb-2" (click)="filterByGenre('History')">History</button>
-  <button class="mb-2" (click)="filterByGenre('Comedy')">Comedy</button>
-  <button class="mb-2" (click)="filterByGenre('Science Fiction')">
+<div class="filtter d-flex justify-content-center align-items-center flex-wrap">
+  <button
+    class="btn mb-2 rounded-pill bg-dark text-light py-2 px-3 fs-6 mx-2"
+    (click)="GetAll()"
+  >
+    All
+  </button>
+  <button
+    class="btn mb-2 rounded-pill bg-dark text-light py-2 px-3 fs-6 mx-2"
+    (click)="filterByGenre('History')"
+  >
+    History
+  </button>
+  <button
+    class="btn mb-2 rounded-pill bg-dark text-light py-2 px-3 fs-6 mx-2"
+    (click)="filterByGenre('Comedy')"
+  >
+    Comedy
+  </button>
+  <button
+    class="btn mb-2 rounded-pill bg-dark text-light py-2 px-3 fs-6 mx-2"
+    (click)="filterByGenre('Science Fiction')"
+  >
     Science Fiction
   </button>
-  <button class="mb-2" (click)="filterByGenre('Drama')">Drama</button>
-  <button class="mb-2" (click)="filterByGenre('War')">War</button>
-  <button class="mb-2" (click)="filterByGenre('Action')">Action</button>
-  <button class="mb-2" (click)="filterByGenre('Romance')">Romance</button>
+  <button
+    class="btn mb-2 rounded-pill bg-dark text-light py-2 px-3 fs-6 mx-2"
+    (click)="filterByGenre('Drama')"
+  >
+    Drama
+  </button>
+  <button
+    class="btn mb-2 rounded-pill bg-dark text-light py-2 px-3 fs-6 mx-2"
+    (click)="filterByGenre('War')"
+  >
+    War
+  </button>
+  <button
+    class="btn mb-2 rounded-pill bg-dark text-light py-2 px-3 fs-6 mx-2"
+    (click)="filterByGenre('Action')"
+  >
+    Action
+  </button>
+  <button
+    class="btn mb-2 rounded-pill bg-dark text-light py-2 px-3 fs-6 mx-2"
+    (click)="filterByGenre('Romance')"
+  >
+    Romance
+  </button>
 </div>
 <!-- body -->
 <div class="row d-flex justify-content-center">
   @for (show of filteredMovies; track show._id) {
-  <div class="card">
+  <div class="card position-relative overflow-hidden h-auto my-2">
     <div id="card-body" class="col-sm-12 col-md-3 p-2 w-100">
       <section
-        class="movies text-white"
+        class="movies p-1 m-1 text-white rounded"
         style="background-image: url('{{ show.image }}');"
       >
         <div id="card-body" class="opacity-0 p-2">
@@ -132,7 +170,7 @@
   </div>
   }
   <!-- pagiantion -->
-  <div class="pag">
+  <div class="pagination d-flex justify-content-center mt-3">
     <p-paginator
       [rows]="limit"
       [totalRecords]="totalMovies"

@@ -2,91 +2,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 20px 0px;
+  margin: 1.25rem 0rem;
+  & button {
+    transition: background-color 0.3s ease;
+    &:active {
+      border-color: #f10404;
+    }
+  }
 }
-.filtter .button-group {
-  display: flex;
-  gap: 30px;
-}
-
-.filtter button {
-  background-color: #333;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 20px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s ease;
-  margin: 0px 10px;
-}
-
-.filtter button:hover {
-  background-color: #f10404;
-}
-
-.filtter button.active {
-  background-color: red;
-  color: white;
-}
-
 .card {
   background-color: transparent;
-  position: relative;
-  overflow: hidden;
   width: 20rem;
-  height: auto;
-  border: none;
   transition: 0.3s ease-in;
-  margin: 10px 0px;
-  transform: scale(1);
-}
-
-.btn {
-  opacity: 0.8;
-  transition: opacity 0.3s;
-}
-
-.btn:hover {
-  opacity: 1;
-}
-
-.movies {
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 400px;
-  padding: 10px;
-  margin: 10px;
-}
-
-.round {
-  padding: 23px;
-  border-radius: 50%;
-  width: 80px;
-  height: 80px;
-  font-size: 34px;
-  background: rgb(255, 255, 255);
-  transition: all 0.3s ease;
-  margin: 0 auto;
-}
-
-#card-body:hover {
-  padding: 10px;
-  background-color: rgba(0, 0, 0, 0.5);
-  opacity: 1 !important;
-}
-
-.custom-btn {
-  cursor: default !important;
-}
-
-.pag {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-.opacity-0 {
-  transition: 0.3s;
 }

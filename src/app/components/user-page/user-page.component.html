@@ -38,21 +38,30 @@
 <div class="container mt-5 text-white">
   <div class="d-flex justify-content-between align-items-center mb-4">
     <h3>Your Favorites</h3>
-    <a href="#" class="btn btn-danger">See More</a>
+    <a class="btn btn-danger" [routerLink]="['/favorites']">See More</a>
   </div>
   <owl-carousel-o [options]="customOptions">
     @for (movieItem of favMovies; track movieItem._id) {
-    <ng-template carouselSlide [_id]="movieItem._id">
-      <div class="movie-slide px-1">
-        <div class="image-container">
+    <ng-template carouselSlide>
+      <div class="movie-slide px-2">
+        <div class="image-container position-relative w-100 overflow-hidden">
           <a routerLink="deta"></a
-          ><img [src]="movieItem.image" [alt]="movieItem.title" />
+          ><img
+            [src]="movieItem.image"
+            [alt]="movieItem.title"
+            class="position-absolute object-fit-cover top-0 start-0 w-100 h-100"
+          />
         </div>
-        <div id="card-body" class="overlay opacity-0">
-          <h4 class="text-center text-white">{{ movieItem.title }}</h4>
+        <div
+          id="card-body"
+          class="overlay d-flex flex-column justify-content-center align-items-center text-light opacity-0 position-absolute top-0 start-0 bottom-0 end-0 p-3"
+        >
+          <h4 class="text-center text-white fw-bold m-0 fs-4 pb-4">
+            {{ movieItem.title }}
+          </h4>
           <p class="text-center text-white">{{ movieItem.tagline }}</p>
           <a
-            class="btn btn-danger btn-sm"
+            class="btn btn-danger btn-sm mt-4 text-white fs-6 text-decoration-none"
             [routerLink]="['/detailspage', movieItem._id]"
           >
             Go to Details
@@ -80,21 +89,30 @@
 <div class="container mt-5 text-white">
   <div class="d-flex justify-content-between align-items-center mb-4">
     <h3>For Watch Later</h3>
-    <a href="#" class="btn btn-danger">See More</a>
+    <a class="btn btn-danger" [routerLink]="['/forlaters']">See More</a>
   </div>
   <owl-carousel-o [options]="customOptions">
     @for (movieItem of watch; track movieItem._id) {
-    <ng-template carouselSlide [_id]="movieItem._id">
-      <div class="movie-slide px-1">
-        <div class="image-container">
+    <ng-template carouselSlide>
+      <div class="movie-slide px-2">
+        <div class="image-container position-relative w-100 overflow-hidden">
           <a routerLink="deta"></a
-          ><img [src]="movieItem.image" [alt]="movieItem.title" />
+          ><img
+            [src]="movieItem.image"
+            [alt]="movieItem.title"
+            class="position-absolute object-fit-cover top-0 start-0 w-100 h-100"
+          />
         </div>
-        <div id="card-body" class="overlay opacity-0">
-          <h4 class="text-center text-white">{{ movieItem.title }}</h4>
+        <div
+          id="card-body"
+          class="overlay d-flex flex-column justify-content-center align-items-center text-light opacity-0 position-absolute top-0 start-0 bottom-0 end-0 p-3"
+        >
+          <h4 class="text-center text-white fw-bold m-0 fs-4 pb-4">
+            {{ movieItem.title }}
+          </h4>
           <p class="text-center text-white">{{ movieItem.tagline }}</p>
           <a
-            class="btn btn-danger btn-sm"
+            class="btn btn-danger btn-sm mt-4 text-white fs-6 text-decoration-none"
             [routerLink]="['/detailspage', movieItem._id]"
           >
             Go to Details

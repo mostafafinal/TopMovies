@@ -3,16 +3,27 @@
     <owl-carousel-o [options]="customOptions">
       @for (movie of allMovies; track movie._id) {
       <ng-template carouselSlide>
-        <div class="movie-slide px-1">
-          <div class="image-container">
+        <div class="movie-slide px-2">
+          <div
+            class="image-container position-relative w-100 overflow-hidden rounded"
+          >
             <a routerLink="deta"></a
-            ><img [src]="movie.image" [alt]="movie.title" />
+            ><img
+              [src]="movie.image"
+              [alt]="movie.title"
+              class="position-absolute object-fit-cover top-0 start-0 w-100 h-100"
+            />
           </div>
-          <div id="card-body" class="overlay opacity-0">
-            <h4 class="text-center text-white">{{ movie.title }}</h4>
+          <div
+            id="card-body"
+            class="overlay d-flex flex-column justify-content-center align-items-center text-light opacity-0 position-absolute top-0 start-0 bottom-0 end-0 p-3"
+          >
+            <h4 class="text-center text-white fw-bold m-0 fs-4 pb-4">
+              {{ movie.title }}
+            </h4>
             <p class="text-center text-white">{{ movie.tagline }}</p>
             <a
-              class="btn btn-danger btn-sm"
+              class="btn btn-danger btn-sm mt-4 text-white fs-6 text-decoration-none"
               [routerLink]="['/detailspage', movie._id]"
             >
               Go to Details

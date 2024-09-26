@@ -10,7 +10,7 @@
 <div class="row d-flex justify-content-center">
   @if(forLaters.length <= 0) {
   <div
-    class="empty d-flex justify-content-center align-items-center rounded text-light"
+    class="empty-favlat d-flex justify-content-center align-items-center rounded text-light"
   >
     <div class="content-text">
       <i class="bi bi-stopwatch"></i> You Don't Have Any Scheduled Items
@@ -19,17 +19,23 @@
   } @else { @for (show of forLaters; track show._id) {
   <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
     <a>
-      <div class="hover hover-1 text-white rounded-3 w-100 overflow-hidden">
+      <div
+        class="hover position-relative overflow-hidden h-100 hover-1 text-white rounded-3 w-100"
+      >
         <img
           [src]="show.image"
-          class="img-fluid rounded-3 w-100"
+          class="img-fluid rounded-3 w-100 h-100 object-fit-cover"
           alt="Show Image"
         />
-        <div class="hover-overlay"></div>
-        <div class="hover-1-content position-absolute top-50">
-          <h5 class="hover-1-title text-uppercase font-weight-bold mb-0 fs-4">
+        <div
+          class="hover-overlay position-absolute top-0 start-0 w-100 h-100"
+        ></div>
+        <div
+          class="hover-1-content position-absolute start-50 translate-middle-x z-2 text-light text-center px-3 py-2 text-center"
+        >
+          <h5 class="hover-1-title mb-0 text-uppercase font-weight-bold fs-5">
             {{ show.title }}
-            <div class="btns d-flex">
+            <div class="btns-favlat d-flex">
               <button
                 class="btn btn-primary btn-sm mx-1 mt-2 w-100"
                 placement="top"

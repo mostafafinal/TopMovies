@@ -9,20 +9,10 @@
 @import "../node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.theme.default.min.css";
 
 body {
-  height: 100%;
-  background-color: rgb(33, 37, 41);
-
   .bg-image {
-    position: fixed;
-    height: 100%;
     background-image: url("https://web2.topcinema.cam/wp-content/themes/movies2023/back.jpg");
     background-position: center;
     background-size: cover;
-    left: 0;
-    right: 0;
-    top: 0;
-    opacity: 0.5;
-    z-index: -1;
 
     &::after {
       position: absolute;
@@ -36,17 +26,137 @@ body {
   }
 }
 
+/* Start Carousel */
 .containers .owl-prev,
 .containers .owl-next {
   background-color: #ffffff00 !important;
   position: absolute;
   top: 50%;
 }
-
 .containers .owl-next {
   right: 0;
 }
-
 .containers .owl-prev {
   left: 0;
 }
+.movie-slide {
+  margin-bottom: 1.875rem;
+  padding: 0 0.625rem;
+  position: relative;
+
+  .image-container {
+    padding-top: 65%;
+    min-height: 25rem;
+    box-shadow: 0 0.25 0.625rem rgba(0, 0, 0, 0.1);
+    & img {
+      transition: transform 0.3s ease-in-out;
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  .overlay {
+    background: rgba(0, 0, 0, 0.7);
+    transition: opacity 0.3s ease-in-out;
+    & a {
+      background-color: #dc3545;
+      border-radius: 0.3125;
+      transition: background-color 0.3s ease;
+      &:hover {
+        background-color: #c82333;
+      }
+    }
+  }
+
+  &:hover .overlay {
+    opacity: 1 !important;
+  }
+}
+/* End Carousel */
+
+/* Start Cards Hover */
+.hover {
+  border-radius: 0.9375rem;
+  & img {
+    transition: transform 0.3s ease;
+  }
+  .hover-overlay {
+    background: rgba(0, 0, 0, 0.4);
+  }
+  .hover-1-title,
+  .hover-1-year,
+  .hover-1-description,
+  .hover-overlay {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .hover-1-content {
+    bottom: 0.9375rem;
+  }
+  &.hover-1:hover img {
+    transform: scale(1.05);
+  }
+  &.hover-1:hover {
+    .hover-1-title,
+    .hover-1-year,
+    .hover-1-description,
+    .hover-overlay {
+      opacity: 1;
+    }
+  }
+}
+/* End Cards Hover */
+
+/* Start Movies Card */
+.movies {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 25rem;
+  .custom-btn {
+    cursor: default !important;
+  }
+  .opacity-0 {
+    transition: 0.3s;
+  }
+}
+#card-body:hover {
+  padding: 0.625rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 1 !important;
+}
+/* End Movies Card */
+
+/* Start Sign Forms */
+.container.sign-forms {
+  padding-top: 5.625rem;
+  form {
+    border-radius: 1.25rem;
+    height: 35rem;
+    .form-control {
+      box-shadow: none !important;
+      border: none;
+      border-bottom: 0.0625rem solid;
+      border-radius: 0.25rem 0.25rem 0 0;
+      &:autofill {
+        -webkit-text-fill-color: #6c757d;
+        border-color: #6c757d !important;
+        transition: background-color 100000000000s ease-in-out;
+      }
+    }
+  }
+}
+/* End Sign Forms */
+
+/* Start Favs & Laters */
+.empty-favlat {
+  height: calc(100vh - 10.75rem);
+  .content-text {
+    font-size: clamp(1rem, 4vw, 4rem);
+  }
+}
+.btns-favlat {
+  width: 15rem;
+}
+/* End Favs & Laters */
