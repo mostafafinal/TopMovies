@@ -59,21 +59,46 @@
             >Movies</a
           >
         </li>
+
+        @if(loggedInSingal() || logOut){
         <li class="nav-item">
           <a
             class="nav-link position-relative text-light fw-bold"
-            [routerLink]="['/tvshows']"
+            [routerLink]="['/favorites']"
             routerLinkActive="active"
             (click)="isMenuCollapsed = true"
-            >TV Shows</a
+            >Favorites</a
           >
         </li>
-        @if(loggedInSingal() || logOut){
+        <li class="nav-item">
+          <a
+            class="nav-link position-relative text-light fw-bold"
+            [routerLink]="['/forlaters']"
+            routerLinkActive="active"
+            (click)="isMenuCollapsed = true"
+            >For Later</a
+          >
+        </li>
         <li
           class="dropdown-item bg-danger rounded text-light p-2 text-center btn d-lg-none"
           (click)="userLogOut()"
         >
           Log out
+        </li>
+        } @else {
+        <li class="nav-item" placement="bottom" ngbTooltip="You've to login">
+          <a
+            class="nav-link position-relative text-light fw-bold"
+            (click)="isMenuCollapsed = true"
+            >Favorites</a
+          >
+        </li>
+        <li class="nav-item" placement="bottom" ngbTooltip="You've to login">
+          <a
+            class="nav-link position-relative text-light fw-bold"
+            (click)="isMenuCollapsed = true"
+            >For Later</a
+          >
         </li>
         }
       </ul>
@@ -91,7 +116,7 @@
             width="40"
             height="40"
           />
-          <p class="text-light" style="color: wight">
+          <p class="text-light m-0" style="color: wight">
             {{ user.firstName }} {{ user.lastName }}
           </p>
         </div>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCollapseModule, NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule, RouterLink, Router } from '@angular/router';
 import { LoginService } from '../../services/login.service';
 
@@ -8,7 +8,7 @@ import { User } from '../../models/user';
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [NgbCollapseModule, RouterModule, RouterLink],
+  imports: [NgbCollapseModule, RouterModule, RouterLink, NgbTooltip],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
 })
@@ -48,7 +48,9 @@ export class HeaderComponent implements OnInit {
     this.loginService.setData(false);
     sessionStorage.removeItem('loggedIn');
     this.logOut = false;
-    window.location.reload();
+    setTimeout(() => {
+      this.router.navigate(['/home']);
+    }, 100);
   }
   userPage() {
     this.router.navigate(['/userpage']);

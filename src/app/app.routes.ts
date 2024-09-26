@@ -27,7 +27,7 @@ export const routes: Routes = [
     canActivate: [authGuard],
   },
   {
-    path: 'forlater',
+    path: 'forlaters',
     component: ForLaterPageComponent,
     canActivate: [authGuard],
   },

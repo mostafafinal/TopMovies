@@ -61,3 +61,8 @@ span {
 .fs {
   font-size: small;
 }
+
+.nav-item {
+  cursor: pointer;
+  user-select: none;
+}
