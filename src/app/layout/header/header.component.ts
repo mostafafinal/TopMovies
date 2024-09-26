@@ -51,6 +51,9 @@ export class HeaderComponent implements OnInit {
     setTimeout(() => {
       this.router.navigate(['/home']);
     }, 100);
+    setTimeout(() => {
+      window.location.reload();
+    }, 500);
   }
   userPage() {
     this.router.navigate(['/userpage']);
