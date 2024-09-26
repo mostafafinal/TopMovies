@@ -1,0 +1,10 @@
+.not-found {
+  height: calc(100vh - 140px);
+  .error {
+    font-size: clamp(1rem, 10vw, 10rem);
+    font-weight: bold;
+  }
+  .text {
+    font-size: clamp(1rem, 7vw, 4rem);
+  }
+}
