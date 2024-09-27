@@ -36,7 +36,7 @@ export class DetailsPageComponent {
   ) {
 
   }
-  private modelService=inject(NgbModal)
+  private modelService = inject(NgbModal)
   ngOnInit() {
     this.spinner.show();
     const id = this.route.snapshot.paramMap.get('id');
@@ -63,10 +63,17 @@ export class DetailsPageComponent {
       this.starImage = 'https://img.icons8.com/?size=100&id=3330&format=png&color=dc3444'; // Red star image
     }
   }
-  openPopUp(){
+  openPopUp() {
     let modalRef = this.modelService.open(NgbdModalContent);
-		modalRef.componentInstance.movieId = this.movie._id || "";
-    
+
+    modalRef.componentInstance.movieId = this.movie._id || "";
+
+    modalRef.result.then((updatedMovie) => {
+      this.movie = updatedMovie;
+    }).catch((error) => {
+      console.log('Modal dismissed with error:', error);
+    });
+
   }
 
   shuffleArray(array: any[]): any[] {

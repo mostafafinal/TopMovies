@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { NgbActiveModal, NgbModal, NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 import { MoviesService } from '../../../services/movies.service';
 
@@ -18,23 +18,25 @@ import { MoviesService } from '../../../services/movies.service';
 
 		</div>
 		<div class="d-flex justify-content-center">
-			<button type="button" class="btn btn-danger" (click)="activeModal.close('Close click')" (click)="addRate()">Add rate</button>
+			<button type="button" class="btn btn-danger"  (click)="addRate()">Add rate</button>
 		</div>
     </div>
 	`,
   imports: [NgbRatingModule],
+
 
 })
 export class NgbdModalContent {
   constructor(private moviesService: MoviesService) { }
   activeModal = inject(NgbActiveModal);
 
-  rating = 8;
+  rating = 0;
   @Input() movieId!: string;
+
 
   addRate() {
     this.moviesService.addMovieRate(this.movieId, this.rating).subscribe((data) => {
-      console.log(data);
+      this.activeModal.close(data.movie);
     })
   }
 }
