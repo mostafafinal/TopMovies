@@ -1,5 +1,7 @@
 import { Component, inject, Input } from '@angular/core';
 import { NgbActiveModal, NgbModal, NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
+import { MoviesService } from '../../../services/movies.service';
+
 
 @Component({
   selector: 'ngbd-modal-content',
@@ -20,15 +22,20 @@ import { NgbActiveModal, NgbModal, NgbRatingModule } from '@ng-bootstrap/ng-boot
 		</div>
     </div>
 	`,
-  imports: [ NgbRatingModule],
+  imports: [NgbRatingModule],
 
 })
 export class NgbdModalContent {
+  constructor(private moviesService: MoviesService) { }
   activeModal = inject(NgbActiveModal);
+
   rating = 8;
+  @Input() movieId!: string;
 
-  addRate(){
-
+  addRate() {
+    this.moviesService.addMovieRate(this.movieId, this.rating).subscribe((data) => {
+      console.log(data);
+    })
   }
 }
 

@@ -24,6 +24,7 @@ export class DetailsPageComponent {
   favMovies: string[] = [];
   watchLaterMovies: string[] = [];
   loggedIn = sessionStorage.getItem('loggedIn');
+  starImage: string = 'https://img.icons8.com/?size=100&id=3330&format=png&color=dc3444';
 
   constructor(
     private movieService: MoviesService,
@@ -55,10 +56,17 @@ export class DetailsPageComponent {
     }, 3000);
   }
 
-
-  opnePopUp(){
+  changeImage(isHover: boolean): void {
+    if (isHover) {
+      this.starImage = 'https://img.icons8.com/?size=100&id=7856&format=png&color=dc3444'; // Black star image
+    } else {
+      this.starImage = 'https://img.icons8.com/?size=100&id=3330&format=png&color=dc3444'; // Red star image
+    }
+  }
+  openPopUp(){
     let modalRef = this.modelService.open(NgbdModalContent);
-		modalRef.componentInstance.name = 'World';
+		modalRef.componentInstance.movieId = this.movie._id || "";
+    
   }
 
   shuffleArray(array: any[]): any[] {
