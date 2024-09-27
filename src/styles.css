@@ -21,6 +21,10 @@
   background: #f10404;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   .bg-image {
     background-image: url("https://web2.topcinema.cam/wp-content/themes/movies2023/back.jpg");
