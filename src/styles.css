@@ -143,6 +143,13 @@ body {
   background-color: rgba(0, 0, 0, 0.5);
   opacity: 1 !important;
 }
+.custom-btn {
+  width: 5rem;
+  padding: 3px 0;
+}
+.inactive-btns {
+  cursor: default !important;
+}
 /* End Movies Card */
 
 /* Start Sign Forms */
