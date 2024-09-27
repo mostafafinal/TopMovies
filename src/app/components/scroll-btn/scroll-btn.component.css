@@ -1,0 +1,8 @@
+span {
+  cursor: pointer;
+  width: 3.125rem;
+  height: 3.125rem;
+  bottom: 1.25rem;
+  right: 1.25rem;
+  transition: 0.3s;
+}

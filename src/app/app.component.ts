@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
+import { ScrollBtnComponent } from './components/scroll-btn/scroll-btn.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HeaderComponent, FooterComponent],
+  imports: [RouterOutlet, HeaderComponent, FooterComponent, ScrollBtnComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
