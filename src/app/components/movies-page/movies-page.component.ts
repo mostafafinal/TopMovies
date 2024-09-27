@@ -4,8 +4,7 @@ import { RouterModule } from '@angular/router';
 import { Movies } from '../../models/movies';
 import { MoviesService } from '../../services/movies.service';
 import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
-import { PaginatorModule } from 'primeng/paginator';
-import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
+import { NgbPaginationModule, NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
 import { UserService } from '../../services/user.service';
 
 @Component({
@@ -15,7 +14,7 @@ import { UserService } from '../../services/user.service';
     CommonModule,
     RouterModule,
     NgxSpinnerModule,
-    PaginatorModule,
+    NgbPaginationModule,
     NgbTooltip,
   ],
   templateUrl: './movies-page.component.html',
@@ -55,8 +54,11 @@ export class MoviesPageComponent implements OnInit {
     });
   }
 
-  changePage(event: any): void {
-    this.fetchMovies(event.rows, event.page + 1);
+  changePage(event: number): void {
+    this.fetchMovies(this.limit, event);
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 400);
   }
 
   filterByGenre(genre: string): void {

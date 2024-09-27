@@ -3,20 +3,13 @@ import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Movies } from '../../models/movies';
 import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
-import { PaginatorModule } from 'primeng/paginator';
 import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
 import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-favorites-page',
   standalone: true,
-  imports: [
-    CommonModule,
-    RouterModule,
-    NgxSpinnerModule,
-    PaginatorModule,
-    NgbTooltip,
-  ],
+  imports: [CommonModule, RouterModule, NgxSpinnerModule, NgbTooltip],
   templateUrl: './forlater-page.component.html',
   styleUrl: './forlater-page.component.css',
 })

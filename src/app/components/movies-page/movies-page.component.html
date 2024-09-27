@@ -169,13 +169,15 @@
     </div>
   </div>
   }
-  <!-- pagiantion -->
-  <div class="pagination d-flex justify-content-center mt-3">
-    <p-paginator
-      [rows]="limit"
-      [totalRecords]="totalMovies"
-      [pageLinkSize]="pages"
-      (onPageChange)="changePage($event)"
-    ></p-paginator>
+  <div class="pagination-container d-flex justify-content-center mt-3">
+    <ngb-pagination
+      [collectionSize]="totalMovies"
+      [(page)]="currentPage"
+      [pageSize]="limit"
+      [maxSize]="pages"
+      [rotate]="false"
+      [ellipses]="true"
+      (pageChange)="changePage($event)"
+    />
   </div>
 </div>
