@@ -7,6 +7,20 @@
 @import "../node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.carousel.min.css";
 @import "../node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.theme.default.min.css";
 
+::-webkit-scrollbar {
+  width: 0.2rem;
+}
+::-webkit-scrollbar-track {
+  background: #212529;
+}
+::-webkit-scrollbar-thumb {
+  background: #f10404ca;
+  border-radius: 2rem;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #f10404;
+}
+
 body {
   .bg-image {
     background-image: url("https://web2.topcinema.cam/wp-content/themes/movies2023/back.jpg");
