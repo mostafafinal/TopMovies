@@ -21,7 +21,7 @@ import { UserService } from '../../services/user.service';
 })
 export class ForLaterPageComponent implements OnInit {
   forLaters: Movies[] = [];
-  limit: number = 20;
+  limit: number = 12;
   currentPage: number = 1;
   totalForLaters: number = 0;
   constructor(

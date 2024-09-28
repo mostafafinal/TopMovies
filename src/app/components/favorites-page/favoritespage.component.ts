@@ -21,7 +21,7 @@ import { UserService } from '../../services/user.service';
 })
 export class FavoritesPageComponent implements OnInit {
   favorites: Movies[] = [];
-  limit: number = 20;
+  limit: number = 12;
   currentPage: number = 1;
   totalFavs: number = 0;
   constructor(
