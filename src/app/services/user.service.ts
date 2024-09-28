@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { User } from '../models/user';
 import { Movies } from '../models/movies';
 
@@ -15,8 +15,21 @@ export class UserService {
   getUserData(): Observable<User> {
     return this.http.get<User>(`${this.apiUrl}/user/`);
   }
+  getUserPaginatedFavs(limit: number, page: number): Observable<Movies[]> {
+    const params = new HttpParams().set('limit', limit).set('page', page);
+    return this.http.get<Movies[]>(`${this.apiUrl}/user/favList`, { params });
+  }
   getUserFavList(): Observable<Movies[]> {
     return this.http.get<Movies[]>(`${this.apiUrl}/user/favList`);
+  }
+  getUserPaginatedWatchLaters(
+    limit: number,
+    page: number
+  ): Observable<Movies[]> {
+    const params = new HttpParams().set('limit', limit).set('page', page);
+    return this.http.get<Movies[]>(`${this.apiUrl}/user/watctLater`, {
+      params,
+    });
   }
   getUserWatchLaterList(): Observable<Movies[]> {
     return this.http.get<Movies[]>(`${this.apiUrl}/user/watctLater`);

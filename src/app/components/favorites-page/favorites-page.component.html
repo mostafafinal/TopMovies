@@ -56,5 +56,16 @@
       </div>
     </a>
   </div>
-  } }
+  } } @if(totalFavs > 20) {
+  <div class="pagination-container d-flex justify-content-center mt-3">
+    <ngb-pagination
+      [collectionSize]="totalFavs"
+      [(page)]="currentPage"
+      [pageSize]="limit"
+      [rotate]="false"
+      [ellipses]="true"
+      (pageChange)="changePage($event)"
+    />
+  </div>
+  }
 </div>

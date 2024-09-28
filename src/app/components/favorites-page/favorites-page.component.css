@@ -1,0 +1,23 @@
+ngb-pagination ::ng-deep ul > li:not(:last-child) {
+  margin-right: 0.4rem;
+}
+ngb-pagination ::ng-deep ul > li:not(.active) > a {
+  background-color: #212529;
+  border-color: #212529;
+  border-radius: 0.5rem;
+  color: #f10404;
+  font-size: 1.5 rem;
+  font-weight: bold;
+  transition: 0.3s;
+}
+ngb-pagination ::ng-deep .page-link:focus {
+  box-shadow: none;
+}
+ngb-pagination ::ng-deep ul > li.active > a {
+  background-color: #f10404;
+  border-color: #f10404;
+  border-radius: 0.5rem;
+  font-size: 1.5 rem;
+  font-weight: bold;
+  transition: 0.3s;
+}
