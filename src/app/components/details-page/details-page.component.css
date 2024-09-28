@@ -15,7 +15,9 @@
   }
 }
 
-.fs--1
-{
-  font-size: 13px;
+.fs--1 {
+  font-size: 0.8125rem;
+}
+.active-rate {
+  cursor: pointer;
 }

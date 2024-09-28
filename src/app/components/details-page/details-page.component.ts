@@ -6,7 +6,6 @@ import { NgxSpinnerService, NgxSpinnerModule } from 'ngx-spinner';
 import { CommonModule } from '@angular/common';
 import { UserService } from '../../services/user.service';
 import { NgbModal, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
-import { NgModel } from '@angular/forms';
 import { NgbdModalContent } from '../rateing/pop-up/pop-up.component';
 
 @Component({
@@ -24,19 +23,16 @@ export class DetailsPageComponent {
   favMovies: string[] = [];
   watchLaterMovies: string[] = [];
   loggedIn = sessionStorage.getItem('loggedIn');
-  starImage: string = 'https://img.icons8.com/?size=100&id=3330&format=png&color=dc3444';
+  starImage: string =
+    'https://img.icons8.com/?size=100&id=3330&format=png&color=dc3444';
 
   constructor(
     private movieService: MoviesService,
     private route: ActivatedRoute,
     private spinner: NgxSpinnerService,
-    private userService: UserService,
-
-
-  ) {
-
-  }
-  private modelService = inject(NgbModal)
+    private userService: UserService
+  ) {}
+  private modelService = inject(NgbModal);
   ngOnInit() {
     this.spinner.show();
     const id = this.route.snapshot.paramMap.get('id');
@@ -58,25 +54,28 @@ export class DetailsPageComponent {
 
   changeImage(isHover: boolean): void {
     if (isHover) {
-      this.starImage = 'https://img.icons8.com/?size=100&id=7856&format=png&color=dc3444'; // Black star image
+      this.starImage =
+        'https://img.icons8.com/?size=100&id=7856&format=png&color=dc3444'; // Black star image
     } else {
-      this.starImage = 'https://img.icons8.com/?size=100&id=3330&format=png&color=dc3444'; // Red star image
+      this.starImage =
+        'https://img.icons8.com/?size=100&id=3330&format=png&color=dc3444'; // Red star image
     }
   }
   openPopUp() {
     let modalRef = this.modelService.open(NgbdModalContent);
 
-    modalRef.componentInstance.movieId = this.movie._id || "";
+    modalRef.componentInstance.movieId = this.movie._id || '';
 
-    modalRef.result.then((updatedMovie) => {
-      this.movie = updatedMovie;
-    }).catch((error) => {
-      console.log('Modal dismissed with error:', error);
-    });
-
+    modalRef.result
+      .then((updatedMovie) => {
+        this.movie = updatedMovie;
+      })
+      .catch((error) => {
+        console.log('Modal dismissed with error:', error);
+      });
   }
 
-  shuffleArray(array: any[]): any[] {
+  shuffleArray(array: Movies[]): Movies[] {
     return array.sort(() => Math.random() - 0.5);
   }
 
@@ -85,14 +84,15 @@ export class DetailsPageComponent {
 
     this.recommendedMovies = randomMovies
       .filter((movies) => {
-        return movies._id !== this.movie._id && movies.genres.some((genre: string) =>
-          this.movie.genres.includes(genre)
+        return (
+          movies._id !== this.movie._id &&
+          movies.genres.some((genre: string) =>
+            this.movie.genres.includes(genre)
+          )
         );
       })
       .slice(0, 16);
-
   }
-
 
   getFavList() {
     this.userService.getUserFavList().subscribe((data) => {

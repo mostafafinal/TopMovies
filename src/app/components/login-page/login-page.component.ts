@@ -11,7 +11,6 @@ import {
   Validators,
 } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { auto } from '@popperjs/core';
 
 @Component({
   selector: 'app-login-page',

@@ -4,7 +4,7 @@ export interface Movies {
   image: String;
   date: string;
   overview: string;
-  rating: any;
+  rating: number;
   isReleased: boolean;
   isAdult: boolean;
   original_language: string;
