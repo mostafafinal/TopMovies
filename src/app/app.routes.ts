@@ -7,7 +7,7 @@ import { LoginPageComponent } from './components/login-page/login-page.component
 import { SignupPageComponent } from './components/signup-page/signup-page.component';
 import { UserPageComponent } from './components/user-page/user-page.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
-import { authGuard } from './guards/auth.guard';
+import { authGuard, LoggedInGuard } from './guards/auth.guard';
 import { ForLaterPageComponent } from './components/forlater-page/forlater.component';
 
 export const routes: Routes = [
@@ -32,8 +32,16 @@ export const routes: Routes = [
     canActivate: [authGuard],
   },
   { path: 'detailspage/:id', component: DetailsPageComponent },
-  { path: 'login', component: LoginPageComponent },
-  { path: 'signup', component: SignupPageComponent },
+  {
+    path: 'login',
+    component: LoginPageComponent,
+    canActivate: [LoggedInGuard],
+  },
+  {
+    path: 'signup',
+    component: SignupPageComponent,
+    canActivate: [LoggedInGuard],
+  },
   { path: 'userpage', component: UserPageComponent, canActivate: [authGuard] },
   { path: 'notfound', component: NotFoundComponent },
   { path: '**', redirectTo: '/notfound', pathMatch: 'full' },

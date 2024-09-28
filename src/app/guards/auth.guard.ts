@@ -10,3 +10,12 @@ export const authGuard: CanActivateFn = () => {
     return false;
   }
 };
+
+export const LoggedInGuard: CanActivateFn = () => {
+  if (inject(LoginService).getToken() !== null) {
+    inject(Router).navigate(['/home']);
+    return false;
+  } else {
+    return true;
+  }
+};
