@@ -21,6 +21,10 @@
   background: #f10404;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   .bg-image {
     background-image: url("https://web2.topcinema.cam/wp-content/themes/movies2023/back.jpg");
@@ -138,6 +142,13 @@ body {
   padding: 0.625rem;
   background-color: rgba(0, 0, 0, 0.5);
   opacity: 1 !important;
+}
+.custom-btn {
+  width: 5rem;
+  padding: 3px 0;
+}
+.inactive-btns {
+  cursor: default !important;
 }
 /* End Movies Card */
 
