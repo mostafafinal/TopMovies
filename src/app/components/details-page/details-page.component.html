@@ -75,13 +75,86 @@
         </div>
         }
       </div>
+
       <small class="text-white"
         >Original Title: {{ movie.title }} • Original Language:
         {{ movie.original_language }} • 1h 45m</small
       >
+
       <i class="fa-regular fa-heart"></i>
       <div class="tagline h4 mt-3">
         {{ movie.tagline }}
+      </div>
+
+      <!-- rateing bar -->
+      <div class="d-flex gap-3 mt-3">
+        <div class="d-flex gap-1">
+          <img
+            src="https://img.icons8.com/?size=100&id=19417&format=png&color=000000"
+            alt="star"
+            height="23rm"
+          />
+          <p class="text-white mt-1 fs--1">
+            {{ movie.vote_average }}<span class="text-secondary">/10</span>
+          </p>
+        </div>
+        @if(loggedIn && movie.rating){
+          <span
+          class="badge "
+          placement="top"
+          ngbTooltip="You already rate this movie"
+        >
+          <div
+            class="d-flex gap-1"
+          >
+            <img src='https://img.icons8.com/?size=100&id=7856&format=png&color=dc3444' alt="star" height="23rm" />
+            <p class="text-light mt-1 fs--1">{{movie.rating}}<span class="text-secondary">/10</span></p>
+          </div>
+        </span>
+        }
+        @else if(loggedIn){
+          <span
+          class="badge "
+          placement="top"
+          ngbTooltip="Add new rate"
+        >
+          <div
+            class="d-flex gap-1"
+            (click)="openPopUp()"
+            (mouseover)="changeImage(true)"
+            (mouseout)="changeImage(false)"
+          >
+            <img [src]="starImage" alt="star" height="23rm" />
+            <p class="text-secondary mt-1 fs--1">your rate</p>
+          </div>
+        </span>
+        }@else{
+          <span
+          class="badge p-0 m-0 "
+          placement="top"
+          ngbTooltip="You've to login!"
+        >
+          <div
+            class="d-flex gap-1"
+            (mouseover)="changeImage(true)"
+            (mouseout)="changeImage(false)"
+          >
+            <img [src]="starImage" alt="star" height="23rm" />
+            <p class="text-secondary mt-1 fs--1">your rate</p>
+          </div>
+        </span>
+        }
+<!-- ========================================================== -->
+        <div class="d-flex gap-1">
+          <img
+            src="https://img.icons8.com/?size=100&id=hvhu4UVzhAjj&format=png&color=269140"
+            alt="star"
+            height="23rm"
+          />
+          <p class="text-secondary mt-1 fs--1">
+            {{ movie.vote_count }}
+          </p>
+        </div>
       </div>
 
       <h4><span class="badge text-bg-danger mt-3">Overview</span></h4>
@@ -102,6 +175,7 @@
     </div>
 
     <!-- movie/shows-img -->
+
     <div
       class="col-lg-3 col-md-4 col-12 d-flex justify-content-center align-items-center"
     >

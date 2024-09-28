@@ -28,6 +28,10 @@ export class MoviesService {
     return this.http.get<Movies>(`${this.apiUrl}/movie/${id}`);
   }
 
+  addMovieRate(id:string,rate:Number): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/movie/rate/${id}`,{rate});
+  }
+
   addMovieToWatahLater(movieId: String): Observable<Movies> {
     return this.http.put<Movies>(
       `${this.apiUrl}/user/watctLater/${movieId}`,

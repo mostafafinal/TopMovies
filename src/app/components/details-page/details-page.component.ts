@@ -1,11 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Movies } from '../../models/movies';
 import { MoviesService } from '../../services/movies.service';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { NgxSpinnerService, NgxSpinnerModule } from 'ngx-spinner';
 import { CommonModule } from '@angular/common';
 import { UserService } from '../../services/user.service';
-import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgModel } from '@angular/forms';
+import { NgbdModalContent } from '../rateing/pop-up/pop-up.component';
 
 @Component({
   selector: 'app-details-page',
@@ -22,14 +24,19 @@ export class DetailsPageComponent {
   favMovies: string[] = [];
   watchLaterMovies: string[] = [];
   loggedIn = sessionStorage.getItem('loggedIn');
+  starImage: string = 'https://img.icons8.com/?size=100&id=3330&format=png&color=dc3444';
 
   constructor(
     private movieService: MoviesService,
     private route: ActivatedRoute,
     private spinner: NgxSpinnerService,
-    private userService: UserService
-  ) {}
+    private userService: UserService,
 
+
+  ) {
+
+  }
+  private modelService = inject(NgbModal)
   ngOnInit() {
     this.spinner.show();
     const id = this.route.snapshot.paramMap.get('id');
@@ -49,6 +56,25 @@ export class DetailsPageComponent {
     }, 3000);
   }
 
+  changeImage(isHover: boolean): void {
+    if (isHover) {
+      this.starImage = 'https://img.icons8.com/?size=100&id=7856&format=png&color=dc3444'; // Black star image
+    } else {
+      this.starImage = 'https://img.icons8.com/?size=100&id=3330&format=png&color=dc3444'; // Red star image
+    }
+  }
+  openPopUp() {
+    let modalRef = this.modelService.open(NgbdModalContent);
+
+    modalRef.componentInstance.movieId = this.movie._id || "";
+
+    modalRef.result.then((updatedMovie) => {
+      this.movie = updatedMovie;
+    }).catch((error) => {
+      console.log('Modal dismissed with error:', error);
+    });
+
+  }
 
   shuffleArray(array: any[]): any[] {
     return array.sort(() => Math.random() - 0.5);
@@ -64,9 +90,9 @@ export class DetailsPageComponent {
         );
       })
       .slice(0, 16);
-      
+
   }
-  
+
 
   getFavList() {
     this.userService.getUserFavList().subscribe((data) => {
