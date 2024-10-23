@@ -8,7 +8,7 @@ import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
   providedIn: 'root',
 })
 export class RegisterService {
-  private apiUrl = 'https://movie-app-production-bac6.up.railway.app';
+  private apiUrl = 'https://movie-app-jhco.vercel.app';
 
   constructor(private http: HttpClient) {}
 

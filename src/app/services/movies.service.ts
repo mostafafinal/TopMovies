@@ -8,7 +8,7 @@ import { Category } from '../models/category';
   providedIn: 'root',
 })
 export class MoviesService {
-  private apiUrl = 'https://movie-app-production-bac6.up.railway.app';
+  private apiUrl = 'https://movie-app-jhco.vercel.app';
   constructor(private http: HttpClient) {}
 
   getMovies(): Observable<Movies[]> {
