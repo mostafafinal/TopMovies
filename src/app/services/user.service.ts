@@ -8,7 +8,7 @@ import { Movies } from '../models/movies';
   providedIn: 'root',
 })
 export class UserService {
-  private apiUrl = 'https://movie-app-production-bac6.up.railway.app';
+  private apiUrl = 'https://movie-app-jhco.vercel.app';
 
   constructor(private http: HttpClient) {}
 

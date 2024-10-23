@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class LoginService {
-  private apiUrl = 'https://movie-app-production-bac6.up.railway.app';
+  private apiUrl = 'https://movie-app-jhco.vercel.app';
   private data = signal(false);
   constructor(private http: HttpClient) {}
 
